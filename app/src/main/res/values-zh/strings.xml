@@ -5,9 +5,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_net">网络</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
@@ -26,4 +26,8 @@
     <string name="net_proxy">代理</string>
     <string name="net_proxy_host">代理地址</string>
     <string name="net_proxy_port">代理端口</string>
+    <string name="action_about">关于</string>
+    <string name="about_author">author\nsong</string>
+    <string name="about_copy_right">(c) 2016 - 2020</string>
+    <string name="about_version">version %s</string>
 </resources>
