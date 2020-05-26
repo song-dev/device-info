@@ -49,12 +49,15 @@ public class NetWorkInfo {
             } else if (ips.containsKey("vpn")) {
                 list.add(new Pair<String, String>(context.getString(R.string.net_ipv4), ips.get("vpn")));
             }
-            list.add(new Pair<String, String>(context.getString(R.string.net_bssid), GatewayUtils.getBssid(context)));
             list.add(new Pair<String, String>(context.getString(R.string.net_ssid), GatewayUtils.getSsid(context)));
+            list.add(new Pair<String, String>(context.getString(R.string.net_bssid), GatewayUtils.getBssid(context)));
             list.add(new Pair<String, String>(context.getString(R.string.net_mac), GatewayUtils.getMacAddress(context)));
             GatewayUtils.getProxyInfo(context, list);
             WifiInfo wifiInfo = GatewayUtils.getWifiInfo(context);
             if (wifiInfo != null) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    list.add(new Pair<String, String>(context.getString(R.string.net_frequency), wifiInfo.getFrequency() + " MHz"));
+                }
                 list.add(new Pair<String, String>(context.getString(R.string.net_link_speed), wifiInfo.getLinkSpeed() + " Mbps"));
                 list.add(new Pair<String, String>(context.getString(R.string.net_id), wifiInfo.getNetworkId() + ""));
                 int rssi = wifiInfo.getRssi();
