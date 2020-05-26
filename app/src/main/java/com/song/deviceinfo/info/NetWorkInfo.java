@@ -49,8 +49,8 @@ public class NetWorkInfo {
             } else if (ips.containsKey("vpn")) {
                 list.add(new Pair<String, String>(context.getString(R.string.net_ipv4), ips.get("vpn")));
             }
-            list.add(new Pair<String, String>(context.getString(R.string.net_bssid), GatewayUtils.getBssid(context)));
             list.add(new Pair<String, String>(context.getString(R.string.net_ssid), GatewayUtils.getSsid(context)));
+            list.add(new Pair<String, String>(context.getString(R.string.net_bssid), GatewayUtils.getBssid(context)));
             list.add(new Pair<String, String>(context.getString(R.string.net_mac), GatewayUtils.getMacAddress(context)));
             GatewayUtils.getProxyInfo(context, list);
             WifiInfo wifiInfo = GatewayUtils.getWifiInfo(context);
