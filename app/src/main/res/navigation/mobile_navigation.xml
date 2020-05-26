@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.song.deviceinfo.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_net"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -40,4 +40,10 @@
         android:name="com.song.deviceinfo.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.song.deviceinfo.ui.about.AboutFragment"
+        android:label="@string/action_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>
