@@ -28,6 +28,6 @@ public class HomeViewModel extends ViewModel {
     }
 
     public List<Pair<String, String>> getNetWorkInfo(Context context) {
-        return NetWorkInfo.getNetInfo(context);
+        return NetWorkInfo.getNetWorkInfo(context);
     }
 }
