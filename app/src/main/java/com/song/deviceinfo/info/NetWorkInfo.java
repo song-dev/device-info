@@ -55,6 +55,9 @@ public class NetWorkInfo {
             GatewayUtils.getProxyInfo(context, list);
             WifiInfo wifiInfo = GatewayUtils.getWifiInfo(context);
             if (wifiInfo != null) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    list.add(new Pair<String, String>(context.getString(R.string.net_frequency), wifiInfo.getFrequency() + " MHz"));
+                }
                 list.add(new Pair<String, String>(context.getString(R.string.net_link_speed), wifiInfo.getLinkSpeed() + " Mbps"));
                 list.add(new Pair<String, String>(context.getString(R.string.net_id), wifiInfo.getNetworkId() + ""));
                 int rssi = wifiInfo.getRssi();

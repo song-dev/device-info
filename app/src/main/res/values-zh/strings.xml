@@ -30,4 +30,5 @@
     <string name="about_author">author\nsong</string>
     <string name="about_copy_right">(c) 2016 - 2020</string>
     <string name="about_version">version %s</string>
+    <string name="net_frequency">频率</string>
 </resources>
