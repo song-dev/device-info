@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.home;
+package com.song.deviceinfo.ui.net;
 
 import android.content.Context;
 
@@ -11,11 +11,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class NetViewModel extends ViewModel {
 
     private MutableLiveData<List<Pair<String, String>>> mRecyclerView;
 
-    public HomeViewModel() {
+    public NetViewModel() {
         mRecyclerView = new MutableLiveData<>();
     }
 

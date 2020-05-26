@@ -3,31 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_net">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.song.deviceinfo.ui.home.HomeFragment"
+        android:id="@+id/nav_net"
+        android:name="com.song.deviceinfo.ui.net.NetFragment"
         android:label="@string/menu_net"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.song.deviceinfo.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_net" />
 
     <fragment
         android:id="@+id/nav_gallery"

@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.home;
+package com.song.deviceinfo.ui.net;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,31 +24,31 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 /**
  * Created by chensongsong on 2020/5/25.
  */
-public class HomeFragment extends Fragment {
+public class NetFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private HomeAdapter homeAdapter;
+    private NetViewModel netViewModel;
+    private NetAdapter netAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private static Handler mainHandler = new Handler(Looper.getMainLooper());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        netViewModel =
+                ViewModelProviders.of(this).get(NetViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_net, container, false);
         final RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         swipeRefreshLayout = ((SwipeRefreshLayout) root.findViewById(R.id.srl));
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        homeAdapter = new HomeAdapter(getContext());
-        recyclerView.setAdapter(homeAdapter);
-        homeViewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<Pair<String, String>>>() {
+        netAdapter = new NetAdapter(getContext());
+        recyclerView.setAdapter(netAdapter);
+        netViewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<Pair<String, String>>>() {
             @Override
             public void onChanged(List<Pair<String, String>> pairs) {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
-                        homeAdapter.updateData(homeViewModel.getRecyclerView().getValue());
+                        netAdapter.updateData(netViewModel.getRecyclerView().getValue());
                     }
                 });
             }
@@ -81,11 +81,11 @@ public class HomeFragment extends Fragment {
         ThreadPoolUtils.getInstance().execute(new Runnable() {
             @Override
             public void run() {
-                final List<Pair<String, String>> list = homeViewModel.getNetWorkInfo(getContext());
+                final List<Pair<String, String>> list = netViewModel.getNetWorkInfo(getContext());
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        homeViewModel.setValue(list);
+                        netViewModel.setValue(list);
                     }
                 });
             }

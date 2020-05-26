@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.home;
+package com.song.deviceinfo.ui.net;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Created by chensongsong on 2020/5/25.
  */
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
+public class NetAdapter extends RecyclerView.Adapter<NetAdapter.HomeHolder> {
 
     private List<Pair<String, String>> data = null;
     private Context context;
 
-    public HomeAdapter(Context context) {
+    public NetAdapter(Context context) {
         this.context = context;
     }
 
