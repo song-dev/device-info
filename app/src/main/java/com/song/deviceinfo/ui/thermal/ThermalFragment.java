@@ -5,10 +5,15 @@ import com.song.deviceinfo.ui.base.BaseViewModel;
 import com.song.deviceinfo.ui.base.NormalAdapter;
 import com.song.deviceinfo.ui.base.NormalFragment;
 
+import java.util.List;
+
 import androidx.core.util.Pair;
 import androidx.lifecycle.ViewModelProviders;
 
-public class ThermalFragment extends NormalFragment<Pair<String, String>> {
+/**
+ * Created by chensongsong on 2020/5/27.
+ */
+public class ThermalFragment extends NormalFragment {
 
     @Override
     protected BaseAdapter crateAdapter() {
@@ -20,4 +25,8 @@ public class ThermalFragment extends NormalFragment<Pair<String, String>> {
         return ViewModelProviders.of(this).get(ThermalViewModel.class);
     }
 
+    @Override
+    protected List<Pair<String, String>> getNormalInfo() {
+        return ((ThermalViewModel) viewModel).getThermalInfo();
+    }
 }

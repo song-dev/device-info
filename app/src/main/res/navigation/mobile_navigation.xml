@@ -9,7 +9,7 @@
         android:id="@+id/nav_net"
         android:name="com.song.deviceinfo.ui.net.NetFragment"
         android:label="@string/menu_net"
-        tools:layout="@layout/fragment_net" />
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_thermal"

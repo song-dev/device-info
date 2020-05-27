@@ -10,10 +10,9 @@ import androidx.core.util.Pair;
 /**
  * Created by chensongsong on 2020/5/27.
  */
-public class BatteryViewModel extends NormalViewModel<Pair<String, String>> {
+public class BatteryViewModel extends NormalViewModel {
 
-    @Override
-    public List<Pair<String, String>> getNormalInfo() {
+    public List<Pair<String, String>> getBatteryInfo() {
         return BatteryInfo.getBatteryInfo();
     }
 }
