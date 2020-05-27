@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.net;
+package com.song.deviceinfo.ui.thermal;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,39 +7,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.song.deviceinfo.R;
-
-import java.util.List;
+import com.song.deviceinfo.ui.base.NormalAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by chensongsong on 2020/5/25.
- */
-public class NetAdapter extends RecyclerView.Adapter<NetAdapter.HomeHolder> {
+public class ThermalAdapter extends NormalAdapter<Pair<String, String>, ThermalAdapter.ThermalHolder> {
 
-    private List<Pair<String, String>> data = null;
-    private Context context;
-
-    public NetAdapter(Context context) {
-        this.context = context;
-    }
-
-    public void updateData(List<Pair<String, String>> data) {
-        this.data = data;
-        notifyDataSetChanged();
+    public ThermalAdapter(Context context) {
+        super(context);
     }
 
     @NonNull
     @Override
-    public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ThermalHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View root = LayoutInflater.from(context).inflate(R.layout.item_normal, parent, false);
-        return new HomeHolder(root);
+        return new ThermalHolder(root);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ThermalHolder holder, int position) {
         if (position % 2 == 0) {
             holder.root.setBackgroundColor(context.getResources().getColor(R.color.color_white));
         } else {
@@ -52,23 +40,17 @@ public class NetAdapter extends RecyclerView.Adapter<NetAdapter.HomeHolder> {
         holder.valueTv.setText(value);
     }
 
-    @Override
-    public int getItemCount() {
-        return data == null ? 0 : data.size();
-    }
-
-    static class HomeHolder extends RecyclerView.ViewHolder {
+    static class ThermalHolder extends RecyclerView.ViewHolder {
 
         View root;
         TextView keyTv;
         TextView valueTv;
 
-        public HomeHolder(View view) {
+        public ThermalHolder(View view) {
             super(view);
             root = view;
             keyTv = view.findViewById(R.id.tv_key);
             valueTv = view.findViewById(R.id.tv_value);
         }
-
     }
 }

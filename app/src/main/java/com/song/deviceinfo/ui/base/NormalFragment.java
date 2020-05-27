@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.net;
+package com.song.deviceinfo.ui.base;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,44 +8,40 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.song.deviceinfo.R;
-import com.song.deviceinfo.utils.ThreadPoolUtils;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
- * Created by chensongsong on 2020/5/25.
+ * Created by chensongsong on 2020/5/26.
  */
-public class NetFragment extends Fragment {
+public abstract class NormalFragment<T> extends Fragment {
 
-    private NetViewModel netViewModel;
-    private NetAdapter netAdapter;
+    protected NormalViewModel viewModel;
+    private NormalAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private static Handler mainHandler = new Handler(Looper.getMainLooper());
+    protected static Handler mainHandler = new Handler(Looper.getMainLooper());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        netViewModel =
-                ViewModelProviders.of(this).get(NetViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_net, container, false);
+        viewModel = crateViewModel();
+        adapter = crateAdapter();
+        View root = inflater.inflate(R.layout.fragment_normal, container, false);
         final RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
-        swipeRefreshLayout = ((SwipeRefreshLayout) root.findViewById(R.id.srl));
+        swipeRefreshLayout = root.findViewById(R.id.srl);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        netAdapter = new NetAdapter(getContext());
-        recyclerView.setAdapter(netAdapter);
-        netViewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<Pair<String, String>>>() {
+        recyclerView.setAdapter(adapter);
+        viewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<T>>() {
             @Override
-            public void onChanged(List<Pair<String, String>> pairs) {
+            public void onChanged(List<T> pairs) {
                 swipeRefreshLayout.setRefreshing(false);
-                netAdapter.updateData(netViewModel.getRecyclerView().getValue());
+                adapter.updateData((List) viewModel.getRecyclerView().getValue());
             }
         });
         setSwipeRefreshLayout();
@@ -72,18 +68,10 @@ public class NetFragment extends Fragment {
         });
     }
 
-    private void refreshData() {
-        ThreadPoolUtils.getInstance().execute(new Runnable() {
-            @Override
-            public void run() {
-                final List<Pair<String, String>> list = netViewModel.getNetWorkInfo(getContext());
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        netViewModel.setValue(list);
-                    }
-                });
-            }
-        });
-    }
+    protected abstract NormalAdapter crateAdapter();
+
+    protected abstract NormalViewModel crateViewModel();
+
+    protected abstract void refreshData();
+
 }
