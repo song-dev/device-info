@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_base" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.song.deviceinfo.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_system"
+        android:name="com.song.deviceinfo.ui.system.SystemFragment"
+        android:label="@string/menu_system"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_about"
