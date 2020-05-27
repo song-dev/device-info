@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Created by chensongsong on 2020/5/25.
  */
-public abstract class NormalAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class NormalAdapter<T, K extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<K> {
 
-    private List<T> data = null;
-    private Context context;
+    protected List<T> data = null;
+    protected Context context;
 
     public NormalAdapter(Context context) {
         this.context = context;
@@ -28,4 +28,6 @@ public abstract class NormalAdapter<T> extends RecyclerView.Adapter<RecyclerView
         return data == null ? 0 : data.size();
     }
 
+    public class ThermalHolder {
+    }
 }

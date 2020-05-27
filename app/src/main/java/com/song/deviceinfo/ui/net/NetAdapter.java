@@ -34,7 +34,7 @@ public class NetAdapter extends RecyclerView.Adapter<NetAdapter.HomeHolder> {
     @NonNull
     @Override
     public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View root = LayoutInflater.from(context).inflate(R.layout.item_home, parent, false);
+        View root = LayoutInflater.from(context).inflate(R.layout.item_normal, parent, false);
         return new HomeHolder(root);
     }
 

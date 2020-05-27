@@ -1,0 +1,51 @@
+package com.song.deviceinfo.utils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileUtils {
+
+    public static String readFile(String name) {
+        return readFile(new File(name));
+    }
+
+    public static String readFile(File file) {
+        // 读取 assets 文件
+        FileReader fileReader = null;
+        BufferedReader reader = null;
+        try {
+            String line;
+            StringBuffer sb = new StringBuffer();
+            fileReader = new FileReader(file);
+            reader = new BufferedReader(fileReader);
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                sb.append('\n');
+            }
+            if (sb.length() > 0) {
+                sb.deleteCharAt(sb.length() - 1);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+}

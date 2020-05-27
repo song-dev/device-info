@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_net">
+    app:startDestination="@id/nav_thermal">
 
     <fragment
         android:id="@+id/nav_net"
         android:name="com.song.deviceinfo.ui.net.NetFragment"
         android:label="@string/menu_net"
         tools:layout="@layout/fragment_net" />
+
+    <fragment
+        android:id="@+id/nav_thermal"
+        android:name="com.song.deviceinfo.ui.thermal.ThermalFragment"
+        android:label="@string/menu_thermal"
+        tools:layout="@layout/fragment_normal" />
 
     <fragment
         android:id="@+id/nav_gallery"

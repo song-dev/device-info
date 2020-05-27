@@ -14,7 +14,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -31,24 +30,18 @@ public abstract class NormalFragment<T> extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        viewModel =
-                ViewModelProviders.of(this).get(NormalViewModel.class);
+        viewModel = crateViewModel();
+        adapter = crateAdapter();
         View root = inflater.inflate(R.layout.fragment_normal, container, false);
         final RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
-        swipeRefreshLayout = ((SwipeRefreshLayout) root.findViewById(R.id.srl));
+        swipeRefreshLayout = root.findViewById(R.id.srl);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        adapter = crateAdapter();
         recyclerView.setAdapter(adapter);
         viewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<T>>() {
             @Override
             public void onChanged(List<T> pairs) {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                        adapter.updateData((List) viewModel.getRecyclerView().getValue());
-                    }
-                });
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.updateData((List) viewModel.getRecyclerView().getValue());
             }
         });
         setSwipeRefreshLayout();
@@ -76,6 +69,8 @@ public abstract class NormalFragment<T> extends Fragment {
     }
 
     protected abstract NormalAdapter crateAdapter();
+
+    protected abstract NormalViewModel crateViewModel();
 
     protected abstract void refreshData();
 

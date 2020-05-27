@@ -44,13 +44,8 @@ public class NetFragment extends Fragment {
         netViewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<List<Pair<String, String>>>() {
             @Override
             public void onChanged(List<Pair<String, String>> pairs) {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                        netAdapter.updateData(netViewModel.getRecyclerView().getValue());
-                    }
-                });
+                swipeRefreshLayout.setRefreshing(false);
+                netAdapter.updateData(netViewModel.getRecyclerView().getValue());
             }
         });
         setSwipeRefreshLayout();
