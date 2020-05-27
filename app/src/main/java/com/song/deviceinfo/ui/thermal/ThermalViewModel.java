@@ -9,8 +9,8 @@ import androidx.core.util.Pair;
 
 public class ThermalViewModel extends NormalViewModel<Pair<String, String>> {
 
-    public List<Pair<String, String>> getThermalInfo() {
+    @Override
+    public List<Pair<String, String>> getNormalInfo() {
         return ThermalInfo.getThermalInfo();
     }
-
 }

@@ -15,13 +15,13 @@
         android:id="@+id/nav_thermal"
         android:name="com.song.deviceinfo.ui.thermal.ThermalFragment"
         android:label="@string/menu_thermal"
-        tools:layout="@layout/fragment_normal" />
+        tools:layout="@layout/fragment_base" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.song.deviceinfo.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_battery"
+        android:name="com.song.deviceinfo.ui.battery.BatteryFragment"
+        android:label="@string/menu_battery"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_slideshow"

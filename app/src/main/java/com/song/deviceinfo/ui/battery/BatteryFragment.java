@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.thermal;
+package com.song.deviceinfo.ui.battery;
 
 import com.song.deviceinfo.ui.base.BaseAdapter;
 import com.song.deviceinfo.ui.base.BaseViewModel;
@@ -8,7 +8,7 @@ import com.song.deviceinfo.ui.base.NormalFragment;
 import androidx.core.util.Pair;
 import androidx.lifecycle.ViewModelProviders;
 
-public class ThermalFragment extends NormalFragment<Pair<String, String>> {
+public class BatteryFragment extends NormalFragment<Pair<String, String>> {
 
     @Override
     protected BaseAdapter crateAdapter() {
@@ -17,7 +17,7 @@ public class ThermalFragment extends NormalFragment<Pair<String, String>> {
 
     @Override
     protected BaseViewModel crateViewModel() {
-        return ViewModelProviders.of(this).get(ThermalViewModel.class);
+        return ViewModelProviders.of(this).get(BatteryViewModel.class);
     }
 
 }

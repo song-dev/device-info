@@ -2,26 +2,10 @@ package com.song.deviceinfo.ui.base;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.core.util.Pair;
 
-/**
- * Created by chensongsong on 2020/5/26.
- */
-public class NormalViewModel<T> extends ViewModel {
+public abstract class NormalViewModel<P> extends BaseViewModel<Pair<String, String>> {
 
-    private MutableLiveData<List<T>> mRecyclerView;
+    public abstract List<Pair<String, String>> getNormalInfo();
 
-    public NormalViewModel() {
-        mRecyclerView = new MutableLiveData<>();
-    }
-
-    public LiveData<List<T>> getRecyclerView() {
-        return mRecyclerView;
-    }
-
-    public void setValue(List<T> list) {
-        mRecyclerView.setValue(list);
-    }
 }
