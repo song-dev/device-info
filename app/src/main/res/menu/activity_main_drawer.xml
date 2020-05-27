@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_net" />
         <item
+            android:id="@+id/nav_thermal"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_thermal" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
