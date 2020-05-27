@@ -31,4 +31,14 @@
     <string name="about_version">version %s</string>
     <string name="net_frequency">Frequency</string>
     <string name="menu_thermal">Thermal</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_status">Status</string>
+    <string name="battery_health">Health</string>
+    <string name="battery_power_source">Power source</string>
+    <string name="battery_temperature">Temperature</string>
+    <string name="battery_voltage">Voltage</string>
+    <string name="battery_power_profile">Power profile</string>
+    <string name="battery_present">Present</string>
+    <string name="battery_technology">technology</string>
+    <string name="battery_average">Average</string>
 </resources>

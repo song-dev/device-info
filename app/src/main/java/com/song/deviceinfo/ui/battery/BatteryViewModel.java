@@ -1,5 +1,7 @@
 package com.song.deviceinfo.ui.battery;
 
+import android.content.Context;
+
 import com.song.deviceinfo.info.BatteryInfo;
 import com.song.deviceinfo.ui.base.NormalViewModel;
 
@@ -12,7 +14,7 @@ import androidx.core.util.Pair;
  */
 public class BatteryViewModel extends NormalViewModel {
 
-    public List<Pair<String, String>> getBatteryInfo() {
-        return BatteryInfo.getBatteryInfo();
+    public List<Pair<String, String>> getBatteryInfo(Context context) {
+        return BatteryInfo.getBatteryInfo(context);
     }
 }

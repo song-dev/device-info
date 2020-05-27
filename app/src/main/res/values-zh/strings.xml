@@ -32,4 +32,14 @@
     <string name="about_version">version %s</string>
     <string name="net_frequency">频率</string>
     <string name="menu_thermal">温度</string>
+    <string name="battery_level">电量</string>
+    <string name="battery_status">状态</string>
+    <string name="battery_health">健康情况</string>
+    <string name="battery_power_source">电源</string>
+    <string name="battery_temperature">温度</string>
+    <string name="battery_voltage">电压</string>
+    <string name="battery_power_profile">电源配置文件</string>
+    <string name="battery_present">电池</string>
+    <string name="battery_technology">技术</string>
+    <string name="battery_average">平均电流</string>
 </resources>

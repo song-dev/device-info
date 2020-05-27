@@ -27,6 +27,6 @@ public class BatteryFragment extends NormalFragment {
 
     @Override
     protected List<Pair<String, String>> getNormalInfo() {
-        return ((BatteryViewModel)viewModel).getBatteryInfo();
+        return ((BatteryViewModel)viewModel).getBatteryInfo(getContext());
     }
 }
