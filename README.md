@@ -3,8 +3,8 @@
 **获取 `Android` 设备信息采集**
 
 <div align="center">
-
-[![Download](https://api.bintray.com/packages/song-dev/maven/mobile/images/download.svg) ](https://github.com/song-dev/device-info/tree/master/app/release/app-relase.apk)
+[![Download](https://img.shields.io/badge/device-info-blue)]
+(https://github.com/song-dev/device-info/blob/release%2F0.1.2/app/release/app-release.apk)
 [![GitHub issues](https://img.shields.io/github/issues/song-dev/device-info.svg)](https://github.com/song-dev/device-info/issues)
 [![GitHub forks](https://img.shields.io/github/forks/song-dev/device-info.svg)](https://github.com/song-dev/device-info/network)
 [![GitHub stars](https://img.shields.io/github/stars/song-dev/device-info.svg)](https://github.com/song-dev/device-info/stargazers)
