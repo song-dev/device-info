@@ -8,8 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_net">Net</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_battery">Battery</string>
+    <string name="menu_system">System</string>
 
     <string name="home_second">Home Second</string>
     <string name="net_ipv4">IPv4</string>
@@ -31,4 +31,40 @@
     <string name="about_version">version %s</string>
     <string name="net_frequency">Frequency</string>
     <string name="menu_thermal">Thermal</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_status">Status</string>
+    <string name="battery_health">Health</string>
+    <string name="battery_power_source">Power source</string>
+    <string name="battery_temperature">Temperature</string>
+    <string name="battery_voltage">Voltage</string>
+    <string name="battery_power_profile">Power profile</string>
+    <string name="battery_present">Present</string>
+    <string name="battery_technology">technology</string>
+    <string name="battery_average">Average</string>
+    <string name="system_manufacture">Manufacture</string>
+    <string name="system_model">Model</string>
+    <string name="system_brand">Brand</string>
+    <string name="system_release">Release</string>
+    <string name="system_api">API</string>
+    <string name="system_code_name">Codename</string>
+    <string name="system_density">Density</string>
+    <string name="system_refresh_rate">Refresh rate</string>
+    <string name="system_device">Device</string>
+    <string name="system_product">Product</string>
+    <string name="system_board">Board</string>
+    <string name="system_platform">Platform</string>
+    <string name="system_build">Build</string>
+    <string name="system_vm">Java VM</string>
+    <string name="system_security">Security</string>
+    <string name="system_baseband">Baseband</string>
+    <string name="system_build_type">Build type</string>
+    <string name="system_tags">Tags</string>
+    <string name="system_incremental">Incremental</string>
+    <string name="system_description">Description</string>
+    <string name="system_fingerprint">Fingerprint</string>
+    <string name="system_device_features">Device features</string>
+    <string name="system_builder">Builder</string>
+    <string name="system_language">Language</string>
+    <string name="system_timezone">Timezone</string>
+    <string name="system_uptime">Uptime</string>
 </resources>

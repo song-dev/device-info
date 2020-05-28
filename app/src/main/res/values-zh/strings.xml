@@ -8,8 +8,8 @@
     <string name="action_settings">设置</string>
 
     <string name="menu_net">网络</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_battery">电池</string>
+    <string name="menu_system">系统</string>
 
     <string name="home_second">Home Second</string>
 
@@ -32,4 +32,40 @@
     <string name="about_version">version %s</string>
     <string name="net_frequency">频率</string>
     <string name="menu_thermal">温度</string>
+    <string name="battery_level">电量</string>
+    <string name="battery_status">状态</string>
+    <string name="battery_health">健康情况</string>
+    <string name="battery_power_source">电源</string>
+    <string name="battery_temperature">温度</string>
+    <string name="battery_voltage">电压</string>
+    <string name="battery_power_profile">电源配置文件</string>
+    <string name="battery_present">电池</string>
+    <string name="battery_technology">技术</string>
+    <string name="battery_average">平均电流</string>
+    <string name="system_manufacture">制造商</string>
+    <string name="system_model">型号</string>
+    <string name="system_brand">品牌</string>
+    <string name="system_release">发布版本</string>
+    <string name="system_api">API</string>
+    <string name="system_code_name">开发代号</string>
+    <string name="system_density">密度</string>
+    <string name="system_refresh_rate">刷新率</string>
+    <string name="system_device">设备</string>
+    <string name="system_product">产品</string>
+    <string name="system_board">主板</string>
+    <string name="system_platform">平台</string>
+    <string name="system_build">版本号</string>
+    <string name="system_vm">Java VM</string>
+    <string name="system_security">安全补丁级别</string>
+    <string name="system_baseband">基带</string>
+    <string name="system_build_type">构件类型</string>
+    <string name="system_tags">Tags</string>
+    <string name="system_incremental">增量版本</string>
+    <string name="system_description">描述</string>
+    <string name="system_fingerprint">指纹</string>
+    <string name="system_device_features">设备特征</string>
+    <string name="system_builder">构建者</string>
+    <string name="system_language">语言</string>
+    <string name="system_timezone">时区</string>
+    <string name="system_uptime">正常运行时间</string>
 </resources>

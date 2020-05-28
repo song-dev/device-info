@@ -1,4 +1,4 @@
-package com.song.deviceinfo.ui.net;
+package com.song.deviceinfo.ui.battery;
 
 import com.song.deviceinfo.ui.base.BaseAdapter;
 import com.song.deviceinfo.ui.base.BaseViewModel;
@@ -11,9 +11,9 @@ import androidx.core.util.Pair;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
- * Created by chensongsong on 2020/5/25.
+ * Created by chensongsong on 2020/5/27.
  */
-public class NetFragment extends NormalFragment {
+public class BatteryFragment extends NormalFragment {
 
     @Override
     protected BaseAdapter crateAdapter() {
@@ -22,11 +22,11 @@ public class NetFragment extends NormalFragment {
 
     @Override
     protected BaseViewModel crateViewModel() {
-        return ViewModelProviders.of(this).get(NetViewModel.class);
+        return ViewModelProviders.of(this).get(BatteryViewModel.class);
     }
 
     @Override
     protected List<Pair<String, String>> getNormalInfo() {
-        return ((NetViewModel) viewModel).getNetWorkInfo(getContext());
+        return ((BatteryViewModel)viewModel).getBatteryInfo(getContext());
     }
 }

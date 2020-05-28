@@ -7,10 +7,12 @@ import java.util.List;
 
 import androidx.core.util.Pair;
 
-public class ThermalViewModel extends NormalViewModel<Pair<String, String>> {
+/**
+ * Created by chensongsong on 2020/5/27.
+ */
+public class ThermalViewModel extends NormalViewModel {
 
     public List<Pair<String, String>> getThermalInfo() {
         return ThermalInfo.getThermalInfo();
     }
-
 }
