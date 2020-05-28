@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_thermal">
+    app:startDestination="@id/nav_system">
 
     <fragment
         android:id="@+id/nav_net"
         android:name="com.song.deviceinfo.ui.net.NetFragment"
         android:label="@string/menu_net"
-        tools:layout="@layout/fragment_net" />
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_thermal"
         android:name="com.song.deviceinfo.ui.thermal.ThermalFragment"
         android:label="@string/menu_thermal"
-        tools:layout="@layout/fragment_normal" />
+        tools:layout="@layout/fragment_base" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.song.deviceinfo.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_battery"
+        android:name="com.song.deviceinfo.ui.battery.BatteryFragment"
+        android:label="@string/menu_battery"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.song.deviceinfo.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_system"
+        android:name="com.song.deviceinfo.ui.system.SystemFragment"
+        android:label="@string/menu_system"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_about"

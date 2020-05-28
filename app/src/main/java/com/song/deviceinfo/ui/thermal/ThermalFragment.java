@@ -1,34 +1,32 @@
 package com.song.deviceinfo.ui.thermal;
 
+import com.song.deviceinfo.ui.base.BaseAdapter;
+import com.song.deviceinfo.ui.base.BaseViewModel;
 import com.song.deviceinfo.ui.base.NormalAdapter;
 import com.song.deviceinfo.ui.base.NormalFragment;
-import com.song.deviceinfo.ui.base.NormalViewModel;
-import com.song.deviceinfo.utils.ThreadPoolUtils;
 
 import java.util.List;
 
 import androidx.core.util.Pair;
 import androidx.lifecycle.ViewModelProviders;
 
-public class ThermalFragment extends NormalFragment<Pair<String, String>> {
+/**
+ * Created by chensongsong on 2020/5/27.
+ */
+public class ThermalFragment extends NormalFragment {
 
     @Override
-    protected NormalAdapter crateAdapter() {
-        return new ThermalAdapter(getContext());
+    protected BaseAdapter crateAdapter() {
+        return new NormalAdapter(getContext());
     }
 
     @Override
-    protected NormalViewModel crateViewModel() {
+    protected BaseViewModel crateViewModel() {
         return ViewModelProviders.of(this).get(ThermalViewModel.class);
     }
 
     @Override
-    protected void refreshData() {
-        ThreadPoolUtils.getInstance().execute(() -> {
-            final List<Pair<String, String>> list = ((ThermalViewModel) viewModel).getThermalInfo();
-            mainHandler.post(() -> {
-                viewModel.setValue(list);
-            });
-        });
+    protected List<Pair<String, String>> getNormalInfo() {
+        return ((ThermalViewModel) viewModel).getThermalInfo();
     }
 }
