@@ -1,16 +1,11 @@
 package com.song.deviceinfo.utils;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.telephony.CellInfo;
 import android.telephony.CellInfoCdma;
@@ -27,9 +22,6 @@ import android.text.format.Formatter;
 
 import com.song.deviceinfo.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.Inet6Address;
@@ -40,7 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 
 /**
@@ -148,7 +139,7 @@ public class GatewayUtils {
                 list.add(new Pair<>(context.getString(R.string.net_proxy_host), proxyAddress));
                 list.add(new Pair<>(context.getString(R.string.net_proxy_port), port));
             } else {
-                list.add(new Pair<>(context.getString(R.string.net_proxy), "否"));
+                list.add(new Pair<>(context.getString(R.string.net_proxy), "false"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -315,57 +306,7 @@ public class GatewayUtils {
         return new Pair<>(dbm, level);
     }
 
-
-    private static float checkBattery(Context context) {
-        //通过粘性广播读取电量
-        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent intentBattery = context.registerReceiver(null, intentFilter);//注意，粘性广播不需要广播接收器
-        if (intentBattery != null) {
-            //获取当前电量
-            int batteryLevel = intentBattery.getIntExtra("level", 0);
-            //电量的总刻度
-            int batterySum = intentBattery.getIntExtra("scale", 100);
-            float rotatio = 100 * (float) batteryLevel / (float) batterySum;
-            return rotatio;
-        }
-        return 0;
-    }
-
-    /**
-     * 获取电量 by
-     *
-     * @param context
-     * @return
-     */
-    private static JSONObject getBattroy(Context context) {
-        JSONObject jsonObject = new JSONObject();
-        Intent batteryStatus = context.registerReceiver(null,
-                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        if (batteryStatus != null) {
-            int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-            double batteryLevel = -1;
-            if (level != -1 && scale != -1) {
-                batteryLevel = (double) level / scale;
-            }
-            // unknown=1, charging=2, discharging=3, not charging=4, full=5
-            int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            // ac=1, usb=2, wireless=4
-            int plugState = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-            // unknown=1, good=2, overheat=3, dead=4, over voltage=5, unspecified failure=6, cold=7
-            int health = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
-            try {
-                jsonObject.put("br", batteryLevel + "");
-                jsonObject.put("bs", status + "");
-                jsonObject.put("plugState", plugState + "");
-                jsonObject.put("health", health + "");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        return jsonObject;
-    }
-
+    @SuppressLint("MissingPermission")
     private static String getIMSI(Context context) {
 
         String imsi = null;
@@ -373,8 +314,8 @@ public class GatewayUtils {
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             imsi = tm.getSubscriberId();
         } catch (Exception e) {
-            // e.printStackTrace();
-            imsi = "$unknown";
+            e.printStackTrace();
+            imsi = Constants.UNKNOWN;
         }
         return imsi;
 

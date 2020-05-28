@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.system;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.song.deviceinfo.info.SystemInfo;
 import com.song.deviceinfo.ui.base.NormalViewModel;
@@ -14,7 +14,7 @@ import androidx.core.util.Pair;
  */
 public class SystemViewModel extends NormalViewModel {
 
-    public List<Pair<String, String>> getSystemInfo(Context context) {
-        return SystemInfo.getSystemInfo(context);
+    public List<Pair<String, String>> getSystemInfo(Activity activity) {
+        return SystemInfo.getSystemInfo(activity);
     }
 }

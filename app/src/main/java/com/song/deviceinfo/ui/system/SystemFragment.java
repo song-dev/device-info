@@ -17,7 +17,7 @@ public class SystemFragment extends NormalFragment {
 
     @Override
     protected List<Pair<String, String>> getNormalInfo() {
-        return ((SystemViewModel) viewModel).getSystemInfo(getContext());
+        return ((SystemViewModel) viewModel).getSystemInfo(getActivity());
     }
 
     @Override
