@@ -2,10 +2,15 @@
 
 **获取 `Android` 设备信息采集**
 
+<div align="center">
+
+[![Download](https://api.bintray.com/packages/song-dev/maven/mobile/images/download.svg) ](https://github.com/song-dev/device-info/tree/master/app/release/app-relase.apk)
 [![GitHub issues](https://img.shields.io/github/issues/song-dev/device-info.svg)](https://github.com/song-dev/device-info/issues)
 [![GitHub forks](https://img.shields.io/github/forks/song-dev/device-info.svg)](https://github.com/song-dev/device-info/network)
 [![GitHub stars](https://img.shields.io/github/stars/song-dev/device-info.svg)](https://github.com/song-dev/device-info/stargazers)
 [![GitHub license](https://img.shields.io/github/license/song-dev/device-info.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+</div>
 
 ## 信息采集模块
 - 网络信息
