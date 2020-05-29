@@ -67,4 +67,5 @@
     <string name="system_language">Language</string>
     <string name="system_timezone">Timezone</string>
     <string name="system_uptime">Uptime</string>
+    <string name="nav_header_options">Options</string>
 </resources>

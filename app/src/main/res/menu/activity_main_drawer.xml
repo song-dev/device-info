@@ -6,25 +6,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_net"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_action_net"
             android:title="@string/menu_net" />
         <item
             android:id="@+id/nav_thermal"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_action_thermal"
             android:title="@string/menu_thermal" />
         <item
             android:id="@+id/nav_battery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_action_battery"
             android:title="@string/menu_battery" />
         <item
             android:id="@+id/nav_system"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_action_system"
             android:title="@string/menu_system" />
-
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/action_about" />
     </group>
+
+    <item android:title="@string/nav_header_options">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@mipmap/ic_action_about"
+                android:title="@string/action_about" />
+        </menu>
+    </item>
 
 </menu>
