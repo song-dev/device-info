@@ -20,6 +20,10 @@
             android:id="@+id/nav_system"
             android:icon="@mipmap/ic_action_system"
             android:title="@string/menu_system" />
+        <item
+            android:id="@+id/nav_partitions"
+            android:icon="@mipmap/ic_action_partitions"
+            android:title="@string/menu_partitions" />
     </group>
 
     <item android:title="@string/nav_header_options">
