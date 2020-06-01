@@ -68,4 +68,8 @@
     <string name="system_language">语言</string>
     <string name="system_timezone">时区</string>
     <string name="system_uptime">正常运行时间</string>
+    <string name="nav_header_options">选项</string>
+    <string name="partitions_used">used: %s/%s</string>
+    <string name="partitions_fs_mod">fs: %s %s</string>
+    <string name="menu_partitions">分区</string>
 </resources>

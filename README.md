@@ -16,6 +16,7 @@
 - 电池信息
 - 温度监控信息
 - 系统参数信息
+- 分区文件信息
 
 > 后续还会不断添加
 
@@ -23,16 +24,17 @@
 
 <img src="./imgs/drawer.jpg" alt="drawer" style="zoom:50%;" />
 
-<img src="./imgs/system.jpg" alt="system" style="zoom:50%;" />
-
 <img src="./imgs/net.jpg" alt="net" style="zoom:50%;" />
 
 <img src="./imgs/battery.jpg" alt="battery" style="zoom:50%;" />
+
+<img src="./imgs/thermal.jpg" alt="system" style="zoom:50%;" />
 
 ## ChangeLog
 
 版本 | 更新内容 | 更新日期
 -----|-----|-----
+**0.1.3** | 1、分区文件信息采集； | 2020-06-01
 **0.1.2** | 1、新增电池信息采集模块；<br>2、新增系统信息采集模块 | 2020-05-28
 **0.1.1** | 1、新增温度信息采集模块 | 2020-05-27
 **0.1.0** | 1、搭建整体框架；<br>2、新增网络信息采集模块 | 2020-05-26
