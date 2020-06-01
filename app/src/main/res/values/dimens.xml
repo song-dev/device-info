@@ -6,4 +6,6 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dp_8">8dp</dimen>
+
+    <dimen name="progress_bar_margin_hor">20dp</dimen>
 </resources>
