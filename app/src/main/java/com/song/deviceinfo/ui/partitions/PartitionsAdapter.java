@@ -2,6 +2,7 @@ package com.song.deviceinfo.ui.partitions;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,15 @@ public class PartitionsAdapter extends BaseAdapter<PartitionsBean, PartitionsAda
         holder.pathTv.setText(bean.getPath());
         holder.mountTv.setText(bean.getMount());
         holder.fsTv.setText(String.format(context.getString(R.string.partitions_fs_mod, bean.getFs(), bean.getMod())));
-        holder.usedTv.setText(String.format(context.getString(R.string.partitions_used, bean.getUsed(), bean.getSize())));
-        holder.progressBar.setProgress(bean.getRatio());
+        if (TextUtils.isEmpty(bean.getSize())) {
+            holder.usedTv.setVisibility(View.GONE);
+            holder.progressBar.setVisibility(View.GONE);
+        } else {
+            holder.usedTv.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.VISIBLE);
+            holder.usedTv.setText(String.format(context.getString(R.string.partitions_used, bean.getUsed(), bean.getSize())));
+            holder.progressBar.setProgress(bean.getRatio());
+        }
     }
 
     static class PartitionsHolder extends RecyclerView.ViewHolder {

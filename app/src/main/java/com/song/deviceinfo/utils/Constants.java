@@ -7,5 +7,6 @@ public class Constants {
 
     public final static String VERSION = "0.1.2";
     public final static String UNKNOWN = "$unknown";
+    public final static String TAG = "Device_Info";
 
 }
