@@ -31,7 +31,7 @@ public class PartitionsInfo {
             if (split.length > 0) {
                 if ("rw".equalsIgnoreCase(split[0])) {
                     rw = "read-write";
-                } else if ("r0".equalsIgnoreCase(split[0])) {
+                } else if ("ro".equalsIgnoreCase(split[0])) {
                     rw = "read-only";
                 } else {
                     rw = Constants.UNKNOWN;
