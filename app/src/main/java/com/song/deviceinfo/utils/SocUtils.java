@@ -2,6 +2,9 @@ package com.song.deviceinfo.utils;
 
 import android.text.TextUtils;
 
+/**
+ * Created by chensongsong on 2020/6/1.
+ */
 public class SocUtils {
 
     /**

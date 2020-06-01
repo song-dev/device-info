@@ -71,4 +71,15 @@
     <string name="partitions_used">used: %s/%s</string>
     <string name="partitions_fs_mod">fs: %s %s</string>
     <string name="menu_partitions">Partitions</string>
+    <string name="store_mem_name">Memory</string>
+    <string name="store_mem_free">Free:%s</string>
+    <string name="store_mem_used">Used:%s %s%%</string>
+    <string name="store_mem_total">Total:%s</string>
+    <string name="store_mem_info">%s GB %s</string>
+    <string name="store_sd_name">Storage</string>
+    <string name="store_sd_free">Free:%s</string>
+    <string name="store_sd_used">Used:%s %s%%</string>
+    <string name="store_sd_total">Total:%s</string>
+    <string name="action_store">Memory</string>
+    <string name="menu_store">Memory</string>
 </resources>
