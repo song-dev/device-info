@@ -6,6 +6,9 @@ import android.os.SystemClock;
 import java.util.Locale;
 import java.util.TimeZone;
 
+/**
+ * Created by chensongsong on 2020/6/1.
+ */
 public class SystemConfigUtils {
 
     /**

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.song.deviceinfo"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

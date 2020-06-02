@@ -10,8 +10,7 @@ import java.util.List;
 import androidx.core.util.Pair;
 
 /**
- * @author 谷闹年
- * @date 2018/1/5
+ * Created by chensongsong on 2020/6/1.
  */
 public class BatteryInfo {
 
