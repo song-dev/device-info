@@ -73,14 +73,14 @@
     <string name="partitions_fs_mod">fs: %s %s</string>
     <string name="menu_partitions">分区</string>
     <string name="store_mem_name">内存</string>
-    <string name="store_mem_free">Free:%s</string>
-    <string name="store_mem_used">Used:%s %s%%</string>
-    <string name="store_mem_total">Total:%s</string>
+    <string name="store_mem_free">Free:\t\t%s</string>
+    <string name="store_mem_used">Used:\t\t%s %s%%</string>
+    <string name="store_mem_total">Total:\t\t%s</string>
     <string name="store_mem_info">%s GB %s</string>
     <string name="store_sd_name">内部存储器</string>
-    <string name="store_sd_free">Free:%s</string>
-    <string name="store_sd_used">Used:%s %s%%</string>
-    <string name="store_sd_total">Total:%s</string>
+    <string name="store_sd_free">Free:\t\t%s</string>
+    <string name="store_sd_used">Used:\t\t%s %s%%</string>
+    <string name="store_sd_total">Total:\t\t%s</string>
     <string name="menu_store">内存</string>
     <string name="action_store">内存</string>
 </resources>

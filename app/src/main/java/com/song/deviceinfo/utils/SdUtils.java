@@ -22,7 +22,7 @@ public class SdUtils {
     }
 
     /**
-     * 获取存储信息
+     * 获取 sd 卡存储信息
      *
      * @param context
      * @param bean
@@ -30,16 +30,17 @@ public class SdUtils {
     public static void getStoreInfo(Context context, StorageBean bean) {
         File card = Environment.getExternalStorageDirectory();
         bean.setStorePath(card.getAbsolutePath());
-        long usableSpace = card.getUsableSpace();
         long totalSpace = card.getTotalSpace();
         long freeSpace = card.getFreeSpace();
-        String total = Formatter.formatFileSize(context, freeSpace);
+        long usableSpace = totalSpace - freeSpace;
+        String total = Formatter.formatFileSize(context, totalSpace);
         String usable = Formatter.formatFileSize(context, usableSpace);
         String free = Formatter.formatFileSize(context, freeSpace);
         bean.setTotalStore(total);
         bean.setFreeStore(free);
         bean.setUsedStore(usable);
-        bean.setRatioStore((int) (usableSpace / totalSpace));
+        int ratio = (int) ((usableSpace / (double) totalSpace) * 100);
+        bean.setRatioStore(ratio);
     }
 
 }
