@@ -11,6 +11,9 @@ import java.util.List;
 
 import androidx.core.util.Pair;
 
+/**
+ * Created by chensongsong on 2020/6/1.
+ */
 public class ThermalInfo {
 
     public static List<Pair<String, String>> getThermalInfo() {

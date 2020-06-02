@@ -24,6 +24,10 @@
             android:id="@+id/nav_partitions"
             android:icon="@mipmap/ic_action_partitions"
             android:title="@string/menu_partitions" />
+        <item
+            android:id="@+id/nav_store"
+            android:icon="@mipmap/ic_action_memory"
+            android:title="@string/menu_store" />
     </group>
 
     <item android:title="@string/nav_header_options">

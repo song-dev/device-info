@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Created by chensongsong on 2020/6/1.
+ */
 public class FileUtils {
 
     public static String readFile(String name) {
