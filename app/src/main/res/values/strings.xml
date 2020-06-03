@@ -84,4 +84,6 @@
     <string name="menu_store">Memory</string>
     <string name="action_applications">Applications</string>
     <string name="menu_applications">Applications</string>
+    <string name="action_codecs">Codecs</string>
+    <string name="menu_codecs">Codecs</string>
 </resources>
