@@ -83,4 +83,6 @@
     <string name="store_sd_total">Total:\t\t%s</string>
     <string name="menu_store">内存</string>
     <string name="action_store">内存</string>
+    <string name="action_applications">应用程序</string>
+    <string name="menu_applications">应用程序</string>
 </resources>

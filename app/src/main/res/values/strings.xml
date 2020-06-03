@@ -82,4 +82,6 @@
     <string name="store_sd_total">Total:\t\t%s</string>
     <string name="action_store">Memory</string>
     <string name="menu_store">Memory</string>
+    <string name="action_applications">Applications</string>
+    <string name="menu_applications">Applications</string>
 </resources>
