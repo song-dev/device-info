@@ -32,6 +32,10 @@
             android:id="@+id/nav_applications"
             android:icon="@mipmap/ic_action_applications"
             android:title="@string/menu_applications" />
+        <item
+            android:id="@+id/nav_codecs"
+            android:icon="@mipmap/ic_action_codecs"
+            android:title="@string/menu_codecs" />
     </group>
 
     <item android:title="@string/nav_header_options">
