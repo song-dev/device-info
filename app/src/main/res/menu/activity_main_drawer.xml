@@ -28,6 +28,10 @@
             android:id="@+id/nav_store"
             android:icon="@mipmap/ic_action_memory"
             android:title="@string/menu_store" />
+        <item
+            android:id="@+id/nav_applications"
+            android:icon="@mipmap/ic_action_applications"
+            android:title="@string/menu_applications" />
     </group>
 
     <item android:title="@string/nav_header_options">

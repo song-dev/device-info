@@ -20,10 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_F9F9F9"
-            android:fadingEdge="none"
+            android:fadingEdge="vertical"
             android:paddingStart="@dimen/dp_8"
             android:paddingLeft="@dimen/dp_8"
             android:paddingEnd="@dimen/dp_8"
-            android:paddingRight="@dimen/dp_8" />
+            android:paddingRight="@dimen/dp_8"
+            android:scrollbars="vertical" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
