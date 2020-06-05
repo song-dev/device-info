@@ -87,4 +87,6 @@
     <string name="menu_applications">应用程序</string>
     <string name="action_codecs">编解码器</string>
     <string name="menu_codecs">编解码器</string>
+    <string name="action_input">输出</string>
+    <string name="menu_input">输出</string>
 </resources>

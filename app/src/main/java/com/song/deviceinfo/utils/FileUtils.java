@@ -15,7 +15,6 @@ public class FileUtils {
     }
 
     public static String readFile(File file) {
-        // 读取 assets 文件
         FileReader fileReader = null;
         BufferedReader reader = null;
         try {

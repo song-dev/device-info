@@ -25,7 +25,6 @@ public class StoreInfo {
         StorageBean bean = new StorageBean();
         SdUtils.getStoreInfo(context, bean);
         MemoryUtils.getMemoryInfo(context, bean);
-        bean.setMemInfo("4 GB");
         list.add(bean);
         return list;
     }

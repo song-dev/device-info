@@ -3,14 +3,13 @@ package com.song.deviceinfo.info;
 import android.text.TextUtils;
 
 import com.song.deviceinfo.model.beans.PartitionsBean;
+import com.song.deviceinfo.utils.CommandUtils;
 import com.song.deviceinfo.utils.Constants;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Created by chensongsong on 2020/5/29.
@@ -18,7 +17,7 @@ import java.util.Scanner;
 public class PartitionsInfo {
 
     public static List<PartitionsBean> getPartitionsInfo() {
-        String[] lines = exec("mount");
+        String[] lines = CommandUtils.exec("mount");
         Map<String, PartitionsBean> df = parseDf();
         List<PartitionsBean> list = new ArrayList<>();
         for (String line : lines) {
@@ -62,13 +61,12 @@ public class PartitionsInfo {
      * @return
      */
     private static Map<String, PartitionsBean> parseDf() {
-        String[] dfs = exec("df -h");
+        String[] dfs = CommandUtils.exec("df -h");
         Map<String, PartitionsBean> map = new HashMap<>();
         for (String line : dfs) {
             if (line.startsWith("Filesystem")) {
                 continue;
             }
-            // LogUtils.d("df line: " + line);
             String[] args = line.split("\\s+");
             if (args.length < 5) {
                 continue;
@@ -93,23 +91,6 @@ public class PartitionsInfo {
             map.put(path, bean);
         }
         return map;
-    }
-
-    /**
-     * 读取分区信息
-     *
-     * @return
-     */
-    private static String[] exec(String command) {
-        InputStream inputstream = null;
-        String allPaths = "";
-        try {
-            inputstream = Runtime.getRuntime().exec(command).getInputStream();
-            allPaths = new Scanner(inputstream).useDelimiter("\\A").next();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return allPaths.split("\n");
     }
 
 }
