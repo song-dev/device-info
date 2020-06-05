@@ -86,4 +86,6 @@
     <string name="menu_applications">Applications</string>
     <string name="action_codecs">Codecs</string>
     <string name="menu_codecs">Codecs</string>
+    <string name="action_input">Input</string>
+    <string name="menu_input">Input</string>
 </resources>
