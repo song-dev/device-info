@@ -41,6 +41,11 @@
             android:id="@+id/nav_input"
             android:icon="@mipmap/ic_action_input"
             android:title="@string/menu_input" />
+
+        <item
+            android:id="@+id/nav_usb"
+            android:icon="@mipmap/ic_action_usb"
+            android:title="@string/menu_usb" />
     </group>
 
     <item android:title="@string/nav_header_options">
