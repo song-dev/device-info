@@ -97,4 +97,6 @@
     <string name="usb_path">Path</string>
     <string name="usb_version">Version</string>
     <string name="usb_serial">Serial</string>
+    <string name="usb_devices">Devices</string>
+    <string name="usb_not_found">not found</string>
 </resources>

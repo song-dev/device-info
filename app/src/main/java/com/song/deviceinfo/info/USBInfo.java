@@ -18,6 +18,37 @@ import androidx.core.util.Pair;
  */
 public class USBInfo {
 
+    /**
+     * 获取 USB 设备信息
+     *
+     * @param context
+     * @return
+     */
+    public static List<Pair<String, String>> getUSBInfo(Context context) {
+        List<Pair<String, String>> list = new ArrayList<>();
+        List<USBBean> info = getInfo();
+        if (!info.isEmpty()) {
+            for (int i = 0; i < info.size(); i++) {
+                USBBean bean = info.get(i);
+                list.add(new Pair<>(context.getString(R.string.usb_vendor), bean.manufacturerName));
+                list.add(new Pair<>(context.getString(R.string.usb_model), bean.productName));
+                list.add(new Pair<>(context.getString(R.string.usb_device_id), bean.vendorId + ":" + bean.productId));
+                if (!TextUtils.isEmpty(bean.serialNumber)) {
+                    list.add(new Pair<>(context.getString(R.string.usb_serial), bean.serialNumber));
+                }
+                list.add(new Pair<>(context.getString(R.string.usb_number), bean.num));
+                list.add(new Pair<>(context.getString(R.string.usb_path), bean.path));
+                list.add(new Pair<>(context.getString(R.string.usb_version), bean.version));
+                if (i != (info.size() - 1)) {
+                    list.add(new Pair<>("", ""));
+                }
+            }
+        } else {
+            list.add(new Pair<>(context.getString(R.string.usb_devices), context.getString(R.string.usb_not_found)));
+        }
+        return list;
+    }
+
     public static boolean isUSBDrivers() {
         File[] files = (new File("/sys/bus/usb/drivers/usb/")).listFiles();
         if (files == null) {
@@ -30,28 +61,6 @@ public class USBInfo {
             }
         }
         return false;
-    }
-
-    public static List<Pair<String, String>> getUSBInfo(Context context) {
-
-        List<Pair<String, String>> list = new ArrayList<>();
-        List<USBBean> info = getInfo();
-        if (!info.isEmpty()) {
-            for (USBBean bean : info) {
-                list.add(new Pair<>(context.getString(R.string.usb_vendor), bean.manufacturerName));
-                list.add(new Pair<>(context.getString(R.string.usb_model), bean.productName));
-                list.add(new Pair<>(context.getString(R.string.usb_device_id), bean.vendorId + ":" + bean.productId));
-                if (!TextUtils.isEmpty(bean.serialNumber)) {
-                    list.add(new Pair<>(context.getString(R.string.usb_serial), bean.serialNumber));
-                }
-                list.add(new Pair<>(context.getString(R.string.usb_number), bean.num));
-                list.add(new Pair<>(context.getString(R.string.usb_path), bean.path));
-                list.add(new Pair<>(context.getString(R.string.usb_version), bean.version));
-                list.add(new Pair<>("", ""));
-            }
-        }
-        return list;
-
     }
 
     private static List<USBBean> getInfo() {

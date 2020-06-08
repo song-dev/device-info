@@ -91,4 +91,13 @@
     <string name="menu_input">输出</string>
     <string name="action_usb">USB</string>
     <string name="menu_usb">USB</string>
+    <string name="usb_vendor">供应商</string>
+    <string name="usb_model">型号</string>
+    <string name="usb_device_id">设备 ID</string>
+    <string name="usb_number">编号</string>
+    <string name="usb_serial">序列号</string>
+    <string name="usb_path">路径</string>
+    <string name="usb_version">版本</string>
+    <string name="usb_devices">设备</string>
+    <string name="usb_not_found">找不到</string>
 </resources>
