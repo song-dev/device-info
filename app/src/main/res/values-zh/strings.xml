@@ -89,4 +89,6 @@
     <string name="menu_codecs">编解码器</string>
     <string name="action_input">输出</string>
     <string name="menu_input">输出</string>
+    <string name="action_usb">USB</string>
+    <string name="menu_usb">USB</string>
 </resources>
