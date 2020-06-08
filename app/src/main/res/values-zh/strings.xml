@@ -100,4 +100,6 @@
     <string name="usb_version">版本</string>
     <string name="usb_devices">设备</string>
     <string name="usb_not_found">找不到</string>
+    <string name="action_soc">芯片</string>
+    <string name="menu_soc">芯片</string>
 </resources>

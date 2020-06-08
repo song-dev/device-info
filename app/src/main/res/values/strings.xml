@@ -99,4 +99,6 @@
     <string name="usb_serial">Serial</string>
     <string name="usb_devices">Devices</string>
     <string name="usb_not_found">not found</string>
+    <string name="action_soc">SOC</string>
+    <string name="menu_soc">SOC</string>
 </resources>

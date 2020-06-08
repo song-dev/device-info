@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_usb">
+    app:startDestination="@id/nav_soc">
 
     <fragment
         android:id="@+id/nav_net"
@@ -63,6 +63,12 @@
         android:id="@+id/nav_usb"
         android:name="com.song.deviceinfo.ui.usb.USBFragment"
         android:label="@string/action_usb"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_soc"
+        android:name="com.song.deviceinfo.ui.soc.SOCFragment"
+        android:label="@string/action_soc"
         tools:layout="@layout/fragment_base" />
 
     <fragment
