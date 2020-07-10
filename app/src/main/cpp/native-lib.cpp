@@ -29,3 +29,9 @@ JNIEXPORT jint JNICALL
 Java_com_song_deviceinfo_utils_EmulatorUtils_specialFilesEmulatorCheck(JNIEnv *env, jclass clazz) {
     return specialFilesEmulatorcheck();
 }
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_song_deviceinfo_utils_EmulatorUtils_thermalCheck(JNIEnv *env, jclass clazz) {
+    return thermalCheck();
+}

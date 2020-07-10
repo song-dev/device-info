@@ -33,7 +33,7 @@ jint specialFilesEmulatorcheck() {
  * 检测特殊目录，/sys/class/thermal/thermal_zoneX/temp(温度挂载文件)
  * @return 大于 0 为真机，等于 0 为模拟器
  */
-jboolean thermalCheck() {
+jint thermalCheck() {
 
     //当前手机的温度检测，手机下均有thermal_zone文件
     DIR *dirptr = NULL;
@@ -61,9 +61,10 @@ jboolean thermalCheck() {
         }
         closedir(dirptr);
     } else {
+        i = -1;
         LOGE("open thermal fail");
     }
-    return i > 0 ? JNI_FALSE : JNI_TRUE;
+    return i;
 
 }
 

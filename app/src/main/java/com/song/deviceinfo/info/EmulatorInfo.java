@@ -29,6 +29,8 @@ public class EmulatorInfo {
         list.add(new Pair<>("Battery", EmulatorUtils.getBatteryInfo(context)));
         list.add(new Pair<>("BrandInfo", EmulatorUtils.getBrandInfo()));
         list.add(new Pair<>("Launcher", EmulatorUtils.getLauncherPackageName(context)));
+        list.add(new Pair<>("ThermalCount", EmulatorUtils.thermalCheck() + ""));
+        list.add(new Pair<>("CameraCheck", EmulatorUtils.cameraCheck(context) + ""));
         list.add(new Pair<>("RSSI", NetWorkInfo.getRssi(context)));
         list.add(new Pair<>("Abi", CommandUtils.getProperty("ro.product.cpu.abi")));
         list.add(new Pair<>("AbiList", CommandUtils.getProperty("ro.product.cpu.abilist")));

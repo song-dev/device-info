@@ -14,11 +14,11 @@
  */
 jint specialFilesEmulatorcheck();
 
-///**
-// * 检测特殊目录，/sys/class/thermal/thermal_zoneX/temp(温度挂载文件)
-// * @return 大于 0 为真机，等于 0 为模拟器
-// */
-//jboolean thermalCheck();
+/**
+ * 检测特殊目录，/sys/class/thermal/thermal_zoneX/temp(温度挂载文件)
+ * @return 大于 0 为真机，等于 0 为模拟器
+ */
+jint thermalCheck();
 
 ///**
 // * build 文件检测示例

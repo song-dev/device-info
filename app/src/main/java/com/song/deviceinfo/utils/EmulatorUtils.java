@@ -3,8 +3,10 @@ package com.song.deviceinfo.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.text.TextUtils;
 
 import org.json.JSONArray;
@@ -316,6 +318,16 @@ public class EmulatorUtils {
         return null;
     }
 
+    /**
+     * 是否支持相机
+     */
+    public static boolean cameraCheck(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return !context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+        }
+        return false;
+    }
+
     public static native int specialFilesEmulatorCheck();
 
     public static native int bluetoothCheck();
@@ -323,5 +335,7 @@ public class EmulatorUtils {
     public static native int getArch();
 
     public static native String getMapsArch();
+
+    public static native int thermalCheck();
 
 }
