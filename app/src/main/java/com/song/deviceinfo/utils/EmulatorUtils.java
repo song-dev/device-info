@@ -11,7 +11,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 模拟器检测
@@ -210,5 +215,113 @@ public class EmulatorUtils {
         }
         return null;
     }
+
+    /**
+     * qemu 检测
+     *
+     * @return
+     */
+    public static boolean qemuCheck() {
+        if (checkQEmuDriverFile("/proc/tty/drivers") || checkQEmuDriverFile("/proc/cpuinfo")) {
+            return true;
+        }
+        return "1".equals(CommandUtils.getProperty("ro.kernel.qemu"));
+    }
+
+    /**
+     * qemu特有的驱动列表
+     */
+    private static final String[] KNOWN_QEMU_DRIVERS = {
+            "goldfish"
+    };
+
+    /**
+     * 驱动程序的列表
+     *
+     * @return true为模拟器
+     */
+    private static boolean checkQEmuDriverFile(String name) {
+        File driver = new File(name);
+        if (driver.exists() && driver.canRead()) {
+            byte[] data = new byte[1024];
+            try {
+                InputStream inStream = new FileInputStream(driver);
+                inStream.read(data);
+                inStream.close();
+            } catch (Exception e) {
+            }
+            String driverData = new String(data);
+            for (String known_qemu_driver : KNOWN_QEMU_DRIVERS) {
+                if (driverData.contains(known_qemu_driver)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设备通道文件，只兼容了qemu模拟器
+     */
+    private static final String[] KNOWN_PIPES = {
+            "/dev/socket/qemud",
+            "/dev/qemu_pipe"
+    };
+
+    /**
+     * 检测“/dev/socket/qemud”，“/dev/qemu_pipe”这两个通道设备文件特征
+     *
+     * @return true为模拟器
+     */
+    public static boolean checkPipes() {
+        for (String pipes : KNOWN_PIPES) {
+            File qemu = new File(pipes);
+            if (qemu.exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String getModelName() {
+        FileReader fileReader = null;
+        BufferedReader reader = null;
+        try {
+            String line;
+            fileReader = new FileReader("/proc/cpuinfo");
+            reader = new BufferedReader(fileReader);
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("model name")) {
+                    return line.substring(line.indexOf(":") + 1).trim();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static native int specialFilesEmulatorCheck();
+
+    public static native int bluetoothCheck();
+
+    public static native int getArch();
+
+    public static native String getMapsArch();
 
 }

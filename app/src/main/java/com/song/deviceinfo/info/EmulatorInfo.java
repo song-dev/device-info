@@ -34,6 +34,13 @@ public class EmulatorInfo {
         list.add(new Pair<>("AbiList", CommandUtils.getProperty("ro.product.cpu.abilist")));
         list.add(new Pair<>("Hardware", CommandUtils.getProperty("ro.hardware")));
         list.add(new Pair<>("Arch", CommandUtils.execute("uname -m")));
+        list.add(new Pair<>("BluetoothFile", EmulatorUtils.bluetoothCheck() + ""));
+        list.add(new Pair<>("SpecialFiles", EmulatorUtils.specialFilesEmulatorCheck() + ""));
+        list.add(new Pair<>("x86", EmulatorUtils.getArch() + ""));
+        list.add(new Pair<>("MapsArch", EmulatorUtils.getMapsArch()));
+        list.add(new Pair<>("Qemu", EmulatorUtils.qemuCheck() + ""));
+        list.add(new Pair<>("Pipes", EmulatorUtils.checkPipes() + ""));
+        list.add(new Pair<>("Model Name", EmulatorUtils.getModelName()));
         list.add(new Pair<>("Product", CommandUtils.getProperty("ro.product.name")));
         list.add(new Pair<>("Manufacturer", CommandUtils.getProperty("ro.product.manufacturer")));
         list.add(new Pair<>("Brand", CommandUtils.getProperty("ro.product.brand")));
