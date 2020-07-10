@@ -20,8 +20,8 @@ add_library( # Sets the name of the library.
         native-lib.cpp
         emulator-check.cpp
         utils.cpp
-#        app-utils.cpp
-#        virtual-apk-check.cpp
+        app-utils.cpp
+        virtual-apk-check.cpp
 #        root-check.cpp
 #        hook-check.cpp
 #        debug-check.cpp

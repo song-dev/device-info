@@ -1,8 +1,9 @@
 #include <jni.h>
 
-#include "include/emulator-check.h"
 #include "include/utils.h"
 #include "include/log.h"
+#include "include/emulator-check.h"
+#include "include/virtual-apk-check.h"
 
 extern "C"
 JNIEXPORT jint JNICALL
@@ -34,4 +35,10 @@ extern "C"
 JNIEXPORT jint JNICALL
 Java_com_song_deviceinfo_utils_EmulatorUtils_thermalCheck(JNIEnv *env, jclass clazz) {
     return thermalCheck();
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_song_deviceinfo_info_VirtualAppInfo_moreOpenCheck(JNIEnv *env, jclass clazz) {
+    return moreOpenCheck();
 }
