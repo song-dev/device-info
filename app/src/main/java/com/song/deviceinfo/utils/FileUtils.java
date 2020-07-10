@@ -10,6 +10,16 @@ import java.io.IOException;
  */
 public class FileUtils {
 
+    /**
+     * 是否存在
+     *
+     * @param name
+     * @return
+     */
+    public static boolean exists(String name) {
+        return new File(name).exists();
+    }
+
     public static String readFile(String name) {
         return readFile(new File(name));
     }

@@ -51,6 +51,11 @@
             android:id="@+id/nav_soc"
             android:icon="@mipmap/ic_action_soc"
             android:title="@string/menu_soc" />
+
+        <item
+            android:id="@+id/nav_emulator"
+            android:icon="@mipmap/ic_action_soc"
+            android:title="@string/menu_emulator" />
     </group>
 
     <item android:title="@string/nav_header_options">

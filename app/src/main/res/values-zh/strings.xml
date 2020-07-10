@@ -102,4 +102,6 @@
     <string name="usb_not_found">找不到</string>
     <string name="action_soc">芯片</string>
     <string name="menu_soc">芯片</string>
+    <string name="action_emulator">模拟器</string>
+    <string name="menu_emulator">模拟器</string>
 </resources>

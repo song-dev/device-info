@@ -101,4 +101,6 @@
     <string name="usb_not_found">not found</string>
     <string name="action_soc">SOC</string>
     <string name="menu_soc">SOC</string>
+    <string name="action_emulator">Emulator</string>
+    <string name="menu_emulator">Emulator</string>
 </resources>
