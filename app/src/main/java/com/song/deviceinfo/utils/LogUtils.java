@@ -106,6 +106,11 @@ public class LogUtils {
         }
     }
 
+    public static void release(String msg) {
+        Log.i(TAG, msg);
+        log2sd(TAG, msg);
+    }
+
     /**
      * 销毁
      */

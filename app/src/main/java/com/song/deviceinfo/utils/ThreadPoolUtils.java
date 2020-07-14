@@ -4,7 +4,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ThreadPoolUtils {
     private static volatile ThreadPoolUtils singleton;
-    private static volatile ExecutorService scheduledThreadPool;
+    private static volatile ExecutorService fixedThreadPool;
+    private static volatile ScheduledExecutorService executorService;
 
     private static final ThreadFactory threadFactory = new ThreadFactory() {
         private final AtomicInteger mCount = new AtomicInteger(1);
@@ -32,7 +35,8 @@ public class ThreadPoolUtils {
             synchronized (ThreadPoolUtils.class) {
                 if (singleton == null) {
                     singleton = new ThreadPoolUtils();
-                    scheduledThreadPool = Executors.newFixedThreadPool(3, threadFactory);
+                    fixedThreadPool = Executors.newFixedThreadPool(3, threadFactory);
+                    executorService = Executors.newScheduledThreadPool(3, threadFactory);
                 }
             }
         }
@@ -47,7 +51,7 @@ public class ThreadPoolUtils {
     public void execute(Runnable runnable) {
         try {
             if (runnable != null) {
-                scheduledThreadPool.execute(runnable);
+                fixedThreadPool.execute(runnable);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,12 +68,25 @@ public class ThreadPoolUtils {
     public <T> Future<T> submit(Callable<T> task) {
         try {
             if (task != null) {
-                return scheduledThreadPool.submit(task);
+                return fixedThreadPool.submit(task);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 执行计时任务
+     */
+    public void executeScheduled(Runnable runnable, long initialDelay, long period, TimeUnit unit) {
+        try {
+            if (runnable != null) {
+                executorService.scheduleAtFixedRate(runnable, initialDelay, period, unit);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
