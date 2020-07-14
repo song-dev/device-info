@@ -97,4 +97,12 @@
     <string name="usb_path">Path</string>
     <string name="usb_version">Version</string>
     <string name="usb_serial">Serial</string>
+    <string name="usb_devices">Devices</string>
+    <string name="usb_not_found">not found</string>
+    <string name="action_soc">SOC</string>
+    <string name="menu_soc">SOC</string>
+    <string name="action_emulator">Emulator</string>
+    <string name="menu_emulator">Emulator</string>
+    <string name="action_virtual">VirtualApp</string>
+    <string name="menu_virtual">VirtualApp</string>
 </resources>

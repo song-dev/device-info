@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
@@ -104,5 +105,72 @@ public class CommandUtils {
             e.printStackTrace();
         }
         return result.toString();
+    }
+
+    public static boolean rootCommand(String command) {
+        Process process = null;
+        DataOutputStream os = null;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes(command + "\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            process.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    public static String getUidStrFormat() {
+        try {
+            String filter = execute("cat /proc/self/cgroup");
+            if (filter == null || filter.length() == 0) {
+                return null;
+            }
+
+            int uidStartIndex = filter.lastIndexOf("uid");
+            int uidEndIndex = filter.lastIndexOf("/pid");
+            if (uidStartIndex < 0) {
+                return null;
+            }
+            if (uidEndIndex <= 0) {
+                uidEndIndex = filter.length();
+            }
+
+            filter = filter.substring(uidStartIndex + 4, uidEndIndex);
+            String strUid = filter.replaceAll("\n", "");
+            if (isNumber(strUid)) {
+                int uid = Integer.valueOf(strUid);
+                filter = String.format("u0_a%d", uid - 10000);
+                return filter;
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static boolean isNumber(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

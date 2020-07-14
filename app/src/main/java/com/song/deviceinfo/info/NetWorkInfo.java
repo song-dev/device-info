@@ -121,4 +121,23 @@ public class NetWorkInfo {
         }
     }
 
+    /**
+     * Rssi
+     *
+     * @param context
+     * @return
+     */
+    public static String getRssi(Context context) {
+        if (NetWorkUtils.isWifi(context)) {
+            WifiInfo wifiInfo = GatewayUtils.getWifiInfo(context);
+            if (wifiInfo != null) {
+                return wifiInfo.getRssi() + " dBm";
+            } else {
+                return "-1 dBm";
+            }
+        } else {
+            return GatewayUtils.getMobileSignal(context).first + " dBm";
+        }
+    }
+
 }
