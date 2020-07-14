@@ -60,3 +60,35 @@ int shellExecute(const char *cmdStr, char *dest, int len) {
     return 1;
 
 }
+
+int errorCatch(JNIEnv *env) {
+    if (env->ExceptionCheck()) {
+        env->ExceptionDescribe();
+        env->ExceptionClear();
+        return 1;
+    }
+    return -1;
+}
+
+/**
+ * 获取包名
+ * @param env <JNI函数>
+ * @return string
+ */
+jstring getPackageName(JNIEnv *env, jobject context) {
+    jclass clazz = env->GetObjectClass(context);
+    if (clazz == NULL) {
+        LOGE("getPackageName: the Context class is null.");
+        errorCatch(env);
+        return NULL;
+    }
+    jmethodID mId = env->GetMethodID(clazz, "getPackageName", "()Ljava/lang/String;");
+    if (mId == NULL) {
+        LOGE("getPackageName: the getPackageName method is null.");
+        errorCatch(env);
+        return NULL;
+    }
+    jstring packageName = (jstring) env->CallObjectMethod(context, mId);
+    env->DeleteLocalRef(clazz);
+    return packageName;
+}

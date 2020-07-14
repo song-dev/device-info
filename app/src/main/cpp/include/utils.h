@@ -6,6 +6,7 @@
 #define SECURITY_CHECK_ANDROID_UTILS_H
 
 #include <zconf.h>
+#include <jni.h>
 
 #define BUF_SIZE_32 32
 #define BUF_SIZE_64 64
@@ -25,5 +26,9 @@ int exists(const char *path);
 int getProperty(const char *name, char *dest);
 
 int shellExecute(const char *cmdStr, char *dest, int len);
+
+int errorCatch(JNIEnv *env);
+
+jstring getPackageName(JNIEnv *env, jobject context);
 
 #endif //SECURITY_CHECK_ANDROID_UTILS_H

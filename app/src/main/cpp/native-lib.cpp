@@ -39,6 +39,7 @@ Java_com_song_deviceinfo_utils_EmulatorUtils_thermalCheck(JNIEnv *env, jclass cl
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_song_deviceinfo_info_VirtualAppInfo_moreOpenCheck(JNIEnv *env, jclass clazz) {
-    return moreOpenCheck();
+Java_com_song_deviceinfo_info_VirtualAppInfo_moreOpenCheck(JNIEnv *env, jclass clazz,
+                                                           jobject context) {
+    return moreOpenCheck(env, context);
 }
