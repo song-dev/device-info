@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_virtual">
+    app:startDestination="@id/nav_debug">
 
     <fragment
         android:id="@+id/nav_net"
@@ -81,6 +81,12 @@
         android:id="@+id/nav_virtual"
         android:name="com.song.deviceinfo.ui.virtual.VirtualAppFragment"
         android:label="@string/action_virtual"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_debug"
+        android:name="com.song.deviceinfo.ui.debug.DebugFragment"
+        android:label="@string/action_debug"
         tools:layout="@layout/fragment_base" />
 
     <fragment

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_net, R.id.nav_thermal, R.id.nav_battery, R.id.nav_system,
                 R.id.nav_partitions, R.id.nav_store, R.id.nav_applications, R.id.nav_codecs,
                 R.id.nav_input, R.id.nav_usb, R.id.nav_soc, R.id.nav_emulator, R.id.nav_virtual,
-                R.id.nav_about)
+                R.id.nav_debug, R.id.nav_about)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             // 申请权限
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.READ_PHONE_STATE}, 1);
             }
         }

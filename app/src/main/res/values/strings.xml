@@ -105,4 +105,6 @@
     <string name="menu_emulator">Emulator</string>
     <string name="action_virtual">VirtualApp</string>
     <string name="menu_virtual">VirtualApp</string>
+    <string name="action_debug">Debug</string>
+    <string name="menu_debug">Debug</string>
 </resources>

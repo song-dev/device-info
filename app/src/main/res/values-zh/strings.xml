@@ -106,4 +106,6 @@
     <string name="menu_emulator">模拟器</string>
     <string name="action_virtual">多开</string>
     <string name="menu_virtual">多开</string>
+    <string name="action_debug">调试</string>
+    <string name="menu_debug">调试</string>
 </resources>
