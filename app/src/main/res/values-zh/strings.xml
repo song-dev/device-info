@@ -108,4 +108,6 @@
     <string name="menu_virtual">多开</string>
     <string name="action_debug">调试</string>
     <string name="menu_debug">调试</string>
+    <string name="action_root">Root</string>
+    <string name="menu_root">Root</string>
 </resources>

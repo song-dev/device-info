@@ -107,4 +107,6 @@
     <string name="menu_virtual">VirtualApp</string>
     <string name="action_debug">Debug</string>
     <string name="menu_debug">Debug</string>
+    <string name="action_root">Root</string>
+    <string name="menu_root">Root</string>
 </resources>

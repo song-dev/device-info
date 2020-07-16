@@ -66,6 +66,11 @@
             android:id="@+id/nav_debug"
             android:icon="@mipmap/ic_action_multitouch"
             android:title="@string/menu_debug" />
+
+        <item
+            android:id="@+id/nav_root"
+            android:icon="@mipmap/ic_action_multitouch"
+            android:title="@string/menu_root" />
     </group>
 
     <item android:title="@string/nav_header_options">
