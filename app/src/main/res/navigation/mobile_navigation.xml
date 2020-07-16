@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_root">
+    app:startDestination="@id/nav_hook">
 
     <fragment
         android:id="@+id/nav_net"
@@ -93,6 +93,12 @@
         android:id="@+id/nav_root"
         android:name="com.song.deviceinfo.ui.root.RootFragment"
         android:label="@string/action_root"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_hook"
+        android:name="com.song.deviceinfo.ui.hook.HookFragment"
+        android:label="@string/action_hook"
         tools:layout="@layout/fragment_base" />
 
     <fragment
