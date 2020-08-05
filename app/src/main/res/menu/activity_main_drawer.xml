@@ -76,6 +76,11 @@
             android:id="@+id/nav_hook"
             android:icon="@mipmap/ic_action_multitouch"
             android:title="@string/menu_hook" />
+
+        <item
+            android:id="@+id/nav_device"
+            android:icon="@mipmap/ic_action_multitouch"
+            android:title="@string/menu_device" />
     </group>
 
     <item android:title="@string/nav_header_options">

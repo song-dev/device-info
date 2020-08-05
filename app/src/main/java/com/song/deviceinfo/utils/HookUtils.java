@@ -51,11 +51,9 @@ public class HookUtils {
         }
         for (ApplicationInfo item : appliacationInfoList) {
             if ("de.robv.android.xposed.installer".equals(item.packageName)) {
-//                Log.i(TAG, "Xposeded fonund on device");
                 return item.packageName;
             }
             if ("com.saurik.substrate".equals(item.packageName)) {
-//                Log.i(TAG, "CydiaSubstrate fonund on device");
                 return item.packageName;
             }
         }
@@ -110,6 +108,7 @@ public class HookUtils {
             BufferedReader reader = new BufferedReader(new FileReader(mapsFilename));
             String line;
             while ((line = reader.readLine()) != null) {
+                LogUtils.d("maps line: " + line);
                 if (line.toLowerCase().contains("frida")) {
                     return "frida";
                 }
@@ -119,11 +118,14 @@ public class HookUtils {
                 }
             }
             for (String library : libraries) {
+                if (library.startsWith("/system/framework/ed") || library.contains("Xposed")) {
+                    LogUtils.d("libraries line: " + library);
+                }
                 if (library.contains("com.saurik.substrate")) {
 //                    Log.i(TAG, "Substrate shared object found: " + library);
                     return "com.saurik.substrate";
                 }
-                if (library.contains("XposedBridge.jar")) {
+                if (library.contains("XposedBridge.jar") || library.contains("edxp.jar")) {
 //                    Log.i(TAG, "Xposed JAR found: " + library);
                     return "XposedBridge.jar";
                 }
@@ -133,5 +135,16 @@ public class HookUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean classCheck() {
+        try {
+            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+            classLoader.loadClass("de.robv.android.xposed.XposedHelpers").newInstance();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -111,4 +111,6 @@
     <string name="menu_root">Root</string>
     <string name="action_hook">Hook</string>
     <string name="menu_hook">Hook</string>
+    <string name="action_device">Device</string>
+    <string name="menu_device">Device</string>
 </resources>

@@ -4,16 +4,15 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.song.deviceinfo.model.beans.XposedHookBean;
+
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
- * Xposed检测
- *
- * @author gunaonian
- * @date 2019-03-21
+ * Created by chensongsong on 2020/8/3.
  */
 public class XposedHookUtils {
 

@@ -22,6 +22,7 @@ public class HookInfo {
         list.add(new Pair<>("XposedJars", HookUtils.chargeXposedJars()));
         list.add(new Pair<>("XposedPackage", HookUtils.chargeXposedPackage(context)));
         list.add(new Pair<>("XposedInject", XposedHookUtils.checkXposedInjet(context).toString()));
+        list.add(new Pair<>("XposedClass", HookUtils.classCheck() + ""));
         return list;
     }
 

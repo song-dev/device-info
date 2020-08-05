@@ -112,4 +112,6 @@
     <string name="menu_root">Root</string>
     <string name="action_hook">Hook</string>
     <string name="menu_hook">Hook</string>
+    <string name="action_device">设备信息</string>
+    <string name="menu_device">设备信息</string>
 </resources>

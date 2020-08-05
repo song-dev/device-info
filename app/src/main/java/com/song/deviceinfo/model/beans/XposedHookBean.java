@@ -1,10 +1,7 @@
-package com.song.deviceinfo.utils;
+package com.song.deviceinfo.model.beans;
 
 /**
- * Hook Bean Xposed
- *
- * @author gunaonian
- * @date 2019-03-21
+ * Created by chensongsong on 2020/8/3.
  */
 public class XposedHookBean {
     private boolean xposedApp = false;
