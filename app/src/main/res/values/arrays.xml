@@ -7,7 +7,7 @@
     </string-array>
 
     <string-array name="settings_language_values">
-        <item>null</item>
+        <item>default</item>
         <item>zh</item>
         <item>en</item>
     </string-array>

@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
+import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -21,14 +22,18 @@ public class LanguageUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return updateLanguageInHigher(context, language);
         } else {
-            updateLanguageInLower(context, language);
-            return context;
+            return updateLanguageInLower(context, language);
         }
     }
 
     public static String getDefaultLanguage(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = preferences.getString("settings_language", "zh");
+        String language = Locale.getDefault().getLanguage();
+        String lang = preferences.getString("settings_language", language);
+        LogUtils.d("SharedPreferences settings_language: " + lang);
+        if (TextUtils.isEmpty(lang) || TextUtils.equals(lang, "default")) {
+            lang = language;
+        }
         LogUtils.d("SharedPreferences Language: " + lang);
         return lang;
     }
@@ -39,21 +44,24 @@ public class LanguageUtils {
         Locale locale = new Locale(language);
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
-        configuration.setLocales(new LocaleList(locale));
+        LocaleList localeList = new LocaleList(locale);
+        LocaleList.setDefault(localeList);
+        configuration.setLocales(localeList);
         return context.createConfigurationContext(configuration);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private static void updateLanguageInLower(Context context, String language) {
+    private static Context updateLanguageInLower(Context context, String language) {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
         Locale locale = new Locale(language);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLocale(locale);
+            return context.createConfigurationContext(configuration);
         } else {
             configuration.locale = locale;
+            resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+            return context;
         }
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
 }

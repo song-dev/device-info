@@ -15,6 +15,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.song.deviceinfo.activity.SettingsActivity;
 import com.song.deviceinfo.utils.LanguageUtils;
+import com.song.deviceinfo.utils.LogUtils;
+
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         permissionHandler();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Locale locale = getResources().getConfiguration().locale;
+        LogUtils.d("Resources Language: " + locale.getLanguage() + ", DisplayLanguage: " + locale.getDisplayLanguage());
     }
 
     private void permissionHandler() {

@@ -6,7 +6,7 @@
         app:useSimpleSummaryProvider="true" />
 
     <ListPreference
-        app:defaultValue="null"
+        app:defaultValue="default"
         app:entries="@array/settings_language_key"
         app:entryValues="@array/settings_language_values"
         app:key="settings_language"
