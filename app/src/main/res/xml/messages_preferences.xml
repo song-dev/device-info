@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="signature"
+        app:title="@string/signature_title"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:defaultValue="null"
+        app:entries="@array/settings_language_key"
+        app:entryValues="@array/settings_language_values"
+        app:key="settings_language"
+        app:title="@string/settings_language"
+        app:useSimpleSummaryProvider="true" />
+
+</PreferenceScreen>

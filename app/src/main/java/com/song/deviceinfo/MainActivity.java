@@ -1,16 +1,22 @@
 package com.song.deviceinfo;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.song.deviceinfo.activity.SettingsActivity;
+import com.song.deviceinfo.utils.LanguageUtils;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -27,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LanguageUtils.updateResources(newBase, LanguageUtils.getDefaultLanguage(newBase)));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,5 +97,23 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent();
+                intent.setClass(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.action_about:
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_about);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
