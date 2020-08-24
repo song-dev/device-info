@@ -64,4 +64,22 @@ public class LanguageUtils {
         }
     }
 
+    @SuppressWarnings("deprecation")
+    public static void changeAppLanguage(Context context, String language) {
+        Resources resources = context.getResources();
+        Configuration configuration = new Configuration(resources.getConfiguration());
+        Locale locale = new Locale(language);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            LocaleList localeList = new LocaleList(locale);
+            LocaleList.setDefault(localeList);
+            configuration.setLocale(locale);
+            configuration.setLocales(localeList);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale);
+        } else {
+            configuration.locale = locale;
+        }
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+    }
+
 }

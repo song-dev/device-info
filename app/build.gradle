@@ -71,5 +71,4 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:3.2.33'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 
-    implementation 'com.geetest.sensebot:sensebot:4.2.4'
 }
