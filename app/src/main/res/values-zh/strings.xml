@@ -106,4 +106,14 @@
     <string name="menu_emulator">模拟器</string>
     <string name="action_virtual">多开</string>
     <string name="menu_virtual">多开</string>
+    <string name="action_debug">调试</string>
+    <string name="menu_debug">调试</string>
+    <string name="action_root">Root</string>
+    <string name="menu_root">Root</string>
+    <string name="action_hook">Hook</string>
+    <string name="menu_hook">Hook</string>
+    <string name="action_device">设备信息</string>
+    <string name="menu_device">设备信息</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_default">默认</string>
 </resources>

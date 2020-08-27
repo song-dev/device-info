@@ -59,8 +59,28 @@
 
         <item
             android:id="@+id/nav_virtual"
-            android:icon="@mipmap/ic_action_multitouch"
+            android:icon="@mipmap/ic_action_more_open"
             android:title="@string/menu_virtual" />
+
+        <item
+            android:id="@+id/nav_debug"
+            android:icon="@mipmap/ic_action_debug"
+            android:title="@string/menu_debug" />
+
+        <item
+            android:id="@+id/nav_root"
+            android:icon="@mipmap/ic_action_root"
+            android:title="@string/menu_root" />
+
+        <item
+            android:id="@+id/nav_hook"
+            android:icon="@mipmap/ic_action_hook"
+            android:title="@string/menu_hook" />
+
+        <item
+            android:id="@+id/nav_device"
+            android:icon="@mipmap/ic_action_devices"
+            android:title="@string/menu_device" />
     </group>
 
     <item android:title="@string/nav_header_options">

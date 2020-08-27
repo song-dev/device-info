@@ -4,6 +4,7 @@
 #include "include/log.h"
 #include "include/emulator-check.h"
 #include "include/virtual-apk-check.h"
+#include "include/debug-check.h"
 
 extern "C"
 JNIEXPORT jint JNICALL
@@ -42,4 +43,10 @@ JNIEXPORT jint JNICALL
 Java_com_song_deviceinfo_info_VirtualAppInfo_moreOpenCheck(JNIEnv *env, jclass clazz,
                                                            jobject context) {
     return moreOpenCheck(env, context);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_song_deviceinfo_utils_DebugUtils_getTracerPid(JNIEnv *env, jclass clazz) {
+    return getTracerPid();
 }
