@@ -1,14 +1,10 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditTextPreference
-        app:key="signature"
-        app:title="@string/signature_title"
-        app:useSimpleSummaryProvider="true" />
-
     <ListPreference
         app:defaultValue="default"
         app:entries="@array/settings_language_key"
         app:entryValues="@array/settings_language_values"
+        app:icon="@drawable/ic_language_black_24dp"
         app:key="settings_language"
         app:title="@string/settings_language"
         app:useSimpleSummaryProvider="true" />

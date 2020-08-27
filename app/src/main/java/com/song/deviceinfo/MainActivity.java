@@ -2,7 +2,6 @@ package com.song.deviceinfo;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.song.deviceinfo.activity.SettingsActivity;
 import com.song.deviceinfo.utils.LanguageUtils;
 
 import androidx.annotation.NonNull;
@@ -106,14 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent();
-                intent.setClass(this, SettingsActivity.class);
-                startActivity(intent);
+                navController.navigate(R.id.nav_settings);
                 break;
             case R.id.action_about:
-                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
                 navController.navigate(R.id.nav_about);
                 break;
             default:

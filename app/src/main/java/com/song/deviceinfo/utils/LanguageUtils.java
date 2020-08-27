@@ -41,7 +41,7 @@ public class LanguageUtils {
     @TargetApi(Build.VERSION_CODES.N)
     private static Context updateLanguageInHigher(Context context, String language) {
         Resources resources = context.getResources();
-        Locale locale = new Locale(language);
+        Locale locale = getLocale(context, language);
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
         LocaleList localeList = new LocaleList(locale);
@@ -53,7 +53,7 @@ public class LanguageUtils {
     private static Context updateLanguageInLower(Context context, String language) {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
-        Locale locale = new Locale(language);
+        Locale locale = getLocale(context, language);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLocale(locale);
             return context.createConfigurationContext(configuration);
@@ -62,6 +62,20 @@ public class LanguageUtils {
             resources.updateConfiguration(configuration, resources.getDisplayMetrics());
             return context;
         }
+    }
+
+    private static Locale getLocale(Context context, String language) {
+        try {
+            String[] split = language.split("-");
+            if (split.length == 1) {
+                return new Locale(split[0]);
+            } else if (split.length == 2) {
+                return new Locale(split[0], split[1]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return context.getResources().getConfiguration().locale;
     }
 
     @SuppressWarnings("deprecation")

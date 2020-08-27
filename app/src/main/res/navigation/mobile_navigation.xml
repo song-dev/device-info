@@ -108,6 +108,11 @@
         tools:layout="@layout/fragment_base" />
 
     <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.song.deviceinfo.ui.settings.SettingsFragment"
+        android:label="@string/action_settings" />
+
+    <fragment
         android:id="@+id/nav_about"
         android:name="com.song.deviceinfo.ui.about.AboutFragment"
         android:label="@string/action_about"
