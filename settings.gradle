@@ -1,2 +1,2 @@
-rootProject.name='device-info'
+rootProject.name = 'device-info'
 include ':app'

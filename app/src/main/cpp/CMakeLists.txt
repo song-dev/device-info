@@ -24,7 +24,7 @@ add_library( # Sets the name of the library.
         virtual-apk-check.cpp
 #        root-check.cpp
 #        hook-check.cpp
-#        debug-check.cpp
+        debug-check.cpp
 #        daemon-check.cpp
         )
 
