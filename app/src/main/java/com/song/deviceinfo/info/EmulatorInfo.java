@@ -3,6 +3,7 @@ package com.song.deviceinfo.info;
 import android.content.Context;
 import android.os.Build;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.song.deviceinfo.utils.CommandUtils;
 import com.song.deviceinfo.utils.EmulatorUtils;
 
@@ -22,6 +23,7 @@ public class EmulatorInfo {
      * @param context
      * @return
      */
+    @AddTrace(name = "EmulatorInfo.getEmulatorInfo")
     public static List<Pair<String, String>> getEmulatorInfo(Context context) {
         List<Pair<String, String>> list = new ArrayList<>();
         list.add(new Pair<>("Su Version", EmulatorUtils.getSuVersion()));
