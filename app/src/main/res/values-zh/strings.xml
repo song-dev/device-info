@@ -28,7 +28,7 @@
     <string name="net_proxy_port">代理端口</string>
     <string name="action_about">关于</string>
     <string name="about_author">author\nsong</string>
-    <string name="about_copy_right">(c) 2016 - 2020</string>
+    <string name="about_copy_right">(c) 2016 – 2020</string>
     <string name="about_version">version %s</string>
     <string name="net_frequency">频率</string>
     <string name="menu_thermal">温度</string>
