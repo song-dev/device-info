@@ -19,9 +19,11 @@ public class DeviceInfo {
     public static List<Pair<String, String>> getDeviceInfo(Context context) {
         List<Pair<String, String>> list = new ArrayList<>();
         list.add(new Pair<>("AndroidId", DeviceUtils.getAndroidId(context)));
-        list.add(new Pair<>("IMEI", DeviceUtils.getImei(context)));
-        list.add(new Pair<>("IMSI", DeviceUtils.getImsi(context)));
-        list.add(new Pair<>("SIM ISO", DeviceUtils.getSimCountryIso(context)));
+        list.add(new Pair<>("IMEI", DeviceUtils.getIMEI(context)));
+        DeviceUtils.getDeviceInfo(context,list);
+        list.add(new Pair<>("ICCID", DeviceUtils.getIccId(context)));
+        DeviceUtils.getSimInfo(context,list);
+        DeviceUtils.getOtherInfo(context,list);
         return list;
     }
 

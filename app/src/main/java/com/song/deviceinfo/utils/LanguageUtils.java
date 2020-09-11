@@ -30,11 +30,11 @@ public class LanguageUtils {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String language = Locale.getDefault().getLanguage();
         String lang = preferences.getString("settings_language", language);
-        LogUtils.d("SharedPreferences settings_language: " + lang);
+        LogUtils.i("SharedPreferences settings_language: " + lang);
         if (TextUtils.isEmpty(lang) || TextUtils.equals(lang, "default")) {
             lang = language;
         }
-        LogUtils.d("SharedPreferences Language: " + lang);
+        LogUtils.i("SharedPreferences Language: " + lang);
         return lang;
     }
 

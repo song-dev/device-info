@@ -23,7 +23,7 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(getApplicationContext(), "0334b35dea", true);
+        CrashReport.initCrashReport(getApplicationContext(), "0334b35dea", false);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             LanguageUtils.changeAppLanguage(this, LanguageUtils.getDefaultLanguage(this));
         }

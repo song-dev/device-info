@@ -45,7 +45,6 @@ public class AppListAdapter extends BaseAdapter<ApplicationBean, AppListAdapter.
             holder.root.setBackgroundColor(context.getResources().getColor(R.color.color_E8E8E8));
         }
         ApplicationBean bean = data.get(position);
-        LogUtils.d(bean.toString());
         holder.icon.setImageDrawable(bean.getIcon());
         holder.nameTv.setText(bean.getName());
         holder.packageNameTv.setText(bean.getPackageName());
