@@ -18,12 +18,9 @@ import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.format.Formatter;
 
 import com.song.deviceinfo.R;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -304,70 +301,6 @@ public class GatewayUtils {
             e.printStackTrace();
         }
         return new Pair<>(dbm, level);
-    }
-
-    @SuppressLint("MissingPermission")
-    private static String getIMSI(Context context) {
-
-        String imsi = null;
-        try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            imsi = tm.getSubscriberId();
-        } catch (Exception e) {
-            e.printStackTrace();
-            imsi = Constants.UNKNOWN;
-        }
-        return imsi;
-
-    }
-
-    /**
-     * 运行商信息 carrier
-     *
-     * @param context
-     * @return
-     */
-    private static int getOperators(Context context) {
-
-        int OperatorsName = 0;
-        String imsi = getIMSI(context);
-        if (!TextUtils.isEmpty(imsi) && !TextUtils.equals(imsi, "$unknown")) {
-            // IMSI号前面3位460是国家，紧接着后面2位00 运营商代码
-            if (imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46004") || imsi.startsWith("46007")) {
-                OperatorsName = 1;
-            } else if (imsi.startsWith("46001") || imsi.startsWith("46006") || imsi.startsWith("46009")) {
-                OperatorsName = 2;
-            } else if (imsi.startsWith("46003") || imsi.startsWith("46005") || imsi.startsWith("46011")) {
-                OperatorsName = 3;
-            }
-        }
-        return OperatorsName;
-
-    }
-
-    /**
-     * 获取mems
-     *
-     * @param context
-     * @return
-     */
-    private static String getTotalMemory(Context context) {
-        String str1 = "/proc/meminfo";
-        String str2;
-        String[] arrayOfString;
-        long initial_memory = 0;
-        try {
-            FileReader localFileReader;
-            localFileReader = new FileReader(str1);
-            BufferedReader localBufferedReader = new BufferedReader(localFileReader, 8192);
-            str2 = localBufferedReader.readLine();
-            arrayOfString = str2.split("\\s+");
-            initial_memory = Long.valueOf(arrayOfString[1]) * 1024;
-            localBufferedReader.close();
-        } catch (Exception ignored) {
-            return "$unknown";
-        }
-        return Formatter.formatFileSize(context, initial_memory);
     }
 
 }

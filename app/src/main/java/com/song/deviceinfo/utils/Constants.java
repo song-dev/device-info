@@ -9,4 +9,6 @@ public class Constants {
     public final static String UNKNOWN = "$unknown";
     public final static String TAG = "Device_Info";
 
+    public static final int BUF_1024 = 1024;
+
 }

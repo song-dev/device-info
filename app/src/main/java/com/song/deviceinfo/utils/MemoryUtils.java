@@ -6,6 +6,9 @@ import android.text.format.Formatter;
 
 import com.song.deviceinfo.model.beans.StorageBean;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 /**
  * Created by chensongsong on 2020/6/2.
  */
@@ -53,6 +56,27 @@ public class MemoryUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 通过读取文件获取内存大小
+     *
+     * @param context
+     * @return
+     */
+    private static String getMemoryTotal(Context context) {
+        try {
+            FileReader fileReader = new FileReader("/proc/meminfo");
+            BufferedReader localBufferedReader = new BufferedReader(fileReader, Constants.BUF_1024);
+            String line = localBufferedReader.readLine();
+            String[] split = line.split("\\s+");
+            long l = Long.parseLong(split[1]) * Constants.BUF_1024;
+            localBufferedReader.close();
+            return Formatter.formatFileSize(context, l);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Constants.UNKNOWN;
     }
 
 }

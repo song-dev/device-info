@@ -133,6 +133,8 @@ public class NetWorkUtils {
                     return "HSPAP";
                 case TelephonyManager.NETWORK_TYPE_LTE:
                     return "LTE";
+                case TelephonyManager.NETWORK_TYPE_NR:
+                    return "5G";
                 default:
                     break;
             }

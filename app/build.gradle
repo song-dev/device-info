@@ -72,6 +72,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     implementation 'com.squareup.okhttp3:okhttp:4.7.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
