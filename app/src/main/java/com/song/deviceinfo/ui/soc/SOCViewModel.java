@@ -1,5 +1,7 @@
 package com.song.deviceinfo.ui.soc;
 
+import android.content.Context;
+
 import com.song.deviceinfo.info.SOCInfo;
 import com.song.deviceinfo.ui.base.NormalViewModel;
 
@@ -12,7 +14,7 @@ import androidx.core.util.Pair;
  */
 public class SOCViewModel extends NormalViewModel {
 
-    public List<Pair<String, String>> getSOCInfo() {
-        return SOCInfo.getSOCInfo();
+    public List<Pair<String, String>> getSOCInfo(Context context) {
+        return SOCInfo.getSOCInfo(context);
     }
 }

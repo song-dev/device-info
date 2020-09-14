@@ -1,5 +1,11 @@
 package com.song.deviceinfo.info;
 
+import android.content.Context;
+import android.os.Build;
+
+import com.song.deviceinfo.utils.CommandUtils;
+import com.song.deviceinfo.utils.SocUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +16,18 @@ import androidx.core.util.Pair;
  */
 public class SOCInfo {
 
-    public static List<Pair<String, String>> getSOCInfo() {
+    public static List<Pair<String, String>> getSOCInfo(Context context) {
         List<Pair<String, String>> list = new ArrayList<>();
+        list.add(new Pair<>("CPU", CommandUtils.getProperty("ro.board.platform")));
+        list.add(new Pair<>("CPU", CommandUtils.getProperty("ro.build.product")));
+        list.add(new Pair<>("CPU", CommandUtils.getProperty("ro.product.board")));
+        list.add(new Pair<>("CPU", CommandUtils.getProperty("ro.vendor.product.device")));
+        list.add(new Pair<>("CPU", CommandUtils.getProperty("ro.vendor.product.name")));
+        list.add(new Pair<>("Cores", SocUtils.getCoreInfo()));
+        list.add(new Pair<>("Machine", CommandUtils.execute("uname -m")));
+        list.add(new Pair<>("ABI", Build.CPU_ABI));
+        SocUtils.getGPUInfo(context, list);
+
         return list;
     }
 
