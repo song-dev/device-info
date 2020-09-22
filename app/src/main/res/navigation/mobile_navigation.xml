@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_app">
+    app:startDestination="@id/nav_wifi">
 
     <fragment
         android:id="@+id/nav_net"
@@ -38,79 +38,91 @@
     <fragment
         android:id="@+id/nav_store"
         android:name="com.song.deviceinfo.ui.store.StoreFragment"
-        android:label="@string/action_store"
+        android:label="@string/menu_store"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_applications"
         android:name="com.song.deviceinfo.ui.applist.AppListFragment"
-        android:label="@string/action_applications"
+        android:label="@string/menu_applications"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_codecs"
         android:name="com.song.deviceinfo.ui.codecs.CodecFragment"
-        android:label="@string/action_codecs"
+        android:label="@string/menu_codecs"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_input"
         android:name="com.song.deviceinfo.ui.input.InputFragment"
-        android:label="@string/action_input"
+        android:label="@string/menu_input"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_usb"
         android:name="com.song.deviceinfo.ui.usb.USBFragment"
-        android:label="@string/action_usb"
+        android:label="@string/menu_usb"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_soc"
         android:name="com.song.deviceinfo.ui.soc.SOCFragment"
-        android:label="@string/action_soc"
+        android:label="@string/menu_soc"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_emulator"
         android:name="com.song.deviceinfo.ui.emulator.EmulatorFragment"
-        android:label="@string/action_emulator"
+        android:label="@string/menu_emulator"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_virtual"
         android:name="com.song.deviceinfo.ui.virtual.VirtualAppFragment"
-        android:label="@string/action_virtual"
+        android:label="@string/menu_virtual"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_debug"
         android:name="com.song.deviceinfo.ui.debug.DebugFragment"
-        android:label="@string/action_debug"
+        android:label="@string/menu_debug"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_root"
         android:name="com.song.deviceinfo.ui.root.RootFragment"
-        android:label="@string/action_root"
+        android:label="@string/menu_root"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_hook"
         android:name="com.song.deviceinfo.ui.hook.HookFragment"
-        android:label="@string/action_hook"
+        android:label="@string/menu_hook"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_device"
         android:name="com.song.deviceinfo.ui.device.DeviceFragment"
-        android:label="@string/action_device"
+        android:label="@string/menu_device"
         tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_app"
         android:name="com.song.deviceinfo.ui.app.AppFragment"
-        android:label="@string/action_app"
+        android:label="@string/menu_app"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_wifi"
+        android:name="com.song.deviceinfo.ui.wifi.WifiFragment"
+        android:label="@string/menu_wifi"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_bluetooth"
+        android:name="com.song.deviceinfo.ui.bluetooth.BluetoothFragment"
+        android:label="@string/menu_bluetooth"
         tools:layout="@layout/fragment_base" />
 
     <fragment

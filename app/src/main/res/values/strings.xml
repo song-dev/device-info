@@ -80,15 +80,10 @@
     <string name="store_sd_free">Free:\t\t%s</string>
     <string name="store_sd_used">Used:\t\t%s %s%%</string>
     <string name="store_sd_total">Total:\t\t%s</string>
-    <string name="action_store">Memory</string>
     <string name="menu_store">Memory</string>
-    <string name="action_applications">Applications</string>
     <string name="menu_applications">Applications</string>
-    <string name="action_codecs">Codecs</string>
     <string name="menu_codecs">Codecs</string>
-    <string name="action_input">Input</string>
     <string name="menu_input">Input</string>
-    <string name="action_usb">USB</string>
     <string name="menu_usb">USB</string>
     <string name="usb_vendor">Vendor</string>
     <string name="usb_model">Model</string>
@@ -99,23 +94,17 @@
     <string name="usb_serial">Serial</string>
     <string name="usb_devices">Devices</string>
     <string name="usb_not_found">not found</string>
-    <string name="action_soc">SOC</string>
     <string name="menu_soc">SOC</string>
-    <string name="action_emulator">Emulator</string>
     <string name="menu_emulator">Emulator</string>
-    <string name="action_virtual">VirtualApp</string>
     <string name="menu_virtual">VirtualApp</string>
-    <string name="action_debug">Debug</string>
     <string name="menu_debug">Debug</string>
-    <string name="action_root">Root</string>
     <string name="menu_root">Root</string>
-    <string name="action_hook">Hook</string>
     <string name="menu_hook">Hook</string>
-    <string name="action_device">Device</string>
     <string name="menu_device">Device</string>
     <!-- Language Preferences -->
     <string name="settings_language">Language</string>
     <string name="settings_language_default">Default</string>
-    <string name="action_app">APP</string>
     <string name="menu_app">APP</string>
+    <string name="menu_wifi">WIFI</string>
+    <string name="menu_bluetooth">Bluetooth</string>
 </resources>

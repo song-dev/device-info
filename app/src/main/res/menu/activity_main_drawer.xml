@@ -86,6 +86,15 @@
             android:id="@+id/nav_app"
             android:icon="@mipmap/ic_action_app"
             android:title="@string/menu_app" />
+
+        <item
+            android:id="@+id/nav_wifi"
+            android:icon="@drawable/ic_action_wifi_scan_black_24dp"
+            android:title="@string/menu_wifi" />
+        <item
+            android:id="@+id/nav_bluetooth"
+            android:icon="@drawable/ic_action_bluetooth_scan_black_24dp"
+            android:title="@string/menu_bluetooth" />
     </group>
 
     <item android:title="@string/nav_header_options">

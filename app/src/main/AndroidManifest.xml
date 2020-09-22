@@ -8,12 +8,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 读取 Wifi 信息包括 Mac 地址 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 改变 WIFI 状态权限，主动扫描 WiFi -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 精确定位权限，获取 WiFi Mac -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 设备信息 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 获取蓝牙设备信息 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <!-- bugly -->
     <uses-permission
         android:name="android.permission.READ_LOGS"
