@@ -107,4 +107,5 @@
     <string name="menu_app">应用信息</string>
     <string name="menu_wifi">WIFI</string>
     <string name="menu_bluetooth">蓝牙</string>
+    <string name="menu_others">其他信息</string>
 </resources>

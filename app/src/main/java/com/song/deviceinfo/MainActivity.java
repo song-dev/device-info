@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_partitions, R.id.nav_store, R.id.nav_applications, R.id.nav_codecs,
                 R.id.nav_input, R.id.nav_usb, R.id.nav_soc, R.id.nav_emulator, R.id.nav_virtual,
                 R.id.nav_debug, R.id.nav_root, R.id.nav_hook, R.id.nav_device, R.id.nav_app,
-                R.id.nav_wifi, R.id.nav_bluetooth)
+                R.id.nav_wifi, R.id.nav_bluetooth, R.id.nav_others)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

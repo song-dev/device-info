@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_wifi">
+    app:startDestination="@id/nav_others">
 
     <fragment
         android:id="@+id/nav_net"
@@ -123,6 +123,12 @@
         android:id="@+id/nav_bluetooth"
         android:name="com.song.deviceinfo.ui.bluetooth.BluetoothFragment"
         android:label="@string/menu_bluetooth"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_others"
+        android:name="com.song.deviceinfo.ui.others.OthersFragment"
+        android:label="@string/menu_others"
         tools:layout="@layout/fragment_base" />
 
     <fragment

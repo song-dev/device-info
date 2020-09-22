@@ -108,4 +108,5 @@
     <string name="menu_app">APP</string>
     <string name="menu_wifi">WIFI</string>
     <string name="menu_bluetooth">Bluetooth</string>
+    <string name="menu_others">Others</string>
 </resources>
