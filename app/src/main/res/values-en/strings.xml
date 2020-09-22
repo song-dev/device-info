@@ -117,4 +117,6 @@
     <!-- Language Preferences -->
     <string name="settings_language">Language</string>
     <string name="settings_language_default">Default</string>
+    <string name="action_app">APP</string>
+    <string name="menu_app">APP</string>
 </resources>

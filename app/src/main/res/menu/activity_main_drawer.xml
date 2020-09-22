@@ -81,6 +81,11 @@
             android:id="@+id/nav_device"
             android:icon="@mipmap/ic_action_devices"
             android:title="@string/menu_device" />
+
+        <item
+            android:id="@+id/nav_app"
+            android:icon="@mipmap/ic_action_app"
+            android:title="@string/menu_app" />
     </group>
 
     <item android:title="@string/nav_header_options">

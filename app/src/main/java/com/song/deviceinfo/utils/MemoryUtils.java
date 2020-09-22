@@ -67,11 +67,11 @@ public class MemoryUtils {
     private static String getMemoryTotal(Context context) {
         try {
             FileReader fileReader = new FileReader("/proc/meminfo");
-            BufferedReader localBufferedReader = new BufferedReader(fileReader, Constants.BUF_1024);
-            String line = localBufferedReader.readLine();
+            BufferedReader bufferedReader = new BufferedReader(fileReader, Constants.BUF_1024);
+            String line = bufferedReader.readLine();
             String[] split = line.split("\\s+");
             long l = Long.parseLong(split[1]) * Constants.BUF_1024;
-            localBufferedReader.close();
+            bufferedReader.close();
             return Formatter.formatFileSize(context, l);
         } catch (Exception e) {
             e.printStackTrace();

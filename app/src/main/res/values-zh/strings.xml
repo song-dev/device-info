@@ -116,4 +116,6 @@
     <string name="menu_device">设备信息</string>
     <string name="settings_language">语言</string>
     <string name="settings_language_default">默认</string>
+    <string name="action_app">应用信息</string>
+    <string name="menu_app">应用信息</string>
 </resources>

@@ -4,12 +4,17 @@
     package="com.song.deviceinfo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 判断当前网络是否可用 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 读取 Wifi 信息包括 Mac 地址 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 精确定位权限，获取 WiFi Mac -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 设备信息 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- bugly -->
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
