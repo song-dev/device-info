@@ -33,7 +33,7 @@ public class StoreAdapter extends BaseAdapter<StorageBean, StoreAdapter.StoreHol
         return new StoreHolder(root);
     }
 
-    @SuppressLint({"StringFormatMatches", "StringFormatInvalid"})
+    @SuppressLint({"StringFormatMatches", "StringFormatInvalid", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull StoreHolder holder, int position) {
         StorageBean bean = data.get(position);
@@ -47,7 +47,7 @@ public class StoreAdapter extends BaseAdapter<StorageBean, StoreAdapter.StoreHol
         holder.usedSdTv.setText(context.getString(R.string.store_sd_used, bean.getUsedStore(), bean.getRatioStore() + ""));
         holder.totalSdTv.setText(context.getString(R.string.store_sd_total, bean.getTotalStore()));
         holder.progressBarSd.setProgress(bean.getRatioStore());
-        holder.infoSdTv.setText(bean.getStorePath());
+        holder.infoSdTv.setText(bean.getRomSize() + " " + bean.getStorePath());
     }
 
     static class StoreHolder extends RecyclerView.ViewHolder {
