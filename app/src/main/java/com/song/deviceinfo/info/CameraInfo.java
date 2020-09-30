@@ -40,8 +40,7 @@ public class CameraInfo {
                     return list;
                 }
                 String[] cameraIdList = manager.getCameraIdList();
-                for (int num = 0; num < cameraIdList.length; num++) {
-                    String cameraId = cameraIdList[num];
+                for (String cameraId : cameraIdList) {
                     CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
 
                     // TODO 摄像头位置 后置 前置 外置
@@ -155,9 +154,8 @@ public class CameraInfo {
 
                     // ==================================================================================================
 
-                    Integer level = characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
-                    //摄像头支持的设备等级
-                    list.add(new Pair<>("CameraLevel", getLevel(level)));
+                    //TODO 通常对相机设备功能的总体分类
+                    list.add(new Pair<>("SupportedHardwareLevel", getLevel(characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL))));
 
                     //TODO 本相机设备支持的像差校正模式列表
                     int[] aberrationModes = characteristics.get(CameraCharacteristics.COLOR_CORRECTION_AVAILABLE_ABERRATION_MODES);
@@ -203,7 +201,7 @@ public class CameraInfo {
                         }
                     }
                     //TODO 是否锁定自动曝光
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AE_LOCK_AVAILABLE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AE_LOCK_AVAILABLE != null) {
                         Boolean lockAvailable = characteristics.get(CameraCharacteristics.CONTROL_AE_LOCK_AVAILABLE);
                         if (lockAvailable != null) {
                             list.add(new Pair<>("LockAvailable", lockAvailable + ""));
@@ -222,7 +220,7 @@ public class CameraInfo {
                         }
                     }
                     //TODO 本相机设备支持的控制模式列表
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AVAILABLE_MODES != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AVAILABLE_MODES != null) {
                         int[] availableModes = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_MODES);
                         if (availableModes != null && availableModes.length != 0) {
                             JSONArray jsonArrayAvailableModes = new JSONArray();
@@ -268,7 +266,7 @@ public class CameraInfo {
                     }
                     //TODO 设备是否支持自动白平衡
 
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AWB_LOCK_AVAILABLE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AWB_LOCK_AVAILABLE != null) {
                         Boolean awbLockAvailable = characteristics.get(CameraCharacteristics.CONTROL_AWB_LOCK_AVAILABLE);
                         if (awbLockAvailable != null) {
                             list.add(new Pair<>("AwbLockAvailable", awbLockAvailable + ""));
@@ -294,7 +292,7 @@ public class CameraInfo {
                     }
 
                     //TODO 相机设备支持的增强范围
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N && CameraCharacteristics.CONTROL_POST_RAW_SENSITIVITY_BOOST_RANGE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && CameraCharacteristics.CONTROL_POST_RAW_SENSITIVITY_BOOST_RANGE != null) {
                         Range<Integer> rawSensitivityBoostRange = characteristics.get(CameraCharacteristics.CONTROL_POST_RAW_SENSITIVITY_BOOST_RANGE);
                         if (rawSensitivityBoostRange != null) {
                             list.add(new Pair<>("RawSensitivityBoostRange", rawSensitivityBoostRange.toString()));
@@ -302,7 +300,7 @@ public class CameraInfo {
                     }
 
                     //TODO 指示捕获请求是否可以同时针对DEPTH16 / DEPTH_POINT_CLOUD输出和常规彩色输出 true为不可以
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.DEPTH_DEPTH_IS_EXCLUSIVE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.DEPTH_DEPTH_IS_EXCLUSIVE != null) {
                         Boolean depthIsExclusive = characteristics.get(CameraCharacteristics.DEPTH_DEPTH_IS_EXCLUSIVE);
                         if (depthIsExclusive != null) {
                             list.add(new Pair<>("DepthIsExclusive", depthIsExclusive + ""));
@@ -323,7 +321,7 @@ public class CameraInfo {
                     }
 
                     //TODO 本相机设备支持的失真校正模式列表
-                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.DISTORTION_CORRECTION_AVAILABLE_MODES != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.DISTORTION_CORRECTION_AVAILABLE_MODES != null) {
                         int[] correctionAvailableModes = characteristics.get(CameraCharacteristics.DISTORTION_CORRECTION_AVAILABLE_MODES);
                         if (correctionAvailableModes != null && correctionAvailableModes.length != 0) {
                             JSONArray jsonArrayCorrectionAvailableModes = new JSONArray();
@@ -358,12 +356,9 @@ public class CameraInfo {
                             list.add(new Pair<>("AvailableHotPixelModes", jsonArrayAvailableHotPixelModes.toString()));
                         }
                     }
-                    //TODO 通常对相机设备功能的总体分类
-                    if (CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL != null) {
-                        list.add(new Pair<>("SupportedHardwareLevel", getLevel(characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL))));
-                    }
+
                     //TODO 摄像机设备制造商版本信息的简短字符串
-                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.INFO_VERSION != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.INFO_VERSION != null) {
                         list.add(new Pair<>("InfoVersion", characteristics.get(CameraCharacteristics.INFO_VERSION)));
                     }
                     //TODO 此相机设备支持的JPEG缩略图尺寸列表
@@ -378,7 +373,7 @@ public class CameraInfo {
                         list.add(new Pair<>("JpegAvailableThumbnailSizes", jsonArrayJpegAvailableThumbnailSizes.toString()));
                     }
                     //TODO 用于校正此相机设备的径向和切向镜头失真的校正系数
-                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.LENS_DISTORTION != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.LENS_DISTORTION != null) {
                         float[] lensDistortion = characteristics.get(CameraCharacteristics.LENS_DISTORTION);
                         if (lensDistortion != null && lensDistortion.length != 0) {
                             list.add(new Pair<>("LensDistortion", new JSONArray(lensDistortion).toString()));
@@ -419,33 +414,33 @@ public class CameraInfo {
                         list.add(new Pair<>("MinimumFocusDistance", minimumFocusDistance + ""));
                     }
                     //TODO 本相机设备固有校准的参数
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.LENS_INTRINSIC_CALIBRATION != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.LENS_INTRINSIC_CALIBRATION != null) {
                         float[] lensIntrinsicCalibration = characteristics.get(CameraCharacteristics.LENS_INTRINSIC_CALIBRATION);
                         if (lensIntrinsicCalibration != null && lensIntrinsicCalibration.length != 0) {
                             list.add(new Pair<>("LensIntrinsicCalibration", new JSONArray(lensIntrinsicCalibration).toString()));
                         }
                     }
                     //TODO 镜头姿势
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && CameraCharacteristics.LENS_POSE_REFERENCE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.LENS_POSE_REFERENCE != null) {
                         Integer lensPoseReference = characteristics.get(CameraCharacteristics.LENS_POSE_REFERENCE);
                         list.add(new Pair<>("LensPoseReference", getLensPoseReference(lensPoseReference)));
                     }
                     //TODO 相机相对于传感器坐标系的方向
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.LENS_POSE_ROTATION != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.LENS_POSE_ROTATION != null) {
                         float[] lensPoseRotation = characteristics.get(CameraCharacteristics.LENS_POSE_ROTATION);
                         if (lensPoseRotation != null && lensPoseRotation.length != 0) {
                             list.add(new Pair<>("LensPoseRotation", new JSONArray(lensPoseRotation).toString()));
                         }
                     }
                     //TODO 相机光学中心的位置
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.LENS_POSE_TRANSLATION != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.LENS_POSE_TRANSLATION != null) {
                         float[] lensPoseTranslation = characteristics.get(CameraCharacteristics.LENS_POSE_TRANSLATION);
                         if (lensPoseTranslation != null && lensPoseTranslation.length != 0) {
                             list.add(new Pair<>("LensPoseTranslation", new JSONArray(lensPoseTranslation).toString()));
                         }
                     }
                     //TODO 帧时间戳同步
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && CameraCharacteristics.LOGICAL_MULTI_CAMERA_SENSOR_SYNC_TYPE != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.LOGICAL_MULTI_CAMERA_SENSOR_SYNC_TYPE != null) {
                         Integer cameraSensorSyncType = characteristics.get(CameraCharacteristics.LOGICAL_MULTI_CAMERA_SENSOR_SYNC_TYPE);
                         list.add(new Pair<>("CameraSensorSyncType", getCameraSensorSyncType(cameraSensorSyncType)));
                     }
@@ -461,7 +456,7 @@ public class CameraInfo {
                         }
                     }
                     //TODO 最大摄像机捕获流水线停顿
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.REPROCESS_MAX_CAPTURE_STALL != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.REPROCESS_MAX_CAPTURE_STALL != null) {
                         Integer maxCaptureStall = characteristics.get(CameraCharacteristics.REPROCESS_MAX_CAPTURE_STALL);
                         if (maxCaptureStall != null) {
                             list.add(new Pair<>("MaxCaptureStall", maxCaptureStall.toString()));
@@ -480,7 +475,7 @@ public class CameraInfo {
                     }
 
                     //TODO 摄像机设备可以同时配置和使用的任何类型的输入流的最大数量
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.REQUEST_MAX_NUM_INPUT_STREAMS != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.REQUEST_MAX_NUM_INPUT_STREAMS != null) {
                         Integer requestMaxNumInputStreams = characteristics.get(CameraCharacteristics.REQUEST_MAX_NUM_INPUT_STREAMS);
                         if (requestMaxNumInputStreams != null) {
                             list.add(new Pair<>("RequestMaxNumInputStreams", requestMaxNumInputStreams.toString()));
@@ -564,7 +559,7 @@ public class CameraInfo {
                     }
 
                     //TODO 从本相机设备输出的RAW图像是否经过镜头阴影校正
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.SENSOR_INFO_LENS_SHADING_APPLIED != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.SENSOR_INFO_LENS_SHADING_APPLIED != null) {
                         Boolean sensorInfoLensShadingApplied = characteristics.get(CameraCharacteristics.SENSOR_INFO_LENS_SHADING_APPLIED);
                         if (sensorInfoLensShadingApplied != null) {
                             list.add(new Pair<>("SensorInfoLensShadingApplied", sensorInfoLensShadingApplied.toString()));
@@ -612,7 +607,7 @@ public class CameraInfo {
                     }
 
                     //TODO 本相机设备支持的镜头阴影模式列表
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.SHADING_AVAILABLE_MODES != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.SHADING_AVAILABLE_MODES != null) {
                         int[] shadingAvailableModes = characteristics.get(CameraCharacteristics.SHADING_AVAILABLE_MODES);
                         if (shadingAvailableModes != null && shadingAvailableModes.length != 0) {
                             JSONArray jsonArrayShadingAvailableModes = new JSONArray();
@@ -636,7 +631,7 @@ public class CameraInfo {
                     }
 
                     //TODO 本相机设备支持的镜头阴影贴图输出模式列表
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && CameraCharacteristics.STATISTICS_INFO_AVAILABLE_LENS_SHADING_MAP_MODES != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.STATISTICS_INFO_AVAILABLE_LENS_SHADING_MAP_MODES != null) {
                         int[] availableLensShadingMapModes = characteristics.get(CameraCharacteristics.STATISTICS_INFO_AVAILABLE_LENS_SHADING_MAP_MODES);
                         if (availableLensShadingMapModes != null && availableLensShadingMapModes.length != 0) {
                             JSONArray jsonArrayAvailableLensShadingMapModes = new JSONArray();
@@ -648,7 +643,7 @@ public class CameraInfo {
                     }
 
                     //TODO 本相机设备支持的OIS数据输出模式列表
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && CameraCharacteristics.STATISTICS_INFO_AVAILABLE_OIS_DATA_MODES != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && CameraCharacteristics.STATISTICS_INFO_AVAILABLE_OIS_DATA_MODES != null) {
                         int[] availableOisDataModes = characteristics.get(CameraCharacteristics.STATISTICS_INFO_AVAILABLE_OIS_DATA_MODES);
                         if (availableOisDataModes != null && availableOisDataModes.length != 0) {
                             JSONArray jsonArrayAvailableOisDataModes = new JSONArray();
