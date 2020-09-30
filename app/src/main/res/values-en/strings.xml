@@ -1,23 +1,12 @@
 <resources>
     <string name="app_name">Device Info</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Song</string>
-    <string name="nav_header_subtitle">fengyas_ong@163.com</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_net">Net</string>
     <string name="menu_battery">Battery</string>
     <string name="menu_system">System</string>
 
-    <string name="home_second">Home Second</string>
-    <string name="net_ipv4">IPv4</string>
-    <string name="net_ipv6">IPv6</string>
     <string name="net_link_speed">LinkSpeed</string>
-    <string name="net_bssid">BSSID</string>
-    <string name="net_ssid">SSID</string>
-    <string name="net_mac">MAC</string>
     <string name="net_id">ID</string>
     <string name="net_rssi">RSSI</string>
     <string name="net_level">Level</string>
@@ -26,9 +15,6 @@
     <string name="net_proxy_host">Proxy Host</string>
     <string name="net_proxy_port">Proxy Port</string>
     <string name="action_about">About</string>
-    <string name="about_author">author\nsong</string>
-    <string name="about_copy_right">(c) 2016 – 2020</string>
-    <string name="about_version">version %s</string>
     <string name="net_frequency">Frequency</string>
     <string name="menu_thermal">Thermal</string>
     <string name="battery_level">Level</string>
@@ -45,7 +31,6 @@
     <string name="system_model">Model</string>
     <string name="system_brand">Brand</string>
     <string name="system_release">Release</string>
-    <string name="system_api">API</string>
     <string name="system_code_name">Codename</string>
     <string name="system_density">Density</string>
     <string name="system_refresh_rate">Refresh rate</string>
@@ -54,11 +39,9 @@
     <string name="system_board">Board</string>
     <string name="system_platform">Platform</string>
     <string name="system_build">Build</string>
-    <string name="system_vm">Java VM</string>
     <string name="system_security">Security</string>
     <string name="system_baseband">Baseband</string>
     <string name="system_build_type">Build type</string>
-    <string name="system_tags">Tags</string>
     <string name="system_incremental">Incremental</string>
     <string name="system_description">Description</string>
     <string name="system_fingerprint">Fingerprint</string>
@@ -68,23 +51,13 @@
     <string name="system_timezone">Timezone</string>
     <string name="system_uptime">Uptime</string>
     <string name="nav_header_options">Options</string>
-    <string name="partitions_used">used: %s/%s</string>
-    <string name="partitions_fs_mod">fs: %s %s</string>
     <string name="menu_partitions">Partitions</string>
     <string name="store_mem_name">RAM</string>
-    <string name="store_mem_free">Free:\t\t%s</string>
-    <string name="store_mem_used">Used:\t\t%s %s%%</string>
-    <string name="store_mem_total">Total:\t\t%s</string>
-    <string name="store_mem_info">%s GB %s</string>
     <string name="store_sd_name">Internal Storage</string>
-    <string name="store_sd_free">Free:\t\t%s</string>
-    <string name="store_sd_used">Used:\t\t%s %s%%</string>
-    <string name="store_sd_total">Total:\t\t%s</string>
     <string name="menu_store">Memory</string>
     <string name="menu_applications">Applications</string>
     <string name="menu_codecs">Codecs</string>
     <string name="menu_input">Input</string>
-    <string name="menu_usb">USB</string>
     <string name="usb_vendor">Vendor</string>
     <string name="usb_model">Model</string>
     <string name="usb_device_id">Device ID</string>
@@ -98,15 +71,24 @@
     <string name="menu_emulator">Emulator</string>
     <string name="menu_virtual">VirtualApp</string>
     <string name="menu_debug">Debug</string>
-    <string name="menu_root">Root</string>
-    <string name="menu_hook">Hook</string>
     <string name="menu_device">Device</string>
 
     <!-- Language Preferences -->
     <string name="settings_language">Language</string>
     <string name="settings_language_default">Default</string>
     <string name="menu_app">APP</string>
-    <string name="menu_wifi">WIFI</string>
     <string name="menu_bluetooth">Bluetooth</string>
     <string name="menu_others">Others</string>
+    <string name="menu_camera">Camera</string>
+    <string name="camera_aperture">Aperture</string>
+    <string name="camera_resolution">Resolution</string>
+    <string name="camera_focal_length">Focal length</string>
+    <string name="camera_af_modes">Focus modes</string>
+    <string name="camera_size">Sensor size</string>
+    <string name="camera_pixel_size">Pixel size</string>
+    <string name="camera_view_angle">View Angle</string>
+    <string name="camera_formats">Image formats</string>
+    <string name="camera_color_filter">Color Filter</string>
+    <string name="camera_orientation">Orientation</string>
+    <string name="camera_flash">Flash</string>
 </resources>

@@ -29,6 +29,10 @@
             android:icon="@mipmap/ic_action_memory"
             android:title="@string/menu_store" />
         <item
+            android:id="@+id/nav_camera"
+            android:icon="@mipmap/ic_action_camera"
+            android:title="@string/menu_camera" />
+        <item
             android:id="@+id/nav_applications"
             android:icon="@mipmap/ic_action_applications"
             android:title="@string/menu_applications" />

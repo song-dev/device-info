@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_net, R.id.nav_thermal, R.id.nav_battery, R.id.nav_system,
-                R.id.nav_partitions, R.id.nav_store, R.id.nav_applications, R.id.nav_codecs,
+                R.id.nav_partitions, R.id.nav_store, R.id.nav_camera, R.id.nav_applications, R.id.nav_codecs,
                 R.id.nav_input, R.id.nav_usb, R.id.nav_soc, R.id.nav_emulator, R.id.nav_virtual,
                 R.id.nav_debug, R.id.nav_root, R.id.nav_hook, R.id.nav_device, R.id.nav_app,
                 R.id.nav_wifi, R.id.nav_bluetooth, R.id.nav_others)
@@ -68,12 +68,14 @@ public class MainActivity extends AppCompatActivity {
         // 存储和定位权限申请
         if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.LOCATION) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.CAMERA) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.PHONE) != PackageManager.PERMISSION_GRANTED) {
             // 申请权限
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.READ_PHONE_STATE}, 1);
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CAMERA}, 1);
             }
         }
     }

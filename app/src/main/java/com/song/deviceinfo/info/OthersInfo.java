@@ -58,7 +58,6 @@ public class OthersInfo {
         list.add(new Pair<>("HasNavigationBar", DensityUtils.hasNavigationBar(context) + ""));
         // 存储
         list.add(new Pair<>("SDCardEnable", SdUtils.isMounted() + ""));
-        list.add(new Pair<>("SDCardPath", SdUtils.getDirPath() + ""));
         // 相机，网络
         return list;
     }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_others">
+    app:startDestination="@id/nav_camera">
 
     <fragment
         android:id="@+id/nav_net"
@@ -39,6 +39,12 @@
         android:id="@+id/nav_store"
         android:name="com.song.deviceinfo.ui.store.StoreFragment"
         android:label="@string/menu_store"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_camera"
+        android:name="com.song.deviceinfo.ui.camera.CameraFragment"
+        android:label="@string/menu_camera"
         tools:layout="@layout/fragment_base" />
 
     <fragment
