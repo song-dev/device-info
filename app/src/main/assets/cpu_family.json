@@ -1,0 +1,51 @@
+[
+  {"vid": "0x41", "id": "0xc05", "name": "Cortex-A5"},
+  {"vid": "0x41", "id": "0xc07", "name": "Cortex-A7"},
+  {"vid": "0x41", "id": "0xc08", "name": "Cortex-A8"},
+  {"vid": "0x41", "id": "0xc09", "name": "Cortex-A9"},
+
+  {"vid": "0x41", "id": "0xc0d", "name": "Cortex-A17(ex-A12)"},
+  {"vid": "0x41", "id": "0xc0e", "name": "Cortex-A17"},
+  {"vid": "0x41", "id": "0xc0f", "name": "Cortex-A15"},
+
+  {"vid": "0x41", "id": "0xd01", "name": "Cortex-A32"},
+  {"vid": "0x41", "id": "0xd03", "name": "Cortex-A53"},
+  {"vid": "0x41", "id": "0xd04", "name": "Cortex-A35"},
+  {"vid": "0x41", "id": "0xd05", "name": "Cortex-A55"},
+  {"vid": "0x41", "id": "0xd07", "name": "Cortex-A57"},
+  {"vid": "0x41", "id": "0xd08", "name": "Cortex-A72"},
+  {"vid": "0x41", "id": "0xd09", "name": "Cortex-A73"},
+
+  {"vid": "0x41", "id": "0xd0a", "name": "Cortex-A75"},
+  {"vid": "0x41", "id": "0xd0b", "name": "Cortex-A76"},
+  {"vid": "0x41", "id": "0xd0d", "name": "Cortex-A77"},
+
+  {"vid": "0x48", "id": "0xd40", "name": "Cortex-A76H"},
+
+  {"vid": "0x4e", "id": "0x0", "name": "Denver"},
+
+  {"vid": "0x51", "id": "0xf",  "name": "Scorpion"},
+  {"vid": "0x51", "id": "0x2d", "name": "Scorpion"},
+  {"vid": "0x51", "id": "0x4d", "name": "Krait"},
+  {"vid": "0x51", "id": "0x6f", "name": "Krait"},
+
+  {"vid": "0x51", "id": "0x201", "name": "Kryo"},
+  {"vid": "0x51", "id": "0x205", "name": "Kryo"},
+  {"vid": "0x51", "id": "0x211", "name": "Kryo"},
+
+  {"vid": "0x51", "id": "0x800", "name": "Kryo-2xx-a73"},
+  {"vid": "0x51", "id": "0x801", "name": "Kryo-2xx-a53"},
+
+  {"vid": "0x51", "id": "0x802", "name": "Kryo-3xx-a75"},
+  {"vid": "0x51", "id": "0x803", "name": "Kryo-3xx-a55"},
+
+  {"vid": "0x51", "id": "0x804", "name": "Kryo-4xx-a76"},
+  {"vid": "0x51", "id": "0x805", "name": "Kryo-4xx-a55"},
+
+  {"vid": "0x53", "id": "0x1", "name": "Mongoose"},
+  {"vid": "0x53", "id": "0x2", "name": "Mongoose-M3"},
+  {"vid": "0x53", "id": "0x3", "name": "Mongoose-M4"},
+  {"vid": "0x53", "id": "0x4", "name": "Mongoose-M5"},
+
+  {"vid": "0x69", "id": "0x1", "name": "Intel"}
+]

@@ -1,0 +1,26 @@
+[
+  {"id": "mt6755", "name": "P10 series", "tp": "28"},
+  {"id": "mt6757", "name": "P20 series", "tp": "16"},
+  {"id": "mt6759", "name": "P30 series"},
+
+  {"id": "mt6763", "name": "P23", "ddr": "", "tp": "16"},
+
+  {"id": "mt6761",  "name": "A22", "tp": "12"},
+  {"id": "mt6762m", "name": "A22", "tp": "12"},
+  {"id": "mt6762",  "name": "P22", "tp": "12"},
+
+  {"id": "mt6765", "name": "P35", "tp": "12"},
+  {"id": "mt6768", "name": "P65", "tp": "12"},
+  {"id": "mt6769", "name": "G70", "tp": "12"},
+
+  {"id": "mt6771", "name": "P60 series", "ddr": "", "tp": "12"},
+  {"id": "mt6779", "name": "P90", "ddr": "4X", "tp": "12"},
+
+  {"id": "mt6785", "name": "G90", "ddr": "4X", "tp": "12"},
+  {"id": "mt6885", "name": "D1000", "ddr": "4X", "tp": "7"},
+  {"id": "mt6889", "name": "D1000+", "ddr": "4X", "tp": "7"},
+
+  {"id": "mt6795", "name": "X10 series", "tp": "28"},
+  {"id": "mt6797", "name": "X20 series", "tp": "20"},
+  {"id": "mt6799", "name": "X30 series", "tp": "10"}
+]

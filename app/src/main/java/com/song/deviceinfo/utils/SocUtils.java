@@ -46,7 +46,7 @@ public class SocUtils {
             HashSet<String> implementer = new HashSet<>();
             while ((line = bufferedReader.readLine()) != null) {
                 String result = line.toLowerCase();
-                LogUtils.e(result);
+                LogUtils.d("CPU: " + result);
                 String[] split = result.split(":\\s+", 2);
                 if (split[0].startsWith("cpu part")) {
                     parts.add(split[1]);
@@ -90,10 +90,6 @@ public class SocUtils {
         list.add(new Pair<>("GlEsVersion", info.reqNavigation + ""));
         list.add(new Pair<>("GlEsVersion", info.reqTouchScreen + ""));
         list.add(new Pair<>("GlEsVersion", info.describeContents() + ""));
-    }
-
-    public static void getCpuInfo() {
-
     }
 
 }
