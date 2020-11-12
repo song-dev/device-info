@@ -103,7 +103,7 @@ public class DensityUtils {
     }
 
     /**
-     * 获取屏幕宽度，单位 px
+     * 获取屏幕宽度，单位 dp
      *
      * @param context
      * @return
@@ -115,7 +115,7 @@ public class DensityUtils {
     }
 
     /**
-     * 获取屏幕高度，单位 px
+     * 获取屏幕高度，单位 dp
      *
      * @param context
      * @return
