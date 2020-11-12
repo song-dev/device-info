@@ -26,12 +26,22 @@ public class NetWorkInfo {
      */
     public static List<Pair<String, String>> getNetWorkInfo(Context context) {
         List<Pair<String, String>> list = new ArrayList<>();
+        getNetWorkStatus(context, list);
         if (NetWorkUtils.isWifi(context)) {
             setWifiInfo(context, list);
         } else {
             getMobileInfo(context, list);
         }
         return list;
+    }
+
+    private static void getNetWorkStatus(Context context, List<Pair<String, String>> list) {
+        list.add(new Pair<>("Net Availability", NetWorkUtils.isNetworkConnected(context) + ""));
+        list.add(new Pair<>("Mobile Availability", NetWorkUtils.isMobileEnabled(context) + ""));
+        list.add(new Pair<>("WIFI Availability", NetWorkUtils.isWifi(context) + ""));
+        list.add(new Pair<>("NET TYPE", NetWorkUtils.getNetWorkType(context)));
+        list.add(new Pair<>("Net System Usable", NetWorkUtils.isNetSystemUsable(context) + ""));
+        NetWorkUtils.getNetWorkInfo(context, list);
     }
 
     /**

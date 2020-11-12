@@ -7,10 +7,8 @@ import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -20,15 +18,14 @@ import java.util.Locale;
  */
 public class LogUtils {
 
-    public static final int VERBOSE = 1;
-    public static final int DEBUG = 2;
-    public static final int INFO = 3;
-    public static final int WARN = 4;
-    public static final int ERROR = 5;
-    public static final int NOTHING = 6;
-    public static int LEVEL = VERBOSE;
+    private static final int VERBOSE = 1;
+    private static final int DEBUG = 2;
+    private static final int INFO = 3;
+    private static final int WARN = 4;
+    private static final int ERROR = 5;
+    private static int LEVEL = VERBOSE;
     private static LogUtils.Logger logger = null;
-    public static String TAG = Constants.TAG;
+    private static String TAG = Constants.TAG;
     private final static int PRINT_SIZE = 3800;
 
     public static void init(int level, String tag) {
@@ -132,7 +129,7 @@ public class LogUtils {
     private static class Logger {
         private HandlerThread thread;
         private Handler handler;
-        private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
 
         private static final String FILE_NAME = "device_info_log.txt";
         private static final String EXTERNAL_DIR = "song";
@@ -175,10 +172,6 @@ public class LogUtils {
 
         public synchronized void log(String tag, String msg) {
 
-            if (!SdUtils.isMounted()) {
-                return;
-            }
-
             Message message = handler.obtainMessage();
             message.what = WHAT_MSG;
 
@@ -192,14 +185,9 @@ public class LogUtils {
         }
 
         public synchronized void checkLogFile() {
-            if (!SdUtils.isMounted()) {
-                return;
-            }
-
             Message message = handler.obtainMessage();
             message.what = WHAT_INIT;
             handler.sendMessage(message);
-
         }
 
         public synchronized void destroy() {
@@ -213,7 +201,6 @@ public class LogUtils {
         }
 
         private static String externalDirPath() {
-
             return SdUtils.getDirPath() + File.separator + EXTERNAL_DIR;
         }
 
@@ -243,9 +230,8 @@ public class LogUtils {
             try {
                 out = new BufferedOutputStream(new FileOutputStream(new File(dir, FILE_NAME), true));
                 out.write(content.getBytes("utf-8"));
-            } catch (FileNotFoundException e) {
-            } catch (UnsupportedEncodingException e) {
-            } catch (IOException e) {
+            } catch (Exception e) {
+                e.printStackTrace();
             } finally {
                 if (out != null) {
                     try {
@@ -264,7 +250,6 @@ public class LogUtils {
             sb.append('\n');
             sb.append(msg);
             sb.append('\n');
-
             return sb.toString();
         }
     }

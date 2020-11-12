@@ -27,6 +27,6 @@ public class SOCFragment extends NormalFragment {
 
     @Override
     protected List<Pair<String, String>> getNormalInfo() {
-        return ((SOCViewModel) viewModel).getSOCInfo();
+        return ((SOCViewModel) viewModel).getSOCInfo(getContext());
     }
 }
