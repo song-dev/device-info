@@ -46,6 +46,10 @@ public class StorageBean {
      * 内存信息
      */
     private String memInfo;
+    /**
+     * 真实 ROM 空间
+     */
+    private String romSize;
 
     public String getFreeStore() {
         return freeStore;
@@ -127,6 +131,14 @@ public class StorageBean {
         this.memInfo = memInfo;
     }
 
+    public String getRomSize() {
+        return romSize;
+    }
+
+    public void setRomSize(String romSize) {
+        this.romSize = romSize;
+    }
+
     @Override
     public String toString() {
         return "StorageBean{" +
@@ -140,6 +152,7 @@ public class StorageBean {
                 ", totalMemory='" + totalMemory + '\'' +
                 ", ratioMemory=" + ratioMemory +
                 ", memInfo='" + memInfo + '\'' +
+                ", romSize='" + romSize + '\'' +
                 '}';
     }
 }

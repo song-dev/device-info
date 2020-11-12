@@ -1,0 +1,11 @@
+[
+  {"id": "0x13", "name": "Micron"},
+  {"id": "0x15", "name": "Samsung"},
+  {"id": "0x90", "name": "Hynix"},
+  {"id": "0x45", "name": "Sandisk"},
+  {"id": "0x11", "name": "Toshiba"},
+  {"id": "0x70", "name": "Kingston"},
+  {"id": "0x74", "name": "Transcend"},
+  {"id": "0xFE", "name": "Micron"},
+  {"id": "0x88", "name": "Foresee"}
+]

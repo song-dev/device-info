@@ -29,6 +29,10 @@
             android:icon="@mipmap/ic_action_memory"
             android:title="@string/menu_store" />
         <item
+            android:id="@+id/nav_camera"
+            android:icon="@mipmap/ic_action_camera"
+            android:title="@string/menu_camera" />
+        <item
             android:id="@+id/nav_applications"
             android:icon="@mipmap/ic_action_applications"
             android:title="@string/menu_applications" />
@@ -81,6 +85,26 @@
             android:id="@+id/nav_device"
             android:icon="@mipmap/ic_action_devices"
             android:title="@string/menu_device" />
+
+        <item
+            android:id="@+id/nav_app"
+            android:icon="@mipmap/ic_action_app"
+            android:title="@string/menu_app" />
+
+        <item
+            android:id="@+id/nav_wifi"
+            android:icon="@drawable/ic_action_wifi_scan_black_24dp"
+            android:title="@string/menu_wifi" />
+
+        <item
+            android:id="@+id/nav_bluetooth"
+            android:icon="@drawable/ic_action_bluetooth_scan_black_24dp"
+            android:title="@string/menu_bluetooth" />
+
+        <item
+            android:id="@+id/nav_others"
+            android:icon="@drawable/ic_action_others_black_24dp"
+            android:title="@string/menu_others" />
     </group>
 
     <item android:title="@string/nav_header_options">

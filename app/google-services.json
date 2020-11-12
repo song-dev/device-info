@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1060499451852",
+    "firebase_url": "https://sensebot-28240.firebaseio.com",
+    "project_id": "sensebot-28240",
+    "storage_bucket": "sensebot-28240.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060499451852:android:235bb079fc42f7c2183769",
+        "android_client_info": {
+          "package_name": "com.geetest.sensebot.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060499451852-km6f8cphc4ksa6djl90lgdo90plu370l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR-9KuvDeVModyh_xANMCwpbRB0e3QbUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060499451852-km6f8cphc4ksa6djl90lgdo90plu370l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060499451852:android:68e511a27936c451183769",
+        "android_client_info": {
+          "package_name": "com.song.deviceinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060499451852-km6f8cphc4ksa6djl90lgdo90plu370l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR-9KuvDeVModyh_xANMCwpbRB0e3QbUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060499451852-km6f8cphc4ksa6djl90lgdo90plu370l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

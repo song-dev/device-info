@@ -8,7 +8,7 @@
 
     <string-array name="settings_language_values">
         <item>default</item>
-        <item>zh</item>
+        <item>zh-cn</item>
         <item>en</item>
     </string-array>
 
