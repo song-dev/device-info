@@ -1,5 +1,7 @@
 package com.song.deviceinfo.model.beans;
 
+import org.json.JSONObject;
+
 /**
  * Created by chensongsong on 2020/6/4.
  */
@@ -50,5 +52,18 @@ public class InputBean {
                 ", sys='" + sys + '\'' +
                 ", handlers='" + handlers + '\'' +
                 '}';
+    }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", name);
+            jsonObject.put("attribute", attribute);
+            jsonObject.put("sys", sys);
+            jsonObject.put("handlers", handlers);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }

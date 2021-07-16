@@ -67,8 +67,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment:2.3.1'
-    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.13.1'
@@ -88,9 +88,12 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:18.0.0'
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
-    implementation 'com.google.firebase:firebase-perf:19.0.9'
+    implementation 'com.google.firebase:firebase-perf:19.0.10'
 
     //OAID
     implementation(name: 'miit_mdid_1.0.10', ext: 'aar')
+
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.1.5'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.1.5'
 
 }

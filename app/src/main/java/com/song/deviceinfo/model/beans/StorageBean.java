@@ -1,5 +1,7 @@
 package com.song.deviceinfo.model.beans;
 
+import org.json.JSONObject;
+
 /**
  * Created by chensongsong on 2020/6/1.
  */
@@ -155,4 +157,26 @@ public class StorageBean {
                 ", romSize='" + romSize + '\'' +
                 '}';
     }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("freeStore=", freeStore);
+            jsonObject.put("usedStore", usedStore);
+            jsonObject.put("totalStore", totalStore);
+            jsonObject.put("ratioStore", ratioStore);
+            jsonObject.put("storePath", storePath);
+            jsonObject.put("freeMemory", freeMemory);
+            jsonObject.put("usedMemory", usedMemory);
+            jsonObject.put("totalMemory", totalMemory);
+            jsonObject.put("ratioMemory", ratioMemory);
+            jsonObject.put("memInfo", memInfo);
+            jsonObject.put("romSize", romSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+
 }
