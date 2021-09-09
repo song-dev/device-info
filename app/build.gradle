@@ -1,17 +1,22 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.gms.google-services'
 
+def PRODUCT_NAME = "device_info_"
+def DATE = new SimpleDateFormat('yyyyMMdd').format(new Date())
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.song.deviceinfo"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,6 +60,19 @@ android {
     repositories {
         flatDir {
             dirs 'libs'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFileName
+            if (outputFile != null && outputFile.endsWith('.apk')) {
+                if ('debug' == variant.buildType.name) {
+                    output.outputFileName = "${PRODUCT_NAME}${defaultConfig.versionName}_${DATE}" + "_debug.apk"
+                } else if ('release' == variant.buildType.name) {
+                    output.outputFileName = "${PRODUCT_NAME}${defaultConfig.versionName}_${DATE}" + ".apk"
+                }
+            }
         }
     }
 
