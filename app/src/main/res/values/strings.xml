@@ -121,4 +121,5 @@
     <string name="camera_orientation">Orientation</string>
     <string name="camera_flash">Flash</string>
     <string name="menu_build" translatable="false">Build</string>
+    <string name="menu_maps" translatable="false">Maps</string>
 </resources>

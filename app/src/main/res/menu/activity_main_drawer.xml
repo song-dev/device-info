@@ -101,6 +101,11 @@
             android:title="@string/menu_wifi" />
 
         <item
+            android:id="@+id/nav_maps"
+            android:icon="@mipmap/ic_action_maps"
+            android:title="@string/menu_maps" />
+
+        <item
             android:id="@+id/nav_bluetooth"
             android:icon="@drawable/ic_action_bluetooth_scan_black_24dp"
             android:title="@string/menu_bluetooth" />

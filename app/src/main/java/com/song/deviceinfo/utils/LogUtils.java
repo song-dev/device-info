@@ -265,12 +265,12 @@ public class LogUtils {
             int n = 0;
             while ((len - n) > PRINT_SIZE) {
                 String s = data.substring(n, n + PRINT_SIZE);
-                Log.e(TAG, s);
+                Log.i(TAG, s);
                 n += PRINT_SIZE;
             }
-            Log.e(TAG, data.substring(n));
+            Log.i(TAG, data.substring(n));
         } else {
-            Log.e(TAG, data);
+            Log.i(TAG, data);
         }
     }
 }

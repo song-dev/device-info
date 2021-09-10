@@ -30,7 +30,7 @@ int shellExecute(const char *cmdStr, char *dest, int len) {
     if (cmdStr == NULL || strlen(cmdStr) == 0) {
         return 0;
     }
-    LOGE("shellExecute cmd: %s", cmdStr);
+    LOGI("shellExecute cmd: %s", cmdStr);
     char buf[BUF_SIZE_512];
     FILE *pf = NULL;
     if ((pf = popen(cmdStr, "r+")) == NULL) {
@@ -48,7 +48,7 @@ int shellExecute(const char *cmdStr, char *dest, int len) {
             } else {
                 dest[buf_len] = '\0';
             }
-            LOGE("shellExecute: len->%d  content->%s", n, dest);
+            LOGE("shellExecute result len: %d, content: %s", n, dest);
         } else {
             break;
         }

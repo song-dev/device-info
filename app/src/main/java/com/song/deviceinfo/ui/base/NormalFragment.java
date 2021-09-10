@@ -27,7 +27,7 @@ public abstract class NormalFragment extends BaseFragment<android.util.Pair<Stri
                     e.printStackTrace();
                 }
             }
-            LogUtils.release(jsonObject.toString());
+            LogUtils.printLongString(jsonObject.toString());
             mainHandler.post(() -> {
                 viewModel.setValue(list);
             });

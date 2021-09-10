@@ -136,6 +136,11 @@
         android:name="com.song.deviceinfo.ui.bluetooth.BluetoothFragment"
         android:label="@string/menu_bluetooth"
         tools:layout="@layout/fragment_base" />
+    <fragment
+        android:id="@+id/nav_maps"
+        android:name="com.song.deviceinfo.ui.maps.MapsFragment"
+        android:label="@string/menu_maps"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_others"

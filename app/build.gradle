@@ -33,9 +33,26 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'geetest'
+            keyPassword 'geetest'
+            storeFile file('../geetest_android_public.jks')
+            storePassword 'geetest'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled false // 混淆
+            zipAlignEnabled true // Zipalign优化
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false // 混淆
+            zipAlignEnabled true // Zipalign优化
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
