@@ -19,6 +19,11 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import androidx.core.util.Pair;
 
 /**
  * 模拟器检测
@@ -326,6 +331,54 @@ public class EmulatorUtils {
             return !context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
         }
         return false;
+    }
+
+    public static void getMapsInfo(List<Pair<String, String>> list) {
+        Map<String, Integer> map = new HashMap<>();
+        // librs_jni.so osVer=4.3
+        String[] array = {"libRSDriver.so", "libRSCpuRef.so"};
+
+        String mapsFilename = "/proc/" + android.os.Process.myPid() + "/maps";
+        BufferedReader bufferedReader = null;
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(mapsFilename);
+            bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                for (String item : array) {
+                    if (line.contains(item)) {
+                        if (map.containsKey(item)) {
+                            int temp = map.get(item) + 1;
+                            map.put(item, temp);
+                        } else {
+                            map.put(item, 1);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            list.add(new Pair<>(entry.getKey(), String.valueOf(entry.getValue())));
+        }
     }
 
     public static native int specialFilesEmulatorCheck();

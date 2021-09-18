@@ -42,6 +42,8 @@ public class EmulatorInfo {
         list.add(new Pair<>("SpecialFiles", EmulatorUtils.specialFilesEmulatorCheck() + ""));
         list.add(new Pair<>("x86", EmulatorUtils.getArch() + ""));
         list.add(new Pair<>("MapsArch", EmulatorUtils.getMapsArch()));
+        // 新增 ARM 模拟器检测特性
+        EmulatorUtils.getMapsInfo(list);
         list.add(new Pair<>("Qemu", EmulatorUtils.qemuCheck() + ""));
         list.add(new Pair<>("Pipes", EmulatorUtils.checkPipes() + ""));
         list.add(new Pair<>("Model Name", EmulatorUtils.getModelName()));
