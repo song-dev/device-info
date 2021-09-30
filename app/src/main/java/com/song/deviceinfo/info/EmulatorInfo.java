@@ -30,7 +30,9 @@ public class EmulatorInfo {
         list.add(new Pair<>("Sound", EmulatorUtils.getSound()));
         list.add(new Pair<>("Battery", EmulatorUtils.getBatteryInfo(context)));
         list.add(new Pair<>("BrandInfo", EmulatorUtils.getBrandInfo()));
-        list.add(new Pair<>("Launcher", EmulatorUtils.getLauncherPackageName(context)));
+        String launcher = EmulatorUtils.getLauncherPackageName(context);
+        list.add(new Pair<>("Launcher", launcher));
+        EmulatorUtils.setLauncherInfo(context, list, launcher);
         list.add(new Pair<>("ThermalCount", EmulatorUtils.thermalCheck() + ""));
         list.add(new Pair<>("CameraCheck", EmulatorUtils.cameraCheck(context) + ""));
         list.add(new Pair<>("RSSI", NetWorkInfo.getRssi(context)));

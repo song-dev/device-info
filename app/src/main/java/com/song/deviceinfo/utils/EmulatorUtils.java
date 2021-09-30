@@ -1,10 +1,14 @@
 package com.song.deviceinfo.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.Signature;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.text.TextUtils;
@@ -70,6 +74,32 @@ public class EmulatorUtils {
             return "$unknown";
         }
         return res.activityInfo.packageName;
+    }
+
+    @SuppressLint("PackageManagerGetSignatures")
+    public static void setLauncherInfo(Context context, List<Pair<String, String>> list, String launcher) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(launcher, 0);
+            list.add(new Pair<>("LauncherName", applicationInfo.loadLabel(packageManager).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                list.add(new Pair<>("LauncherMinSdkVersion", applicationInfo.minSdkVersion + ""));
+            }
+            list.add(new Pair<>("LauncherTargetSdkVersion", applicationInfo.targetSdkVersion + ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(launcher, 0);
+            list.add(new Pair<>("LauncherVersionName", packageInfo.versionName));
+            list.add(new Pair<>("LauncherVersionCode", packageInfo.versionCode + ""));
+            list.add(new Pair<>("LauncherFirstInstallTime", TimeUtils.formatDate(packageInfo.firstInstallTime)));
+            list.add(new Pair<>("LauncherLastUpdateTime", TimeUtils.formatDate(packageInfo.lastUpdateTime)));
+            Signature signature = packageManager.getPackageInfo(launcher, PackageManager.GET_SIGNATURES).signatures[0];
+            list.add(new Pair<>("LauncherSign", HashUtils.md5Encode(signature.toByteArray())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static JSONObject brandJson = null;
