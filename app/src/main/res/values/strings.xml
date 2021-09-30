@@ -122,4 +122,5 @@
     <string name="camera_flash">Flash</string>
     <string name="menu_build" translatable="false">Build</string>
     <string name="menu_maps" translatable="false">Maps</string>
+    <string name="menu_hardware">Hardware</string>
 </resources>
