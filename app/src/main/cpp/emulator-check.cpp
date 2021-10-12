@@ -46,7 +46,7 @@ jint thermalCheck() {
                 continue;
             }
             char *tmp = entry->d_name;
-            LOGE("thermal name: %s", tmp);
+            LOGI("thermal name: %s", tmp);
             if (strstr(tmp, "thermal_zone") != NULL) {
                 i++;
                 // 读取当前文件内容

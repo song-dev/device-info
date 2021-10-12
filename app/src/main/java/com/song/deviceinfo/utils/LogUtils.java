@@ -259,19 +259,18 @@ public class LogUtils {
      *
      * @param data
      */
-    public static void printLongString(String tag, String data) {
-
+    public static void printLongString(String data) {
         int len = data.length();
         if (len > PRINT_SIZE) {
             int n = 0;
             while ((len - n) > PRINT_SIZE) {
-                String s = data.substring(n, PRINT_SIZE);
-                Log.e(TAG, tag + s);
+                String s = data.substring(n, n + PRINT_SIZE);
+                Log.i(TAG, s);
                 n += PRINT_SIZE;
             }
-            Log.e(TAG, tag + data.substring(n));
+            Log.i(TAG, data.substring(n));
         } else {
-            Log.e(TAG, tag + data);
+            Log.i(TAG, data);
         }
     }
 }

@@ -1,14 +1,17 @@
 package com.song.deviceinfo.info;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
+import com.song.deviceinfo.utils.ApplicationUtils;
 import com.song.deviceinfo.utils.CommandUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +35,8 @@ public class VirtualAppInfo {
         list.add(new Pair<>("Binder", getSystemServer() + ""));
         list.add(new Pair<>("Process", processCheck() + ""));
         list.add(new Pair<>("PackageNum", packageCheck(context) + ""));
+        list.add(new Pair<>("360 分身大师", is360(context) + ""));
+        list.add(new Pair<>("分身大师 X 版", is360Xposed()));
         return list;
     }
 
@@ -109,6 +114,26 @@ public class VirtualAppInfo {
      */
     private static boolean getSystemServer() {
         return false;
+    }
+
+    /**
+     * 针对 360 包名检测
+     *
+     * @param context
+     * @return
+     */
+    @SuppressLint("SdCardPath")
+    private static boolean is360(Context context) {
+        return ApplicationUtils.isPkgInstalled(context, "com.qihoo.magic");
+    }
+
+    /**
+     * 针对 360 包名权限检测
+     *
+     * @return
+     */
+    private static String is360Xposed() {
+        return Arrays.toString(CommandUtils.exec("ls /data/data/com.qihoo.magic.xposed/"));
     }
 
     /**

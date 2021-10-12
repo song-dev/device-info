@@ -30,7 +30,9 @@ public class EmulatorInfo {
         list.add(new Pair<>("Sound", EmulatorUtils.getSound()));
         list.add(new Pair<>("Battery", EmulatorUtils.getBatteryInfo(context)));
         list.add(new Pair<>("BrandInfo", EmulatorUtils.getBrandInfo()));
-        list.add(new Pair<>("Launcher", EmulatorUtils.getLauncherPackageName(context)));
+        String launcher = EmulatorUtils.getLauncherPackageName(context);
+        list.add(new Pair<>("Launcher", launcher));
+        EmulatorUtils.setLauncherInfo(context, list, launcher);
         list.add(new Pair<>("ThermalCount", EmulatorUtils.thermalCheck() + ""));
         list.add(new Pair<>("CameraCheck", EmulatorUtils.cameraCheck(context) + ""));
         list.add(new Pair<>("RSSI", NetWorkInfo.getRssi(context)));
@@ -42,6 +44,8 @@ public class EmulatorInfo {
         list.add(new Pair<>("SpecialFiles", EmulatorUtils.specialFilesEmulatorCheck() + ""));
         list.add(new Pair<>("x86", EmulatorUtils.getArch() + ""));
         list.add(new Pair<>("MapsArch", EmulatorUtils.getMapsArch()));
+        // 新增 ARM 模拟器检测特性
+        EmulatorUtils.getMapsInfo(list);
         list.add(new Pair<>("Qemu", EmulatorUtils.qemuCheck() + ""));
         list.add(new Pair<>("Pipes", EmulatorUtils.checkPipes() + ""));
         list.add(new Pair<>("Model Name", EmulatorUtils.getModelName()));
