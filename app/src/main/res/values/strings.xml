@@ -26,7 +26,7 @@
     <string name="net_proxy_port">Proxy Port</string>
     <string name="action_about">About</string>
     <string name="about_author" translatable="false">author\nsong</string>
-    <string name="about_copy_right" translatable="false">© 2016 – 2020</string>
+    <string name="about_copy_right" translatable="false">© 2016 – 2021</string>
     <string name="about_version" translatable="false">version %s</string>
     <string name="net_frequency">Frequency</string>
     <string name="menu_thermal">Thermal</string>
@@ -120,4 +120,7 @@
     <string name="camera_color_filter">Color Filter</string>
     <string name="camera_orientation">Orientation</string>
     <string name="camera_flash">Flash</string>
+    <string name="menu_build" translatable="false">Build</string>
+    <string name="menu_maps" translatable="false">Maps</string>
+    <string name="menu_hardware">Hardware</string>
 </resources>

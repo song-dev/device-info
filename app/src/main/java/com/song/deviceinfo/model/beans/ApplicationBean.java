@@ -2,6 +2,8 @@ package com.song.deviceinfo.model.beans;
 
 import android.graphics.drawable.Drawable;
 
+import org.json.JSONObject;
+
 /**
  * Created by chensongsong on 2020/6/3.
  */
@@ -72,5 +74,20 @@ public class ApplicationBean {
                 ", icon=" + icon +
                 ", systemApp=" + systemApp +
                 '}';
+    }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", name);
+            jsonObject.put("packageName", packageName);
+            jsonObject.put("version", version);
+            jsonObject.put("buildVersion", buildVersion);
+            jsonObject.put("icon", icon);
+            jsonObject.put("systemApp", systemApp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }

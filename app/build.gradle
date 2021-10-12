@@ -1,17 +1,22 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.gms.google-services'
 
+def PRODUCT_NAME = "device_info_"
+def DATE = new SimpleDateFormat('yyyyMMdd').format(new Date())
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.song.deviceinfo"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,9 +33,26 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'geetest'
+            keyPassword 'geetest'
+            storeFile file('../geetest_android_public.jks')
+            storePassword 'geetest'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled false // 混淆
+            zipAlignEnabled true // Zipalign优化
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false // 混淆
+            zipAlignEnabled true // Zipalign优化
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -58,6 +80,19 @@ android {
         }
     }
 
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFileName
+            if (outputFile != null && outputFile.endsWith('.apk')) {
+                if ('debug' == variant.buildType.name) {
+                    output.outputFileName = "${PRODUCT_NAME}${defaultConfig.versionName}_${DATE}" + "_debug.apk"
+                } else if ('release' == variant.buildType.name) {
+                    output.outputFileName = "${PRODUCT_NAME}${defaultConfig.versionName}_${DATE}" + ".apk"
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -67,8 +102,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment:2.3.1'
-    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.13.1'
@@ -88,9 +123,12 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:18.0.0'
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
-    implementation 'com.google.firebase:firebase-perf:19.0.9'
+    implementation 'com.google.firebase:firebase-perf:19.0.10'
 
     //OAID
     implementation(name: 'miit_mdid_1.0.10', ext: 'aar')
+
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.1.5'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.1.5'
 
 }

@@ -5,7 +5,7 @@ package com.song.deviceinfo.utils;
  */
 public class Constants {
 
-    public final static String VERSION = "0.2.0";
+    public final static String VERSION = "0.2.1";
     public final static String UNKNOWN = "$unknown";
     public final static String TAG = "Device_Info";
 

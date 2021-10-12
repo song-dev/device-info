@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_soc">
+    app:startDestination="@id/nav_emulator">
+
+    <fragment
+        android:id="@+id/nav_hardware"
+        android:name="com.song.deviceinfo.ui.hardware.HardwareFragment"
+        android:label="@string/menu_hardware"
+        tools:layout="@layout/fragment_base" />
 
     <fragment
         android:id="@+id/nav_net"
@@ -27,6 +33,12 @@
         android:id="@+id/nav_system"
         android:name="com.song.deviceinfo.ui.system.SystemFragment"
         android:label="@string/menu_system"
+        tools:layout="@layout/fragment_base" />
+
+    <fragment
+        android:id="@+id/nav_build"
+        android:name="com.song.deviceinfo.ui.build.BuildInfoFragment"
+        android:label="@string/menu_build"
         tools:layout="@layout/fragment_base" />
 
     <fragment
@@ -129,6 +141,11 @@
         android:id="@+id/nav_bluetooth"
         android:name="com.song.deviceinfo.ui.bluetooth.BluetoothFragment"
         android:label="@string/menu_bluetooth"
+        tools:layout="@layout/fragment_base" />
+    <fragment
+        android:id="@+id/nav_maps"
+        android:name="com.song.deviceinfo.ui.maps.MapsFragment"
+        android:label="@string/menu_maps"
         tools:layout="@layout/fragment_base" />
 
     <fragment

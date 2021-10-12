@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_hardware"
+            android:icon="@mipmap/ic_action_home"
+            android:title="@string/menu_hardware" />
+        <item
             android:id="@+id/nav_net"
             android:icon="@mipmap/ic_action_net"
             android:title="@string/menu_net" />
@@ -20,6 +24,10 @@
             android:id="@+id/nav_system"
             android:icon="@mipmap/ic_action_system"
             android:title="@string/menu_system" />
+        <item
+            android:id="@+id/nav_build"
+            android:icon="@mipmap/ic_action_build"
+            android:title="@string/menu_build" />
         <item
             android:id="@+id/nav_partitions"
             android:icon="@mipmap/ic_action_partitions"
@@ -95,6 +103,11 @@
             android:id="@+id/nav_wifi"
             android:icon="@drawable/ic_action_wifi_scan_black_24dp"
             android:title="@string/menu_wifi" />
+
+        <item
+            android:id="@+id/nav_maps"
+            android:icon="@mipmap/ic_action_maps"
+            android:title="@string/menu_maps" />
 
         <item
             android:id="@+id/nav_bluetooth"

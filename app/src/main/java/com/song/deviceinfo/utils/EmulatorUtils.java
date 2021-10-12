@@ -1,10 +1,14 @@
 package com.song.deviceinfo.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.Signature;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.text.TextUtils;
@@ -19,6 +23,11 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import androidx.core.util.Pair;
 
 /**
  * 模拟器检测
@@ -65,6 +74,32 @@ public class EmulatorUtils {
             return "$unknown";
         }
         return res.activityInfo.packageName;
+    }
+
+    @SuppressLint("PackageManagerGetSignatures")
+    public static void setLauncherInfo(Context context, List<Pair<String, String>> list, String launcher) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(launcher, 0);
+            list.add(new Pair<>("LauncherName", applicationInfo.loadLabel(packageManager).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                list.add(new Pair<>("LauncherMinSdkVersion", applicationInfo.minSdkVersion + ""));
+            }
+            list.add(new Pair<>("LauncherTargetSdkVersion", applicationInfo.targetSdkVersion + ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(launcher, 0);
+            list.add(new Pair<>("LauncherVersionName", packageInfo.versionName));
+            list.add(new Pair<>("LauncherVersionCode", packageInfo.versionCode + ""));
+            list.add(new Pair<>("LauncherFirstInstallTime", TimeUtils.formatDate(packageInfo.firstInstallTime)));
+            list.add(new Pair<>("LauncherLastUpdateTime", TimeUtils.formatDate(packageInfo.lastUpdateTime)));
+            Signature signature = packageManager.getPackageInfo(launcher, PackageManager.GET_SIGNATURES).signatures[0];
+            list.add(new Pair<>("LauncherSign", HashUtils.md5Encode(signature.toByteArray())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static JSONObject brandJson = null;
@@ -326,6 +361,54 @@ public class EmulatorUtils {
             return !context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
         }
         return false;
+    }
+
+    public static void getMapsInfo(List<Pair<String, String>> list) {
+        Map<String, Integer> map = new HashMap<>();
+        // librs_jni.so osVer=4.3
+        String[] array = {"libRSDriver.so", "libRSCpuRef.so"};
+
+        String mapsFilename = "/proc/" + android.os.Process.myPid() + "/maps";
+        BufferedReader bufferedReader = null;
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(mapsFilename);
+            bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                for (String item : array) {
+                    if (line.contains(item)) {
+                        if (map.containsKey(item)) {
+                            int temp = map.get(item) + 1;
+                            map.put(item, temp);
+                        } else {
+                            map.put(item, 1);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            list.add(new Pair<>(entry.getKey(), String.valueOf(entry.getValue())));
+        }
     }
 
     public static native int specialFilesEmulatorCheck();
