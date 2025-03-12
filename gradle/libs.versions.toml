@@ -1,0 +1,55 @@
+[versions]
+agp = "8.2.2"
+kotlin = "1.9.24"
+core-ktx = "1.12.0"
+appcompat = "1.7.0"
+material = "1.12.0"
+constraintlayout = "2.2.1"
+legacy-support-v4 = "1.0.0"
+navigation = "2.8.8"
+lifecycle-extensions = "2.2.0"
+preference = "1.2.1"
+multidex = "2.0.1"
+okhttp = "4.11.0"
+bugly-crashreport = "4.1.9"
+bugly-nativecrashreport = "3.9.2"
+firebase-bom = "33.10.0"
+doraemonkit = "2.0.1"
+junit = "4.13.2"
+androidx-junit = "1.2.1"
+espresso-core = "3.6.1"
+google-services = "4.4.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy-support-v4" }
+androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
+androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
+androidx-lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }
+androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+bugly-crashreport = { group = "com.tencent.bugly", name = "crashreport", version.ref = "bugly-crashreport" }
+bugly-nativecrashreport = { group = "com.tencent.bugly", name = "nativecrashreport", version.ref = "bugly-nativecrashreport" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf" }
+
+doraemonkit = { group = "com.didichuxing.doraemonkit", name = "doraemonkit", version.ref = "doraemonkit" }
+doraemonkit-no-op = { group = "com.didichuxing.doraemonkit", name = "doraemonkit-no-op", version.ref = "doraemonkit" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-gms-services = { id = "com.google.gms.google-services", version.ref = "google-services" }

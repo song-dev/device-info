@@ -65,18 +65,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void permissionHandler() {
-        // 存储和定位权限申请
+        // 存储、定位、蓝牙等权限申请
         if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.LOCATION) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.CAMERA) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.PHONE) != PackageManager.PERMISSION_GRANTED) {
+                || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission_group.PHONE) != PackageManager.PERMISSION_GRANTED
+                || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && 
+                    (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED))) {
             // 申请权限
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.CAMERA}, 1);
+            String[] permissions;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                permissions = new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.BLUETOOTH_CONNECT,
+                    Manifest.permission.BLUETOOTH_SCAN
+                };
+            } else {
+                permissions = new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.CAMERA
+                };
             }
+            this.requestPermissions(permissions, 1);
         }
     }
 
@@ -97,15 +113,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                navController.navigate(R.id.nav_settings);
-                break;
-            case R.id.action_about:
-                navController.navigate(R.id.nav_about);
-                break;
-            default:
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
+            navController.navigate(R.id.nav_settings);
+        } else if (itemId == R.id.action_about) {
+            navController.navigate(R.id.nav_about);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -28,8 +28,5 @@ public class APP extends Application {
         JLibrary.InitEntry(getApplicationContext());
         CrashReport.initCrashReport(getApplicationContext(), "0334b35dea", false);
         DoraemonKit.install(this);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            LanguageUtils.changeAppLanguage(this, LanguageUtils.getDefaultLanguage(this));
-        }
     }
 }
