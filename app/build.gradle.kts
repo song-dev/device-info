@@ -43,7 +43,7 @@ android {
         create("release") {
             keyAlias = "geetest"
             keyPassword = "geetest"
-            storeFile = file("../geetest_android_public.jks")
+            storeFile = file("../public.jks")
             storePassword = "geetest"
         }
     }
