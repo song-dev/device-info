@@ -1,17 +1,19 @@
 package com.song.deviceinfo.ui.base
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.song.deviceinfo.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by chensongsong on 2020/5/26.
@@ -59,8 +61,19 @@ abstract class BaseFragment<T : Any> : Fragment() {
         // To be implemented by subclasses
     }
 
-    companion object {
-        @JvmStatic
-        protected val handler = Handler(Looper.getMainLooper())
+    protected fun launchOnMain(block: suspend CoroutineScope.() -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            withContext(Dispatchers.Main) {
+                block()
+            }
+        }
+    }
+
+    protected fun launchOnIO(block: suspend CoroutineScope.() -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                block()
+            }
+        }
     }
 }

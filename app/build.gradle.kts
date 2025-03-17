@@ -61,6 +61,9 @@ android {
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        create("customDebugType") {
+            isDebuggable = true
+        }
     }
     
     compileOptions {
@@ -75,7 +78,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
+            version = "3.18.1"
         }
     }
     
@@ -125,6 +128,9 @@ dependencies {
     implementation(libs.firebase.perf)
     
     implementation(files("libs/miit_mdid_1.0.10.aar"))
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
     
     debugImplementation(libs.doraemonkit)
     releaseImplementation(libs.doraemonkit.no.op)

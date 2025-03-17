@@ -23,7 +23,7 @@ class DeviceInfoApplication : Application() {
         super.onCreate()
         LogUtils.initLogger(this)
         // Initialize third-party libraries
-        JLibrary.InitEntry(applicationContext)
+        // JLibrary.InitEntry(applicationContext)
         CrashReport.initCrashReport(applicationContext, "0334b35dea", false)
         DoraemonKit.install(this)
     }

@@ -3,13 +3,17 @@ package com.song.deviceinfo
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,6 +24,7 @@ import com.google.android.material.navigation.NavigationView
 import com.song.deviceinfo.utils.LanguageUtils
 
 class MainActivity : AppCompatActivity() {
+    private val TAG: String = "MainActivity"
     private var mAppBarConfiguration: AppBarConfiguration? = null
     
     override fun attachBaseContext(newBase: Context) {
@@ -46,6 +51,22 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         setupActionBarWithNavController(navController, mAppBarConfiguration!!)
         navigationView.setupWithNavController(navController)
+        
+        // 沉浸式状态栏、导航栏。需布局配置 fitsSystemWindows="false"
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = Color.TRANSPARENT
+
+        // 高亮状态栏、导航栏图标
+        val insetsController = ViewCompat.getWindowInsetsController(window.decorView)
+        insetsController?.isAppearanceLightStatusBars = true
+        insetsController?.isAppearanceLightNavigationBars = true
+        
+        // 处理刘海屏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
         
         permissionHandler()
     }

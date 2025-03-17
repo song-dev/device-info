@@ -19,9 +19,7 @@ object HookUtils {
         val activityManager = (context.getSystemService(Context.ACTIVITY_SERVICE)) as ActivityManager
         
         var list: List<ActivityManager.RunningServiceInfo>? = null
-        if (activityManager != null) {
-            list = activityManager.getRunningServices(300)
-        }
+        list = activityManager.getRunningServices(300)
         if (list != null) {
             var tempName: String
             for (i in list.indices) {

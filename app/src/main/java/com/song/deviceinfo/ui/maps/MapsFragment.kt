@@ -1,10 +1,9 @@
 package com.song.deviceinfo.ui.maps
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.ui.oneline.OneLineFragment
 import com.song.deviceinfo.utils.LogUtils.printLongString
-import com.song.deviceinfo.utils.ThreadPoolUtils
 import org.json.JSONArray
 
 /**
@@ -12,11 +11,11 @@ import org.json.JSONArray
  */
 class MapsFragment : OneLineFragment() {
     override fun createViewModel(): BaseViewModel<String> {
-        return ViewModelProviders.of(this).get(MapsViewModel::class.java)
+        return ViewModelProvider(this)[MapsViewModel::class.java]
     }
     
     override fun refreshData() {
-        ThreadPoolUtils.execute {
+        launchOnIO {
             val list = mapsInfo
             val jsonArray = JSONArray()
             for (item in list) {
@@ -27,9 +26,7 @@ class MapsFragment : OneLineFragment() {
                 }
             }
             printLongString(jsonArray.toString())
-            handler.post {
-                viewModel!!.setItems(list)
-            }
+            launchOnMain { viewModel?.setItems(list) }
         }
     }
     

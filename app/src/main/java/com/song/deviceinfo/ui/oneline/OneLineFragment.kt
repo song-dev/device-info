@@ -5,7 +5,6 @@ import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.utils.LogUtils.printLongString
-import com.song.deviceinfo.utils.ThreadPoolUtils
 import org.json.JSONArray
 
 /**
@@ -21,7 +20,7 @@ open class OneLineFragment : BaseFragment<String>() {
     }
     
     override fun refreshData() {
-        ThreadPoolUtils.execute {
+        launchOnIO {
             val list = oneLineInfo
             val jsonArray = JSONArray()
             for (item in list!!) {
@@ -32,9 +31,7 @@ open class OneLineFragment : BaseFragment<String>() {
                 }
             }
             printLongString(jsonArray.toString())
-            handler.post {
-                viewModel!!.setItems(list)
-            }
+            launchOnMain { viewModel?.setItems(list) }
         }
     }
     

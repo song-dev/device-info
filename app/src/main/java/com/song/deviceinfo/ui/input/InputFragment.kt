@@ -6,7 +6,6 @@ import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.utils.LogUtils.printLongString
-import com.song.deviceinfo.utils.ThreadPoolUtils
 import org.json.JSONArray
 
 /**
@@ -22,20 +21,18 @@ class InputFragment : BaseFragment<InputBean>() {
     }
     
     override fun refreshData() {
-        ThreadPoolUtils.execute {
+        launchOnIO {
             val list = inputInfo
             val jsonArray = JSONArray()
-            for (bean in list!!) {
+            for (bean in list) {
                 try {
-                    jsonArray.put(bean!!.toJSON())
+                    jsonArray.put(bean.toJSON())
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             printLongString(jsonArray.toString())
-            handler.post {
-                viewModel!!.setItems(list)
-            }
+            launchOnMain { viewModel?.setItems(list) }
         }
     }
     

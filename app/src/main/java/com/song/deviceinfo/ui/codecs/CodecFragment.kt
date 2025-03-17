@@ -6,7 +6,6 @@ import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.utils.LogUtils.printLongString
-import com.song.deviceinfo.utils.ThreadPoolUtils
 import org.json.JSONObject
 import java.util.Objects
 
@@ -23,7 +22,7 @@ class CodecFragment : BaseFragment<Pair<String, String>>() {
     }
     
     override fun refreshData() {
-        ThreadPoolUtils.execute {
+        launchOnIO {
             val list = codeCInfo
             val jsonObject = JSONObject()
             for (pair in list) {
@@ -34,9 +33,7 @@ class CodecFragment : BaseFragment<Pair<String, String>>() {
                 }
             }
             printLongString(jsonObject.toString())
-            handler.post {
-                viewModel!!.setItems(list)
-            }
+            launchOnMain { viewModel?.setItems(list) }
         }
     }
     
