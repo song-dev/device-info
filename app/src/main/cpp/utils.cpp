@@ -48,7 +48,7 @@ int shellExecute(const char *cmdStr, char *dest, int len) {
             } else {
                 dest[buf_len] = '\0';
             }
-            LOGE("shellExecute result len: %d, content: %s", n, dest);
+            LOGI("shellExecute result len: %d, content: %s", n, dest);
         } else {
             break;
         }
