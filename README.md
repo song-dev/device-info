@@ -1,6 +1,6 @@
-# 设备信息
+# 设备信息采集工具
 
-**获取 `Android` 设备信息采集**
+一个用于采集 Android 设备硬件、系统、网络、安全等全方位信息的工具类应用，可帮助开发者排查问题、进行设备识别与风控分析。
 
 <div align="center">
 
@@ -11,7 +11,42 @@
 
 </div>
 
+## 功能特性
+
+采集的信息覆盖以下维度，均以可视化列表呈现，支持下拉刷新：
+
+### 硬件信息
+- 设备信息（型号、品牌、指纹、SOC 平台）
+- 电池信息、温度监控、CPU 频率
+- 相机信息、编解码器信息
+- 输入设备信息、USB 设备信息
+- 存储分区信息、内存信息
+
+### 系统信息
+- 系统参数（版本、API、构建信息）
+- 网络信息（WIFI、蓝牙、移动网络、代理）
+- 应用信息、应用列表
+
+### 安全与风控
+- 模拟器检测（多方案：QEMU、文件特征、ARM 特征等）
+- 多开/虚拟环境检测
+- Root 检测、Hook 检测、Xposed 检测
+- Debug 调试状态检测
+- 地图（Maps）信息、SOC 芯片信息
+
+## 技术栈
+
+| 类别 | 技术 |
+|------|------|
+| 语言 | Kotlin |
+| UI 架构 | MVVM + ViewBinding + Navigation |
+| 异步 | Kotlin Coroutines |
+| 网络 | OkHttp |
+| 构建 | Gradle 8.9 + Kotlin DSL + Version Catalog |
+| 其他 | Firebase Performance、Bugly、DoraemonKit |
+
 ## 信息采集模块
+
 - 网络信息
 - 电池信息
 - 温度监控信息
@@ -38,6 +73,23 @@
 - 硬件信息采集
 
 > 后续还会不断添加
+
+## 构建说明
+
+环境要求：
+- Android Studio 或命令行 Gradle
+- JDK 8+
+- Android SDK（compileSdk 34）
+
+```bash
+# 编译 debug 包
+./gradlew assembleDebug
+
+# 编译 release 包（签名配置在 app/build.gradle.kts）
+./gradlew assembleRelease
+```
+
+构建产物输出到 `app/build/outputs/apk/`，命名格式为 `device_info_<版本号>_<日期>.apk`。
 
 ## 截图
 
