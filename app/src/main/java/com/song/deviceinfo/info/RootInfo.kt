@@ -13,7 +13,7 @@ import com.song.deviceinfo.utils.RootUtils.existingRootPackages
  */
 object RootInfo {
     fun getRootInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         list.add(Pair("Su_v", execute("su -v")))
         list.add(Pair("RwPaths", existingRWPaths().toString()))
         list.add(Pair("DangerousProperties", existingDangerousProperties().toString()))

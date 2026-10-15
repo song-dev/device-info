@@ -13,7 +13,7 @@ object PartitionsInfo {
         get() {
             val lines = exec("mount")
             val df = parseDf()
-            val list: MutableList<PartitionsBean> = ArrayList()
+            val list: MutableList<PartitionsBean> = mutableListOf()
             for (line in lines) {
                 val args = line.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (args.size < 4) {

@@ -12,7 +12,7 @@ import java.io.FilenameFilter
 object ThermalInfo {
     val thermalInfo: List<Pair<String, String>>
         get() {
-            val list: MutableList<Pair<String, String>> = ArrayList()
+            val list = mutableListOf<Pair<String, String>>()
             val files = filter("/sys/class/thermal/", ThermalFilter("thermal_zone"))
             if (files != null && files.size > 0) {
                 for (file in files) {

@@ -9,7 +9,7 @@ import androidx.core.util.Pair
 object MediaCodecInfo {
     val codeCInfo: List<Pair<String, String>>
         get() {
-            val list = ArrayList<Pair<String, String>>()
+            val list = mutableListOf<Pair<String, String>>()
             val codecCount = MediaCodecList.getCodecCount()
             for (i in 0 until codecCount) {
                 val codecInfo = MediaCodecList.getCodecInfoAt(i)

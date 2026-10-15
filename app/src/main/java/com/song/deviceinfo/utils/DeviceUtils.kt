@@ -100,15 +100,15 @@ object DeviceUtils {
             list.add(Pair("SIM OP ID", tm.simOperator))
             list.add(Pair("SIM OP NAME", tm.simOperatorName))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                list.add(Pair("SIM Id", tm.simCarrierId.toString() + ""))
+                list.add(Pair("SIM Id", tm.simCarrierId.toString()))
                 list.add(Pair("SIM IdName", tm.simCarrierIdName.toString()))
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                list.add(Pair("SIM SpecificId", tm.simSpecificCarrierId.toString() + ""))
+                list.add(Pair("SIM SpecificId", tm.simSpecificCarrierId.toString()))
                 list.add(Pair("SIM SpecificIdName", tm.simSpecificCarrierIdName.toString()))
-                list.add(Pair("SIM SpecificIdFromMM", tm.carrierIdFromSimMccMnc.toString() + ""))
+                list.add(Pair("SIM SpecificIdFromMM", tm.carrierIdFromSimMccMnc.toString()))
             }
-            list.add(Pair("SIM STATE", tm.simState.toString() + ""))
+            list.add(Pair("SIM STATE", tm.simState.toString()))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -124,7 +124,7 @@ object DeviceUtils {
             list.add(Pair("NET ISO", tm.networkCountryIso))
             list.add(Pair("NET OP", tm.networkOperator))
             list.add(Pair("NET OP NAME", tm.networkOperatorName))
-            list.add(Pair("NET TYPE", tm.networkType.toString() + ""))
+            list.add(Pair("NET TYPE", tm.networkType.toString()))
             list.add(Pair("Device Soft Version", tm.deviceSoftwareVersion))
             list.add(Pair("LINE NUMBER", tm.line1Number))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -139,15 +139,15 @@ object DeviceUtils {
                 list.add(Pair("NAI", tm.nai))
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                list.add(Pair("DATA NET TYPE", tm.dataNetworkType.toString() + ""))
+                list.add(Pair("DATA NET TYPE", tm.dataNetworkType.toString()))
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                list.add(Pair("Phone Count", tm.phoneCount.toString() + ""))
+                list.add(Pair("Phone Count", tm.phoneCount.toString()))
             }
             val simBeans = querySimInfo(context)
             for (ben in simBeans) {
                 val simId = ben.simId
-                list.add(Pair("SIM $simId ID", ben.id.toString() + ""))
+                list.add(Pair("SIM $simId ID", ben.id.toString()))
                 list.add(Pair("SIM $simId ICCID", ben.iccId))
                 list.add(Pair("SIM $simId CarrierName", ben.carrierName))
                 list.add(Pair("SIM $simId DisplayName", ben.displayName))
@@ -168,7 +168,7 @@ object DeviceUtils {
      * @return
      */
     private fun querySimInfo(context: Context): List<SimBean> {
-        val list: MutableList<SimBean> = ArrayList()
+        val list: MutableList<SimBean> = mutableListOf()
         try {
             val uri = Uri.parse("content://telephony/siminfo") //访问raw_contacts表
             val resolver = context.contentResolver

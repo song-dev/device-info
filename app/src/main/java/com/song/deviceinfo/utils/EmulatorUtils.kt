@@ -13,12 +13,8 @@ import androidx.core.util.Pair
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
-import java.io.FileReader
-import java.io.IOException
-import java.io.InputStream
 import java.util.Locale
 
 /**
@@ -68,16 +64,16 @@ object EmulatorUtils {
             val applicationInfo = packageManager.getApplicationInfo(launcher, 0)
             list.add(Pair("LauncherName", applicationInfo.loadLabel(packageManager).toString()))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                list.add(Pair("LauncherMinSdkVersion", applicationInfo.minSdkVersion.toString() + ""))
+                list.add(Pair("LauncherMinSdkVersion", applicationInfo.minSdkVersion.toString()))
             }
-            list.add(Pair("LauncherTargetSdkVersion", applicationInfo.targetSdkVersion.toString() + ""))
+            list.add(Pair("LauncherTargetSdkVersion", applicationInfo.targetSdkVersion.toString()))
         } catch (e: Exception) {
             e.printStackTrace()
         }
         try {
             val packageInfo = packageManager.getPackageInfo(launcher, 0)
             list.add(Pair("LauncherVersionName", packageInfo.versionName))
-            list.add(Pair("LauncherVersionCode", packageInfo.versionCode.toString() + ""))
+            list.add(Pair("LauncherVersionCode", packageInfo.versionCode.toString()))
             list.add(Pair<String, String>("LauncherFirstInstallTime", TimeUtils.formatDate(packageInfo.firstInstallTime)))
             list.add(Pair<String, String>("LauncherLastUpdateTime", TimeUtils.formatDate(packageInfo.lastUpdateTime)))
             val signature = packageManager.getPackageInfo(launcher, PackageManager.GET_SIGNATURES).signatures[0]
@@ -226,16 +222,11 @@ object EmulatorUtils {
     fun getBatteryInfo(context: Context): String? {
         val batteryStatus = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         if (batteryStatus != null) {
-            val sb = StringBuffer()
             // 电量
             val level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-            sb.append("Level: ")
-            sb.append(level)
             // unknown=1, charging=2, discharging=3, not charging=4, full=5
             val status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
-            sb.append("    Status: ")
-            sb.append(status)
-            return sb.toString()
+            return "Level: $level    Status: $status"
         }
         return null
     }
@@ -269,9 +260,9 @@ object EmulatorUtils {
         if (driver.exists() && driver.canRead()) {
             val data = ByteArray(1024)
             try {
-                val inStream: InputStream = FileInputStream(driver)
-                inStream.read(data)
-                inStream.close()
+                FileInputStream(driver).use { inStream ->
+                    inStream.read(data)
+                }
             } catch (e: Exception) {
             }
             val driverData = String(data)
@@ -309,34 +300,14 @@ object EmulatorUtils {
     
     @JvmStatic val modelName: String?
         get() {
-            var fileReader: FileReader? = null
-            var reader: BufferedReader? = null
             try {
-                var line: String
-                fileReader = FileReader("/proc/cpuinfo")
-                reader = BufferedReader(fileReader)
-                while ((reader.readLine().also { line = it }) != null) {
-                    if (line.startsWith("model name")) {
+                File("/proc/cpuinfo").useLines { lines ->
+                    lines.firstOrNull { it.startsWith("model name") }?.let { line ->
                         return line.substring(line.indexOf(":") + 1).trim { it <= ' ' }
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-                if (fileReader != null) {
-                    try {
-                        fileReader.close()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
             }
             return null
         }
@@ -353,41 +324,20 @@ object EmulatorUtils {
     }
     
     fun getMapsInfo(list: MutableList<Pair<String, String>>) {
-        val map: MutableMap<String, Int> = HashMap()
+        val map: MutableMap<String, Int> = mutableMapOf()
         val array = arrayOf("libRSDriver.so", "libRSCpuRef.so")
-        
-        val mapsFilename = "/proc/" + Process.myPid() + "/maps"
-        var bufferedReader: BufferedReader? = null
-        var fileReader: FileReader? = null
+
+        val mapsFilename = "/proc/${Process.myPid()}/maps"
         try {
-            fileReader = FileReader(mapsFilename)
-            bufferedReader = BufferedReader(fileReader)
-            var line: String
-            while ((bufferedReader.readLine().also { line = it }) != null) {
+            File(mapsFilename).forEachLine { line ->
                 for (item in array) {
                     if (line.contains(item)) {
-                        if (map.containsKey(item)) {
-                            val temp = map[item]!! + 1
-                            map[item] = temp
-                        } else {
-                            map[item] = 1
-                        }
+                        map[item] = (map[item] ?: 0) + 1
                     }
                 }
             }
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            try {
-                bufferedReader?.close()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            try {
-                fileReader?.close()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
         }
         for ((key, value) in map) {
             list.add(Pair(key, value.toString()))

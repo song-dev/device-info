@@ -16,7 +16,7 @@ import com.song.deviceinfo.utils.DeviceUtils.getSimInfo
 object DeviceInfo {
     @AddTrace(name = "DeviceInfo.getDeviceInfo")
     fun getDeviceInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         list.add(Pair("AndroidId", getAndroidId(context)))
         list.add(Pair("IMEI", getIMEI(context)))
         getDeviceInfo(context, list)

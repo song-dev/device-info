@@ -16,7 +16,7 @@ object StoreInfo {
      * @return
      */
     fun getStoreInfo(context: Context): List<StorageBean> {
-        val list: MutableList<StorageBean> = ArrayList()
+        val list = mutableListOf<StorageBean>()
         val bean = StorageBean()
         getStoreInfo(context, bean)
         getMemoryInfo(context, bean)

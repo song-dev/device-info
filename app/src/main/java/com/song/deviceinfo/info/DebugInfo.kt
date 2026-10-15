@@ -14,13 +14,13 @@ import com.song.deviceinfo.utils.DebugUtils.usbDebugStatus
  */
 object DebugInfo {
     fun getDebugInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
-        list.add(Pair("DebugOpen", isOpenDebug(context).toString() + ""))
+        val list = mutableListOf<Pair<String, String>>()
+        list.add(Pair("DebugOpen", isOpenDebug(context).toString()))
         list.add(Pair("UsbDebugStatus", usbDebugStatus))
-        list.add(Pair("TracerPid", tracerPid.toString() + ""))
-        list.add(Pair("DebugVersion", isDebugVersion(context).toString() + ""))
-        list.add(Pair("DebugConnected", isDebugConnected.toString() + ""))
-        list.add(Pair("AllowMockLocation", isAllowMockLocation(context).toString() + ""))
+        list.add(Pair("TracerPid", tracerPid.toString()))
+        list.add(Pair("DebugVersion", isDebugVersion(context).toString()))
+        list.add(Pair("DebugConnected", isDebugConnected.toString()))
+        list.add(Pair("AllowMockLocation", isAllowMockLocation(context).toString()))
         return list
     }
 }

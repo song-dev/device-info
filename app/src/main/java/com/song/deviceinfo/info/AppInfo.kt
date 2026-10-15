@@ -16,20 +16,20 @@ object AppInfo {
     @SuppressLint("PackageManagerGetSignatures")
     @AddTrace(name = "AppInfo.getAppInfo")
     fun getAppInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         val packageManager = context.packageManager
         val applicationInfo = context.applicationInfo
         val packageName = context.packageName
         list.add(Pair("AppName", applicationInfo.loadLabel(packageManager).toString()))
         list.add(Pair("PackageName", packageName))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            list.add(Pair("MinSdkVersion", applicationInfo.minSdkVersion.toString() + ""))
+            list.add(Pair("MinSdkVersion", applicationInfo.minSdkVersion.toString()))
         }
-        list.add(Pair("TargetSdkVersion", applicationInfo.targetSdkVersion.toString() + ""))
+        list.add(Pair("TargetSdkVersion", applicationInfo.targetSdkVersion.toString()))
         try {
             val packageInfo = packageManager.getPackageInfo(packageName, 0)
             list.add(Pair("VersionName", packageInfo.versionName))
-            list.add(Pair("VersionCode", packageInfo.versionCode.toString() + ""))
+            list.add(Pair("VersionCode", packageInfo.versionCode.toString()))
             list.add(Pair("FirstInstallTime", formatDate(packageInfo.firstInstallTime)))
             list.add(Pair("LastUpdateTime", formatDate(packageInfo.lastUpdateTime)))
             val signature = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0]

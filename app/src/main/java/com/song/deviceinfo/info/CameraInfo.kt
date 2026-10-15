@@ -21,7 +21,7 @@ import kotlin.math.sqrt
 object CameraInfo {
     @AddTrace(name = "CameraInfo.getCameraInfo")
     fun getCameraInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager ?: return list
@@ -31,7 +31,7 @@ object CameraInfo {
                     
                     // TODO 摄像头位置 后置 前置 外置
                     val facing = characteristics.get(CameraCharacteristics.LENS_FACING)
-                    list.add(Pair(context.getString(R.string.menu_camera), facing.toString() + " - " + getFacing(facing)))
+                    list.add(Pair(context.getString(R.string.menu_camera), "$facing - ${getFacing(facing)}"))
                     
                     // TODO 分辨率
                     val activeArraySize = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE)
@@ -39,7 +39,7 @@ object CameraInfo {
                         val width = activeArraySize.right - activeArraySize.left
                         val height = activeArraySize.bottom - activeArraySize.top
                         val round = round(width * height / 1000000.0, 1)
-                        list.add(Pair(context.getString(R.string.camera_pixel_size), round.toString() + " MP (" + width + "x" + height + ")"))
+                        list.add(Pair(context.getString(R.string.camera_pixel_size), "$round MP (${width}x$height)"))
                     }
                     
                     //TODO 此相机设备支持的光圈大小值列表
@@ -75,7 +75,7 @@ object CameraInfo {
                     // TODO 传感器尺寸
                     val physicalSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE)
                     if (physicalSize != null) {
-                        list.add(Pair(context.getString(R.string.camera_size), physicalSize.width.toString() + "x" + physicalSize.height))
+                        list.add(Pair(context.getString(R.string.camera_size), "${physicalSize.width}x${physicalSize.height}"))
                     }
                     
                     // TODO 像素大小
@@ -116,7 +116,7 @@ object CameraInfo {
                     val sensorInfoSensitivityRange = characteristics.get(CameraCharacteristics.SENSOR_INFO_SENSITIVITY_RANGE)
                     if (sensorInfoSensitivityRange != null) {
                         list.add(Pair(context.getString(R.string.camera_iso),
-                                sensorInfoSensitivityRange.lower.toString() + "-" + sensorInfoSensitivityRange.upper))
+                                "${sensorInfoSensitivityRange.lower}-${sensorInfoSensitivityRange.upper}"))
                     }
                     
                     //TODO 彩色滤光片在传感器上的布置
@@ -183,14 +183,14 @@ object CameraInfo {
                     if (CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP != null) {
                         val compensationStep = characteristics.get(CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP)
                         if (compensationStep != null) {
-                            list.add(Pair("CompensationStep", compensationStep.toDouble().toString() + ""))
+                            list.add(Pair("CompensationStep", compensationStep.toDouble().toString()))
                         }
                     }
                     //TODO 是否锁定自动曝光
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AE_LOCK_AVAILABLE != null) {
                         val lockAvailable = characteristics.get(CameraCharacteristics.CONTROL_AE_LOCK_AVAILABLE)
                         if (lockAvailable != null) {
-                            list.add(Pair("LockAvailable", lockAvailable.toString() + ""))
+                            list.add(Pair("LockAvailable", lockAvailable.toString()))
                         }
                     }
                     
@@ -254,26 +254,26 @@ object CameraInfo {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.CONTROL_AWB_LOCK_AVAILABLE != null) {
                         val awbLockAvailable = characteristics.get(CameraCharacteristics.CONTROL_AWB_LOCK_AVAILABLE)
                         if (awbLockAvailable != null) {
-                            list.add(Pair("AwbLockAvailable", awbLockAvailable.toString() + ""))
+                            list.add(Pair("AwbLockAvailable", awbLockAvailable.toString()))
                         }
                     }
                     
                     //TODO 自动曝光（AE）例程可以使用的最大测光区域数
                     if (CameraCharacteristics.CONTROL_MAX_REGIONS_AE != null) {
                         val maxRegionsAe = characteristics.get(CameraCharacteristics.CONTROL_MAX_REGIONS_AE)!!
-                        list.add(Pair("MaxRegionsAe", maxRegionsAe.toString() + ""))
+                        list.add(Pair("MaxRegionsAe", maxRegionsAe.toString()))
                     }
                     
                     //TODO 自动对焦（AF）例程可以使用的最大测光区域数
                     if (CameraCharacteristics.CONTROL_MAX_REGIONS_AF != null) {
                         val maxRegionsAf = characteristics.get(CameraCharacteristics.CONTROL_MAX_REGIONS_AF)!!
-                        list.add(Pair("MaxRegionsAf", maxRegionsAf.toString() + ""))
+                        list.add(Pair("MaxRegionsAf", maxRegionsAf.toString()))
                     }
                     
                     //TODO 自动白平衡（AWB）例程可以使用的最大测光区域数
                     if (CameraCharacteristics.CONTROL_MAX_REGIONS_AWB != null) {
                         val maxRegionsAwb = characteristics.get(CameraCharacteristics.CONTROL_MAX_REGIONS_AWB)!!
-                        list.add(Pair("MaxRegionsAwb", maxRegionsAwb.toString() + ""))
+                        list.add(Pair("MaxRegionsAwb", maxRegionsAwb.toString()))
                     }
                     
                     //TODO 相机设备支持的增强范围
@@ -288,7 +288,7 @@ object CameraInfo {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.DEPTH_DEPTH_IS_EXCLUSIVE != null) {
                         val depthIsExclusive = characteristics.get(CameraCharacteristics.DEPTH_DEPTH_IS_EXCLUSIVE)
                         if (depthIsExclusive != null) {
-                            list.add(Pair("DepthIsExclusive", depthIsExclusive.toString() + ""))
+                            list.add(Pair("DepthIsExclusive", depthIsExclusive.toString()))
                         }
                     }
                     
@@ -389,12 +389,12 @@ object CameraInfo {
                     //TODO 镜头的超焦距
                     if (CameraCharacteristics.LENS_INFO_HYPERFOCAL_DISTANCE != null) {
                         val hyperFocalDistance = characteristics.get(CameraCharacteristics.LENS_INFO_HYPERFOCAL_DISTANCE)!!
-                        list.add(Pair("HyperFocalDistance", hyperFocalDistance.toString() + ""))
+                        list.add(Pair("HyperFocalDistance", hyperFocalDistance.toString()))
                     }
                     //TODO 距镜头最前面的最短距离，可使其聚焦
                     if (CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE != null) {
                         val minimumFocusDistance = characteristics.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE)!!
-                        list.add(Pair("MinimumFocusDistance", minimumFocusDistance.toString() + ""))
+                        list.add(Pair("MinimumFocusDistance", minimumFocusDistance.toString()))
                     }
                     //TODO 本相机设备固有校准的参数
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && CameraCharacteristics.LENS_INTRINSIC_CALIBRATION != null) {
@@ -689,7 +689,7 @@ object CameraInfo {
             CaptureRequest.TONEMAP_MODE_GAMMA_VALUE -> "GAMMA_VALUE"
             CaptureRequest.TONEMAP_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.TONEMAP_MODE_PRESET_CURVE -> "PRESET_CURVE"
-            else -> Constants.UNKNOWN + "-" + availableToneMapModes
+            else -> "$Constants.UNKNOWN-availableToneMapModes"
             
         }
     }
@@ -698,7 +698,7 @@ object CameraInfo {
         return when (syncMaxLatency) {
             CaptureRequest.SYNC_MAX_LATENCY_UNKNOWN -> Constants.UNKNOWN
             CaptureRequest.SYNC_MAX_LATENCY_PER_FRAME_CONTROL -> "PER_FRAME_CONTROL"
-            else -> Constants.UNKNOWN + "-" + syncMaxLatency
+            else -> "$Constants.UNKNOWN-syncMaxLatency"
             
         }
     }
@@ -707,7 +707,7 @@ object CameraInfo {
         return when (availableOisDataModes) {
             CaptureRequest.STATISTICS_OIS_DATA_MODE_ON -> "ON"
             CaptureRequest.STATISTICS_OIS_DATA_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + availableOisDataModes
+            else -> "$Constants.UNKNOWN-availableOisDataModes"
             
         }
     }
@@ -716,7 +716,7 @@ object CameraInfo {
         return when (availableLensShadingMapModes) {
             CaptureRequest.STATISTICS_LENS_SHADING_MAP_MODE_ON -> "ON"
             CaptureRequest.STATISTICS_LENS_SHADING_MAP_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + availableLensShadingMapModes
+            else -> "$Constants.UNKNOWN-availableLensShadingMapModes"
             
         }
     }
@@ -726,7 +726,7 @@ object CameraInfo {
             CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL -> "FULL"
             CaptureRequest.STATISTICS_FACE_DETECT_MODE_SIMPLE -> "SIMPLE"
             CaptureRequest.STATISTICS_FACE_DETECT_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + availableFaceDetectModes
+            else -> "$Constants.UNKNOWN-availableFaceDetectModes"
             
         }
     }
@@ -736,7 +736,7 @@ object CameraInfo {
             CaptureRequest.SHADING_MODE_FAST -> "FAST"
             CaptureRequest.SHADING_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.SHADING_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + shadingAvailableModes
+            else -> "$Constants.UNKNOWN-shadingAvailableModes"
             
         }
     }
@@ -763,7 +763,7 @@ object CameraInfo {
             CaptureRequest.SENSOR_REFERENCE_ILLUMINANT1_TUNGSTEN -> "TUNGSTEN"
             CaptureRequest.SENSOR_REFERENCE_ILLUMINANT1_WHITE_FLUORESCENT -> "WHITE_FLUORESCENT"
             
-            else -> Constants.UNKNOWN + "-" + sensorReferenceIlluminant1
+            else -> "$Constants.UNKNOWN-sensorReferenceIlluminant1"
             
         }
     }
@@ -772,7 +772,7 @@ object CameraInfo {
         return when (sensorInfoTimestampSource) {
             CaptureRequest.SENSOR_INFO_TIMESTAMP_SOURCE_UNKNOWN -> "UNKNOWN"
             CaptureRequest.SENSOR_INFO_TIMESTAMP_SOURCE_REALTIME -> "REALTIME"
-            else -> Constants.UNKNOWN + "-" + sensorInfoTimestampSource
+            else -> "$Constants.UNKNOWN-sensorInfoTimestampSource"
             
         }
     }
@@ -784,7 +784,7 @@ object CameraInfo {
             CaptureRequest.SENSOR_INFO_COLOR_FILTER_ARRANGEMENT_GRBG -> "GRBG"
             CaptureRequest.SENSOR_INFO_COLOR_FILTER_ARRANGEMENT_RGB -> "RGB"
             CaptureRequest.SENSOR_INFO_COLOR_FILTER_ARRANGEMENT_RGGB -> "RGGB"
-            else -> Constants.UNKNOWN + "-" + sensorInfoColorFilterArrangement
+            else -> "$Constants.UNKNOWN-sensorInfoColorFilterArrangement"
             
         }
     }
@@ -797,7 +797,7 @@ object CameraInfo {
             CaptureRequest.SENSOR_TEST_PATTERN_MODE_OFF -> "OFF"
             CaptureRequest.SENSOR_TEST_PATTERN_MODE_PN9 -> "PN9"
             CaptureRequest.SENSOR_TEST_PATTERN_MODE_SOLID_COLOR -> "SOLID_COLOR"
-            else -> Constants.UNKNOWN + "-" + sensorAvailableTestPatternModes
+            else -> "$Constants.UNKNOWN-sensorAvailableTestPatternModes"
             
         }
     }
@@ -806,7 +806,7 @@ object CameraInfo {
         return when (scalerCroppingType) {
             CaptureRequest.SCALER_CROPPING_TYPE_CENTER_ONLY -> "CENTER_ONLY"
             CaptureRequest.SCALER_CROPPING_TYPE_FREEFORM -> "FREEFORM"
-            else -> Constants.UNKNOWN + "-" + scalerCroppingType
+            else -> "$Constants.UNKNOWN-scalerCroppingType"
             
         }
     }
@@ -826,7 +826,7 @@ object CameraInfo {
             CaptureRequest.REQUEST_AVAILABLE_CAPABILITIES_RAW -> "RAW"
             CaptureRequest.REQUEST_AVAILABLE_CAPABILITIES_READ_SENSOR_SETTINGS -> "READ_SENSOR_SETTINGS"
             CaptureRequest.REQUEST_AVAILABLE_CAPABILITIES_YUV_REPROCESSING -> "YUV_REPROCESSING"
-            else -> Constants.UNKNOWN + "-" + requestAvailableCapabilities
+            else -> "$Constants.UNKNOWN-requestAvailableCapabilities"
             
         }
     }
@@ -838,7 +838,7 @@ object CameraInfo {
             CaptureRequest.NOISE_REDUCTION_MODE_MINIMAL -> "MINIMAL"
             CaptureRequest.NOISE_REDUCTION_MODE_OFF -> "OFF"
             CaptureRequest.NOISE_REDUCTION_MODE_ZERO_SHUTTER_LAG -> "ZERO_SHUTTER_LAG"
-            else -> Constants.UNKNOWN + "-" + availableNoiseReductionModes
+            else -> "$Constants.UNKNOWN-availableNoiseReductionModes"
             
         }
     }
@@ -850,7 +850,7 @@ object CameraInfo {
         return when (cameraSensorSyncType) {
             CaptureRequest.LOGICAL_MULTI_CAMERA_SENSOR_SYNC_TYPE_APPROXIMATE -> "APPROXIMATE"
             CaptureRequest.LOGICAL_MULTI_CAMERA_SENSOR_SYNC_TYPE_CALIBRATED -> "CALIBRATED"
-            else -> Constants.UNKNOWN + "-" + cameraSensorSyncType
+            else -> "$Constants.UNKNOWN-cameraSensorSyncType"
             
         }
     }
@@ -862,7 +862,7 @@ object CameraInfo {
         return when (lensPoseReference) {
             CaptureRequest.LENS_POSE_REFERENCE_PRIMARY_CAMERA -> "PRIMARY_CAMERA"
             CaptureRequest.LENS_POSE_REFERENCE_GYROSCOPE -> "GYROSCOPE"
-            else -> Constants.UNKNOWN + "-" + lensPoseReference
+            else -> "$Constants.UNKNOWN-lensPoseReference"
             
         }
     }
@@ -875,7 +875,7 @@ object CameraInfo {
             CaptureRequest.LENS_INFO_FOCUS_DISTANCE_CALIBRATION_APPROXIMATE -> "APPROXIMATE"
             CaptureRequest.LENS_INFO_FOCUS_DISTANCE_CALIBRATION_CALIBRATED -> "CALIBRATED"
             CaptureRequest.LENS_INFO_FOCUS_DISTANCE_CALIBRATION_UNCALIBRATED -> "UNCALIBRATED"
-            else -> Constants.UNKNOWN + "-" + focusDistanceCalibration
+            else -> "$Constants.UNKNOWN-focusDistanceCalibration"
             
         }
     }
@@ -884,7 +884,7 @@ object CameraInfo {
         return when (jsonArrayAvailableOpticalStabilization) {
             CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF -> "OFF"
             CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_ON -> "ON"
-            else -> Constants.UNKNOWN + "-" + jsonArrayAvailableOpticalStabilization
+            else -> "$Constants.UNKNOWN-jsonArrayAvailableOpticalStabilization"
             
         }
     }
@@ -894,7 +894,7 @@ object CameraInfo {
             CaptureRequest.HOT_PIXEL_MODE_FAST -> "FAST"
             CaptureRequest.HOT_PIXEL_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.HOT_PIXEL_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + availableHotPixelModes
+            else -> "$Constants.UNKNOWN-availableHotPixelModes"
             
         }
     }
@@ -905,7 +905,7 @@ object CameraInfo {
             CaptureRequest.EDGE_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.EDGE_MODE_OFF -> "OFF"
             CaptureRequest.EDGE_MODE_ZERO_SHUTTER_LAG -> "ZERO_SHUTTER_LAG"
-            else -> Constants.UNKNOWN + "-" + availableEdgeModes
+            else -> "$Constants.UNKNOWN-availableEdgeModes"
             
         }
     }
@@ -915,7 +915,7 @@ object CameraInfo {
             CaptureRequest.DISTORTION_CORRECTION_MODE_FAST -> "FAST"
             CaptureRequest.DISTORTION_CORRECTION_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.DISTORTION_CORRECTION_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + correctionAvailableModes
+            else -> "$Constants.UNKNOWN-correctionAvailableModes"
             
         }
     }
@@ -931,7 +931,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_AWB_MODE_SHADE -> "SHADE"
             CaptureRequest.CONTROL_AWB_MODE_TWILIGHT -> "CONTROL_AWB_MODE_TWILIGHT"
             CaptureRequest.CONTROL_AWB_MODE_WARM_FLUORESCENT -> "WARM_FLUORESCENT"
-            else -> Constants.UNKNOWN + "-" + awbAvailableModes
+            else -> "$Constants.UNKNOWN-awbAvailableModes"
             
         }
     }
@@ -940,7 +940,7 @@ object CameraInfo {
         return when (videoStabilizationModes) {
             CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF -> "OFF"
             CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_ON -> "ON"
-            else -> Constants.UNKNOWN + "-" + videoStabilizationModes
+            else -> "$Constants.UNKNOWN-videoStabilizationModes"
             
         }
     }
@@ -966,7 +966,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_SCENE_MODE_SUNSET -> "SUNSET"
             CaptureRequest.CONTROL_SCENE_MODE_THEATRE -> "THEATRE"
             CaptureRequest.CONTROL_SCENE_MODE_HIGH_SPEED_VIDEO -> "HIGH_SPEED_VIDEO"
-            else -> Constants.UNKNOWN + "-" + availableSceneModes
+            else -> "$Constants.UNKNOWN-availableSceneModes"
             
         }
     }
@@ -977,7 +977,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_MODE_OFF -> "OFF"
             CaptureRequest.CONTROL_MODE_OFF_KEEP_STATE -> "OFF_KEEP_STATE"
             CaptureRequest.CONTROL_MODE_USE_SCENE_MODE -> "MODE_USE_SCENE_MODE"
-            else -> Constants.UNKNOWN + "-" + availableModes
+            else -> "$Constants.UNKNOWN-availableModes"
             
         }
     }
@@ -993,7 +993,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_EFFECT_MODE_SEPIA -> "SEPIA"
             CaptureRequest.CONTROL_EFFECT_MODE_SOLARIZE -> "SOLARIZE"
             CaptureRequest.CONTROL_EFFECT_MODE_WHITEBOARD -> "WHITEBOARD"
-            else -> Constants.UNKNOWN + "-" + availableEffects
+            else -> "$Constants.UNKNOWN-availableEffects"
             
         }
     }
@@ -1007,7 +1007,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_AF_MODE_MACRO -> "MACRO"
             CaptureRequest.CONTROL_AF_MODE_AUTO -> "AUTO"
             
-            else -> Constants.UNKNOWN + "-" + afAvailableModes
+            else -> "$Constants.UNKNOWN-afAvailableModes"
             
         }
     }
@@ -1021,7 +1021,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE -> "ON_AUTO_FLASH_REDEYE"
             CaptureRequest.CONTROL_AE_MODE_ON_EXTERNAL_FLASH -> "ON_EXTERNAL_FLASH"
             
-            else -> Constants.UNKNOWN + "-" + aeAvailableModes
+            else -> "$Constants.UNKNOWN-aeAvailableModes"
             
         }
     }
@@ -1032,7 +1032,7 @@ object CameraInfo {
             CaptureRequest.CONTROL_AE_ANTIBANDING_MODE_60HZ -> "60HZ"
             CaptureRequest.CONTROL_AE_ANTIBANDING_MODE_AUTO -> "AUTO"
             CaptureRequest.CONTROL_AE_ANTIBANDING_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + antiBandingModes
+            else -> "$Constants.UNKNOWN-antiBandingModes"
             
         }
     }
@@ -1042,7 +1042,7 @@ object CameraInfo {
             CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_FAST -> "FAST"
             CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_HIGH_QUALITY -> "HIGH_QUALITY"
             CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_OFF -> "OFF"
-            else -> Constants.UNKNOWN + "-" + aberrationModes
+            else -> "$Constants.UNKNOWN-aberrationModes"
             
         }
     }
@@ -1055,7 +1055,7 @@ object CameraInfo {
             CameraCharacteristics.LENS_FACING_FRONT -> "FRONT"
             CameraCharacteristics.LENS_FACING_BACK -> "BACK"
             CameraCharacteristics.LENS_FACING_EXTERNAL -> "EXTERNAL"
-            else -> Constants.UNKNOWN + "-" + facing
+            else -> "$Constants.UNKNOWN-facing"
         }
     }
     
@@ -1069,7 +1069,7 @@ object CameraInfo {
             CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL -> "EXTERNAL"
             CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL -> "FULL"
             CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED -> "LIMITED"
-            else -> Constants.UNKNOWN + "-" + level
+            else -> "$Constants.UNKNOWN-level"
         }
     }
     
@@ -1093,7 +1093,7 @@ object CameraInfo {
             ImageFormat.YUV_444_888 -> "YUV_444_888"
             ImageFormat.YUY2 -> "YUY2"
             ImageFormat.YV12 -> "YV12"
-            else -> Constants.UNKNOWN + "-" + format
+            else -> "$Constants.UNKNOWN-format"
         }
     }
 }

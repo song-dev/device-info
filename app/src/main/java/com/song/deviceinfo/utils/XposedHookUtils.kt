@@ -1,7 +1,6 @@
 package com.song.deviceinfo.utils
 
 import android.content.Context
-import android.content.pm.PackageInfo
 import com.song.deviceinfo.model.beans.XposedHookBean
 import org.json.JSONObject
 import java.util.Locale
@@ -40,16 +39,16 @@ object XposedHookUtils {
             checkKeyWordInFiled(clsXposedHtlpers, "fieldCache", xposedHookBean, packageName!!)
             checkKeyWordInFiled(clsXposedHtlpers, "methodCache", xposedHookBean, packageName)
             checkKeyWordInFiled(clsXposedHtlpers, "constructorCache", xposedHookBean, packageName)
-            jsonObject.put("xposedApp", xposedHookBean.isXposedApp.toString() + "")
-            jsonObject.put("xposedImei", xposedHookBean.isXposedImei.toString() + "")
-            jsonObject.put("xposedSerial", xposedHookBean.isXposedSerial.toString() + "")
-            jsonObject.put("xposedSsid", xposedHookBean.isXposedSsid.toString() + "")
-            jsonObject.put("xposedMac", xposedHookBean.isXposedMac.toString() + "")
-            jsonObject.put("xposedAddress", xposedHookBean.isXposedAddress.toString() + "")
-            jsonObject.put("xposedAndroidId", xposedHookBean.isXposedAndroidId.toString() + "")
-            jsonObject.put("xposedImsi", xposedHookBean.isXposedImsi.toString() + "")
-            jsonObject.put("xposedLatitude", xposedHookBean.isXposedLatitude.toString() + "")
-            jsonObject.put("xposedLongitude", xposedHookBean.isXposedLongitude.toString() + "")
+            jsonObject.put("xposedApp", xposedHookBean.isXposedApp.toString())
+            jsonObject.put("xposedImei", xposedHookBean.isXposedImei.toString())
+            jsonObject.put("xposedSerial", xposedHookBean.isXposedSerial.toString())
+            jsonObject.put("xposedSsid", xposedHookBean.isXposedSsid.toString())
+            jsonObject.put("xposedMac", xposedHookBean.isXposedMac.toString())
+            jsonObject.put("xposedAddress", xposedHookBean.isXposedAddress.toString())
+            jsonObject.put("xposedAndroidId", xposedHookBean.isXposedAndroidId.toString())
+            jsonObject.put("xposedImsi", xposedHookBean.isXposedImsi.toString())
+            jsonObject.put("xposedLatitude", xposedHookBean.isXposedLatitude.toString())
+            jsonObject.put("xposedLongitude", xposedHookBean.isXposedLongitude.toString())
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -119,16 +118,12 @@ object XposedHookUtils {
     }
     
     private fun getPackageName(context: Context): String? {
-        val packageInfo: PackageInfo
         val packageManager = context.packageManager
-        try {
-            packageInfo = packageManager.getPackageInfo(context.packageName, 0)
-            if (packageInfo != null) {
-                return packageInfo.packageName
-            }
+        return try {
+            packageManager.getPackageInfo(context.packageName, 0).packageName
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
-        return null
     }
 }

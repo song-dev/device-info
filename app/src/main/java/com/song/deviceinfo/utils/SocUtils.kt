@@ -5,8 +5,7 @@ import android.content.Context
 import android.text.TextUtils
 import androidx.core.util.Pair
 import com.song.deviceinfo.model.beans.CpuBean
-import java.io.BufferedReader
-import java.io.FileReader
+import java.io.File
 import java.util.Locale
 
 /**
@@ -33,12 +32,10 @@ object SocUtils {
     
     fun setCpuInfo(list: MutableList<Pair<String, String>>) {
         try {
-            val bufferedReader = BufferedReader(FileReader("/proc/cpuinfo"))
-            var line = ""
             val bean = CpuBean()
-            val parts = HashSet<String>()
-            val implementer = HashSet<String>()
-            while ((bufferedReader.readLine().also { if (it != null) line = it }) != null) {
+            val parts = mutableSetOf<String>()
+            val implementer = mutableSetOf<String>()
+            File("/proc/cpuinfo").forEachLine { line ->
                 val result = line.lowercase(Locale.getDefault())
                 LogUtils.d("CPU: $result")
                 val split = result.split(":\\s+".toRegex(), limit = 2).toTypedArray()
@@ -79,11 +76,11 @@ object SocUtils {
         val am = context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val info = am.deviceConfigurationInfo
         list.add(Pair("GlEsVersion", info.glEsVersion))
-        list.add(Pair("GlEsVersion", info.reqGlEsVersion.toString() + ""))
-        list.add(Pair("GlEsVersion", info.reqInputFeatures.toString() + ""))
-        list.add(Pair("GlEsVersion", info.reqKeyboardType.toString() + ""))
-        list.add(Pair("GlEsVersion", info.reqNavigation.toString() + ""))
-        list.add(Pair("GlEsVersion", info.reqTouchScreen.toString() + ""))
-        list.add(Pair("GlEsVersion", info.describeContents().toString() + ""))
+        list.add(Pair("GlEsVersion", info.reqGlEsVersion.toString()))
+        list.add(Pair("GlEsVersion", info.reqInputFeatures.toString()))
+        list.add(Pair("GlEsVersion", info.reqKeyboardType.toString()))
+        list.add(Pair("GlEsVersion", info.reqNavigation.toString()))
+        list.add(Pair("GlEsVersion", info.reqTouchScreen.toString()))
+        list.add(Pair("GlEsVersion", info.describeContents().toString()))
     }
 }

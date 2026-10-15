@@ -8,11 +8,9 @@ import android.content.Context
 object ApplicationUtils {
     @JvmStatic
     fun isPkgInstalled(context: Context, pkgName: String): Boolean {
-        var packageInfo = try {
+        val packageInfo = runCatching {
             context.packageManager.getPackageInfo(pkgName, 0)
-        } catch (e: Exception) {
-            null
-        }
+        }.getOrNull()
         return packageInfo != null
     }
 }

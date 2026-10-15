@@ -4,8 +4,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.text.format.Formatter
 import com.song.deviceinfo.model.beans.StorageBean
-import java.io.BufferedReader
-import java.io.FileReader
+import java.io.File
 
 /**
  * Created by chensongsong on 2020/6/2.
@@ -63,12 +62,9 @@ object MemoryUtils {
      */
     private fun getMemoryTotal(context: Context): String {
         try {
-            val fileReader = FileReader("/proc/meminfo")
-            val bufferedReader = BufferedReader(fileReader, Constants.BUF_1024)
-            val line = bufferedReader.readLine()
+            val line = File("/proc/meminfo").bufferedReader(Charsets.UTF_8).use { it.readLine() }
             val split = line.split("\\s+".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val l = split[1].toLong() * Constants.BUF_1024
-            bufferedReader.close()
             return Formatter.formatFileSize(context, l)
         } catch (e: Exception) {
             e.printStackTrace()

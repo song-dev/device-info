@@ -14,7 +14,7 @@ object BluetoothInfo {
     @AddTrace(name = "BluetoothInfo.getBluetoothInfo")
     fun getBluetoothInfo(context: Context): List<Pair<String, String>> {
         var enable = false
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             val manager = (context.applicationContext.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager)
             if (manager != null) {
@@ -25,8 +25,8 @@ object BluetoothInfo {
                 for (device in devices) {
                     list.add(Pair("Bluetooth Name", device.name))
                     list.add(Pair("Bluetooth Mac", device.address))
-                    list.add(Pair("Type", device.type.toString() + ""))
-                    list.add(Pair("State", device.bondState.toString() + ""))
+                    list.add(Pair("Type", device.type.toString()))
+                    list.add(Pair("State", device.bondState.toString()))
                     list.add(Pair("", ""))
                 }
             }

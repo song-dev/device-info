@@ -4,8 +4,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Process
-import java.io.BufferedReader
-import java.io.FileReader
+import java.io.File
 import java.util.Locale
 
 /**
@@ -17,9 +16,8 @@ object HookUtils {
         var returnValue = false
         // Get currently running application processes
         val activityManager = (context.getSystemService(Context.ACTIVITY_SERVICE)) as ActivityManager
-        
-        var list: List<ActivityManager.RunningServiceInfo>? = null
-        list = activityManager.getRunningServices(300)
+
+        val list = activityManager.getRunningServices(300)
         if (list != null) {
             var tempName: String
             for (i in list.indices) {
@@ -99,12 +97,11 @@ object HookUtils {
      */
     @JvmStatic
     fun chargeXposedJars(): String? {
-        val libraries: MutableSet<String> = HashSet()
-        val mapsFilename = "/proc/" + Process.myPid() + "/maps"
+        val libraries: MutableSet<String> = mutableSetOf()
+        val mapsFilename = "/proc/${Process.myPid()}/maps"
         try {
-            val reader = BufferedReader(FileReader(mapsFilename))
-            var line: String
-            while ((reader.readLine().also { line = it }) != null) {
+            val lines = File(mapsFilename).useLines { it.toList() }
+            for (line in lines) {
                 LogUtils.d("maps line: $line")
                 if (line.lowercase(Locale.getDefault()).contains("frida")) {
                     return "frida"
@@ -127,7 +124,6 @@ object HookUtils {
                     return "XposedBridge.jar"
                 }
             }
-            reader.close()
         } catch (e: Exception) {
             e.printStackTrace()
         }

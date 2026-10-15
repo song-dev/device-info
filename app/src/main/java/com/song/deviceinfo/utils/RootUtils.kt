@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
-import java.util.Arrays
 import java.util.Scanner
 
 /**
@@ -56,7 +55,7 @@ object RootUtils {
             "/vendor/bin",
             "/sbin",
             "/etc")
-    private val DANGEROUS_PROPERTIES: MutableMap<String, String> = HashMap()
+    private val DANGEROUS_PROPERTIES: MutableMap<String, String> = mutableMapOf()
     
     /**
      * Checks for files that are known to indicate root.
@@ -65,7 +64,7 @@ object RootUtils {
      */
     @JvmStatic
     fun existingRootFiles(): List<String> {
-        val filesFound: MutableList<String> = ArrayList()
+        val filesFound: MutableList<String> = mutableListOf()
         for (path in SU_PATHS) {
             if (File(path).exists()) {
                 filesFound.add(path)
@@ -81,13 +80,13 @@ object RootUtils {
      */
     @JvmStatic
     fun existingRootPackages(context: Context): List<String> {
-        val packages = ArrayList<String>()
-        packages.addAll(Arrays.asList(*KNOWN_ROOT_APPS_PACKAGES))
-        packages.addAll(Arrays.asList(*KNOWN_DANGEROUS_APPS_PACKAGES))
-        packages.addAll(Arrays.asList(*KNOWN_ROOT_CLOAKING_PACKAGES))
-        
+        val packages = mutableListOf<String>()
+        packages.addAll(KNOWN_ROOT_APPS_PACKAGES)
+        packages.addAll(KNOWN_DANGEROUS_APPS_PACKAGES)
+        packages.addAll(KNOWN_ROOT_CLOAKING_PACKAGES)
+
         val pm = context.packageManager
-        val packagesFound: MutableList<String> = ArrayList()
+        val packagesFound: MutableList<String> = mutableListOf()
         
         for (packageName in packages) {
             try {
@@ -111,7 +110,7 @@ object RootUtils {
         DANGEROUS_PROPERTIES["[ro.debuggable]"] = "[1]"
         DANGEROUS_PROPERTIES["[ro.secure]"] = "[0]"
         val lines = propertiesReader()
-        val propertiesFound: MutableList<String> = ArrayList()
+        val propertiesFound: MutableList<String> = mutableListOf()
         checkNotNull(lines)
         for (line in lines) {
             for (key in DANGEROUS_PROPERTIES.keys) {
@@ -132,7 +131,7 @@ object RootUtils {
     @JvmStatic
     fun existingRWPaths(): List<String> {
         val lines = mountReader()
-        val pathsFound: MutableList<String> = ArrayList()
+        val pathsFound: MutableList<String> = mutableListOf()
         checkNotNull(lines)
         for (line in lines) {
             // Split lines into parts

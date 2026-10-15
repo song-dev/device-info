@@ -111,7 +111,7 @@ object CommandUtils {
         try {
             process = Runtime.getRuntime().exec("su")
             os = DataOutputStream(process.outputStream)
-            os.writeBytes(command + "\n")
+            os.writeBytes("$command\n")
             os.writeBytes("exit\n")
             os.flush()
             process.waitFor()
@@ -160,10 +160,10 @@ object CommandUtils {
         }
     
     private fun isNumber(str: String?): Boolean {
-        if (str == null || str.length == 0) {
+        if (str.isNullOrEmpty()) {
             return false
         }
-        for (i in 0 until str.length) {
+        for (i in str.indices) {
             if (!Character.isDigit(str[i])) {
                 return false
             }

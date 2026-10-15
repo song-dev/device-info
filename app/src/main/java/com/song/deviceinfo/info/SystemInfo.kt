@@ -18,13 +18,13 @@ import com.song.deviceinfo.utils.SystemConfigUtils.systemUpdate
  */
 object SystemInfo {
     fun getSystemInfo(activity: Activity): List<Pair<String, String>> {
-        val list = ArrayList<Pair<String, String>>()
+        val list = mutableListOf<Pair<String, String>>()
         val context = activity.applicationContext
         list.add(Pair(context.getString(R.string.system_manufacture), Build.MANUFACTURER))
         list.add(Pair(context.getString(R.string.system_model), Build.MODEL))
         list.add(Pair(context.getString(R.string.system_brand), Build.BRAND))
         list.add(Pair(context.getString(R.string.system_release), Build.VERSION.RELEASE))
-        list.add(Pair(context.getString(R.string.system_api), Build.VERSION.SDK_INT.toString() + ""))
+        list.add(Pair(context.getString(R.string.system_api), Build.VERSION.SDK_INT.toString()))
         list.add(Pair(context.getString(R.string.system_code_name), Build.VERSION.CODENAME))
         list.add(Pair(context.getString(R.string.system_density),
                 getDensityDpi(context).toString() + " (" + getDensityId(context) + ")"))
@@ -43,7 +43,7 @@ object SystemInfo {
         list.add(Pair(context.getString(R.string.system_description), getProperty("ro.build.description")))
         list.add(Pair(context.getString(R.string.system_fingerprint), Build.FINGERPRINT))
         list.add(Pair(context.getString(R.string.system_device_features), "68"))
-        list.add(Pair(context.getString(R.string.system_builder), "builder@" + getProperty("ro.build.host")))
+        list.add(Pair(context.getString(R.string.system_builder), "builder@${getProperty("ro.build.host")}"))
         list.add(Pair(context.getString(R.string.system_language), getCurrentLanguage(context)))
         list.add(Pair(context.getString(R.string.system_timezone), currentTimeZone))
         list.add(Pair(context.getString(R.string.system_uptime), systemUpdate))

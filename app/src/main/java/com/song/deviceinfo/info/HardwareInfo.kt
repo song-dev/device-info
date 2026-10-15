@@ -10,7 +10,7 @@ import androidx.core.util.Pair
  */
 object HardwareInfo {
     fun getHardwareInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         val gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
         list.add(Pair("GYROSCOPE", gyroscope!!.name))

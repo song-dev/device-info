@@ -28,9 +28,6 @@ object SystemConfigUtils {
     @JvmStatic
     fun getCurrentLanguage(context: Context): String {
         val locale = context.resources.configuration.locale
-        val language = locale.language
-        val country = locale.country
-        val lc = language + "_" + country
         return locale.displayLanguage
     }
     
@@ -45,9 +42,9 @@ object SystemConfigUtils {
             val MINUTES = (1000 * 60).toLong()
             val day = nanoTime / DAY
             return if (day > 0) {
-                (nanoTime / DAY).toString() + " days " + nanoTime % DAY / HOUR + ":" + nanoTime % DAY % HOUR / MINUTES
+                "${nanoTime / DAY} days ${nanoTime % DAY / HOUR}:${nanoTime % DAY % HOUR / MINUTES}"
             } else {
-                (nanoTime % DAY / HOUR).toString() + ":" + nanoTime % DAY % HOUR / MINUTES
+                "${nanoTime % DAY / HOUR}:${nanoTime % DAY % HOUR / MINUTES}"
             }
         }
 }

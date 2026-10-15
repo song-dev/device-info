@@ -10,7 +10,7 @@ import com.song.deviceinfo.utils.FileUtils.readFile
  * Created by chensongsong on 2020/6/4.
  */
 object InputInfo {
-    private val inputList: MutableList<InputBean> = ArrayList()
+    private val inputList: MutableList<InputBean> = mutableListOf()
     
     val inputInfo: List<InputBean>
         get() {
@@ -37,16 +37,11 @@ object InputInfo {
                         val inputBean = InputBean()
                         inputBean.name = device.name
                         inputBean.handlers = device.descriptor
-                        val sb = StringBuilder()
-                        sb.append("id: ")
-                        sb.append(device.id)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                            sb.append(" vendor: ")
-                            sb.append(device.vendorId)
-                            sb.append(" product: ")
-                            sb.append(device.productId)
+                        inputBean.attribute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                            "id: ${device.id} vendor: ${device.vendorId} product: ${device.productId}"
+                        } else {
+                            "id: ${device.id}"
                         }
-                        inputBean.attribute = sb.toString()
                         inputList.add(inputBean)
                     }
                 }
@@ -81,18 +76,9 @@ object InputInfo {
                 if (name != null && !name.isEmpty()) {
                     val inputBean = InputBean()
                     inputBean.name = bean.name
-                    inputBean.sys = "sysfs: " + bean.sys
-                    inputBean.handlers = "handlers: " + bean.handlers
-                    val buffer = StringBuffer()
-                    buffer.append("bus: ")
-                    buffer.append(bean.bus)
-                    buffer.append(" vendor: ")
-                    buffer.append(bean.vendor)
-                    buffer.append(" product: ")
-                    buffer.append(bean.product)
-                    buffer.append(" ver: ")
-                    buffer.append(bean.version)
-                    inputBean.attribute = buffer.toString()
+                    inputBean.sys = "sysfs: ${bean.sys}"
+                    inputBean.handlers = "handlers: ${bean.handlers}"
+                    inputBean.attribute = "bus: ${bean.bus} vendor: ${bean.vendor} product: ${bean.product} ver: ${bean.version}"
                     inputList.add(inputBean)
                 }
             }
@@ -140,18 +126,12 @@ object InputInfo {
         
         companion object {
             private fun parseValue(data: String, key: String): String? {
-                val sb = StringBuffer()
-                sb.append(key)
-                sb.append("=")
-                val i = data.indexOf(sb.toString())
+                val i = data.indexOf("$key=")
                 return if ((i >= 0)) data.substring(i + key.length + 1) else null
             }
             
             private fun parseAttribute(data: String, key: String): String? {
-                val sb = StringBuffer()
-                sb.append(key)
-                sb.append("=")
-                var i = data.indexOf(sb.toString())
+                var i = data.indexOf("$key=")
                 if (i >= 0) {
                     val j = key.length + i + 1
                     i = data.indexOf(" ", i)

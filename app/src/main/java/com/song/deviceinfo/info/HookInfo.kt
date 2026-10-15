@@ -14,13 +14,13 @@ import com.song.deviceinfo.utils.XposedHookUtils.checkXposedInjet
  */
 object HookInfo {
     fun getHookInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
-        list.add(Pair("Process", checkRunningProcesses(context).toString() + ""))
+        val list = mutableListOf<Pair<String, String>>()
+        list.add(Pair("Process", checkRunningProcesses(context).toString()))
         list.add(Pair("XposedHookMethod", chargeXposedHookMethod()))
         list.add(Pair("XposedJars", chargeXposedJars()))
         list.add(Pair("XposedPackage", chargeXposedPackage(context)))
         list.add(Pair("XposedInject", checkXposedInjet(context).toString()))
-        list.add(Pair("XposedClass", classCheck().toString() + ""))
+        list.add(Pair("XposedClass", classCheck().toString()))
         return list
     }
 }

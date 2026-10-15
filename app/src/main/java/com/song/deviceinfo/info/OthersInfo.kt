@@ -29,7 +29,7 @@ import java.util.Locale
 object OthersInfo {
     @AddTrace(name = "OthersInfo.getOthersInfo")
     fun getOthersInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         list.add(Pair("UA", getDefaultUserAgent(context)))
         list.add(Pair("BootId", readFile("/proc/sys/kernel/random/boot_id")))
         list.add(Pair("UUID", readFile("/proc/sys/kernel/random/uuid")))
@@ -41,26 +41,26 @@ object OthersInfo {
         OaidUtils().getOaidsInfo(context, list)
         list.add(Pair("Country", Locale.getDefault().language + "-" + Locale.getDefault().country))
         // 显示
-        list.add(Pair("DPI", getDensityDpi(context).toString() + ""))
-        list.add(Pair("Density", getDensity(context).toString() + ""))
+        list.add(Pair("DPI", getDensityDpi(context).toString()))
+        list.add(Pair("Density", getDensity(context).toString()))
         list.add(Pair("Width * Height", getScreenWidth(context).toString() + " X " + getScreenHeight(context)))
         list.add(Pair("WidthDp * HeightDp", getScreenWidthWithDp(context).toString() + " X " + getScreenHeightWithDp(context)))
-        list.add(Pair("StatusBarHeight", getStatusBarHeight(context).toString() + ""))
-        list.add(Pair("NavigationBarHeight", getNavigationBarHeight(context).toString() + ""))
+        list.add(Pair("StatusBarHeight", getStatusBarHeight(context).toString()))
+        list.add(Pair("NavigationBarHeight", getNavigationBarHeight(context).toString()))
         try {
             list.add(Pair("SCREEN BRIGHTNESS", Settings.System.getInt(context.contentResolver,
-                    Settings.System.SCREEN_BRIGHTNESS).toString() + ""))
+                    Settings.System.SCREEN_BRIGHTNESS).toString()))
             list.add(Pair("SCREEN BRIGHTNESS AUTO", (Settings.System.getInt(context.contentResolver,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE) == 1).toString() + ""))
+                    Settings.System.SCREEN_BRIGHTNESS_MODE) == 1).toString()))
             list.add(Pair("SCREEN ORIENTATION AUTO", (Settings.System.getInt(context.contentResolver,
-                    Settings.System.ACCELEROMETER_ROTATION) == 1).toString() + ""))
+                    Settings.System.ACCELEROMETER_ROTATION) == 1).toString()))
         } catch (e: SettingNotFoundException) {
             e.printStackTrace()
         }
-        list.add(Pair("HideStatusBar", hideStatusBar(context).toString() + ""))
-        list.add(Pair("HasNavigationBar", hasNavigationBar(context).toString() + ""))
+        list.add(Pair("HideStatusBar", hideStatusBar(context).toString()))
+        list.add(Pair("HasNavigationBar", hasNavigationBar(context).toString()))
         // 存储
-        list.add(Pair("SDCardEnable", isMounted.toString() + ""))
+        list.add(Pair("SDCardEnable", isMounted.toString()))
         // 相机，网络
         return list
     }

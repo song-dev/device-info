@@ -29,7 +29,7 @@ object NetWorkInfo {
      * @return
      */
     fun getNetWorkInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         getNetWorkStatus(context, list)
         if (isWifi(context)) {
             setWifiInfo(context, list)
@@ -40,11 +40,11 @@ object NetWorkInfo {
     }
     
     private fun getNetWorkStatus(context: Context, list: MutableList<Pair<String, String>>) {
-        list.add(Pair("Net Availability", isNetworkConnected(context).toString() + ""))
-        list.add(Pair("Mobile Availability", isMobileEnabled(context).toString() + ""))
-        list.add(Pair("WIFI Availability", isWifi(context).toString() + ""))
+        list.add(Pair("Net Availability", isNetworkConnected(context).toString()))
+        list.add(Pair("Mobile Availability", isMobileEnabled(context).toString()))
+        list.add(Pair("WIFI Availability", isWifi(context).toString()))
         list.add(Pair("NET TYPE", getNetWorkType(context)))
-        list.add(Pair("Net System Usable", isNetSystemUsable(context).toString() + ""))
+        list.add(Pair("Net System Usable", isNetSystemUsable(context).toString()))
         getNetWorkInfo(context, list)
     }
     
@@ -73,10 +73,10 @@ object NetWorkInfo {
                     list.add(Pair(context.getString(R.string.net_frequency), wifiInfo.frequency.toString() + " MHz"))
                 }
                 list.add(Pair(context.getString(R.string.net_link_speed), wifiInfo.linkSpeed.toString() + " Mbps"))
-                list.add(Pair(context.getString(R.string.net_id), wifiInfo.networkId.toString() + ""))
+                list.add(Pair(context.getString(R.string.net_id), wifiInfo.networkId.toString()))
                 val rssi = wifiInfo.rssi
                 list.add(Pair(context.getString(R.string.net_rssi), "$rssi dBm"))
-                list.add(Pair(context.getString(R.string.net_level), calculateSignalLevel(rssi).toString() + ""))
+                list.add(Pair(context.getString(R.string.net_level), calculateSignalLevel(rssi).toString()))
                 list.add(Pair(context.getString(R.string.net_state), wifiInfo.supplicantState.name))
             }
         } catch (e: Exception) {
@@ -103,7 +103,7 @@ object NetWorkInfo {
             list.add(Pair(context.getString(R.string.net_mac), getMacAddress(context)))
             val signal = getMobileSignal(context)
             list.add(Pair(context.getString(R.string.net_rssi), signal.first.toString() + " dBm"))
-            list.add(Pair(context.getString(R.string.net_level), signal.second.toString() + ""))
+            list.add(Pair(context.getString(R.string.net_level), signal.second.toString()))
             getProxyInfo(context, list)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -141,12 +141,12 @@ object NetWorkInfo {
         if (isWifi(context)) {
             val wifiInfo = getWifiInfo(context)
             return if (wifiInfo != null) {
-                wifiInfo.rssi.toString() + " dBm"
+                "${wifiInfo.rssi} dBm"
             } else {
                 "-1 dBm"
             }
         } else {
-            return getMobileSignal(context).first.toString() + " dBm"
+            return "${getMobileSignal(context).first} dBm"
         }
     }
 }

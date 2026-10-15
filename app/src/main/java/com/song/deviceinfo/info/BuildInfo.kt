@@ -11,7 +11,7 @@ import com.song.deviceinfo.utils.Constants
  */
 object BuildInfo {
     fun getBuildInfo(context: Context?): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         val array = exec("getprop")
         for (item in array) {
             if (!TextUtils.isEmpty(item)) {

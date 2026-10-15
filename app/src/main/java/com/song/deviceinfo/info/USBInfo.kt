@@ -19,7 +19,7 @@ object USBInfo {
      * @return
      */
     fun getUSBInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         val info = info
         if (!info.isEmpty()) {
             for (i in info.indices) {
@@ -58,17 +58,13 @@ object USBInfo {
     private val info: List<USBBean>
         get() {
             val file = File("/sys/bus/usb/drivers/usb/")
-            val list: MutableList<USBBean> = ArrayList()
+            val list: MutableList<USBBean> = mutableListOf()
             val files = file.listFiles() ?: return list
             for (i in files.indices) {
                 val name = files[i].name
                 if (name.startsWith("usb") || name.contains("-")) {
-                    val sb = StringBuilder()
-                    sb.append("/sys/bus/usb/drivers/usb/")
-                    sb.append(name)
-                    sb.append("/")
                     val bean = USBBean()
-                    parseUSB(sb.toString(), bean)
+                    parseUSB("/sys/bus/usb/drivers/usb/$name/", bean)
                     list.add(bean)
                 }
             }
@@ -76,63 +72,30 @@ object USBInfo {
         }
     
     private fun parseUSB(path: String, bean: USBBean) {
-        var sb = StringBuilder()
-        sb.append(path)
-        sb.append("manufacturer")
-        bean.manufacturerName = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("product")
-        bean.productName = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("serial")
-        bean.serialNumber = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("idProduct")
-        bean.productId = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("idVendor")
-        bean.vendorId = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("version")
-        bean.version = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("busnum")
-        var busNum = readFile(sb.toString())
-        sb = StringBuilder()
-        sb.append(path)
-        sb.append("devnum")
-        var devNum = readFile(sb.toString())
+        bean.manufacturerName = readFile("${path}manufacturer")
+        bean.productName = readFile("${path}product")
+        bean.serialNumber = readFile("${path}serial")
+        bean.productId = readFile("${path}idProduct")
+        bean.vendorId = readFile("${path}idVendor")
+        bean.version = readFile("${path}version")
+        var busNum = readFile("${path}busnum")
+        var devNum = readFile("${path}devnum")
         if (busNum != null) {
             if (devNum != null) {
                 devNum = parsePath(devNum, "0", 3)
-                val builder = StringBuilder()
-                builder.append(busNum)
-                builder.append(devNum)
-                bean.num = builder.toString()
+                bean.num = busNum + devNum
                 busNum = parsePath(busNum, "0", 3)
             }
         }
-        val builder = StringBuilder()
-        builder.append("/dev/bus/usb/")
-        builder.append(busNum)
-        builder.append("/")
-        builder.append(devNum)
-        bean.path = builder.toString()
+        bean.path = "/dev/bus/usb/$busNum/$devNum"
     }
     
     private fun parsePath(numStr: String, str: String, size: Int): String {
-        var size = size
         val sb = StringBuilder()
-        size -= numStr.length
-        while (size > 0) {
+        var remaining = size - numStr.length
+        while (remaining > 0) {
             sb.append(str)
-            size--
+            remaining--
         }
         sb.append(numStr)
         return sb.toString()

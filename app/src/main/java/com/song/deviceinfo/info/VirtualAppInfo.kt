@@ -22,13 +22,13 @@ object VirtualAppInfo {
      * @return
      */
     fun getVirtualAppInfo(context: Context): List<Pair<String, String>> {
-        val list: MutableList<Pair<String, String>> = ArrayList()
+        val list = mutableListOf<Pair<String, String>>()
         list.add(Pair("FilesDir", context.filesDir.absolutePath))
-        list.add(Pair("Permission", moreOpenCheck(context).toString() + ""))
-        list.add(Pair("Binder", systemServer.toString() + ""))
-        list.add(Pair("Process", processCheck().toString() + ""))
-        list.add(Pair("PackageNum", packageCheck(context).toString() + ""))
-        list.add(Pair("360 分身大师", is360(context).toString() + ""))
+        list.add(Pair("Permission", moreOpenCheck(context).toString()))
+        list.add(Pair("Binder", systemServer.toString()))
+        list.add(Pair("Process", processCheck().toString()))
+        list.add(Pair("PackageNum", packageCheck(context).toString()))
+        list.add(Pair("360 分身大师", is360(context).toString()))
         list.add(Pair("分身大师 X 版", is360Xposed()))
         return list
     }

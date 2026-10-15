@@ -64,7 +64,7 @@ object GatewayUtils {
      */
     @JvmStatic
     fun getIp(context: Context): Map<String, String> {
-        val map: MutableMap<String, String> = HashMap()
+        val map: MutableMap<String, String> = mutableMapOf()
         try {
             val vpn = isVpn(context)
             val nis: Enumeration<*> = NetworkInterface.getNetworkInterfaces()

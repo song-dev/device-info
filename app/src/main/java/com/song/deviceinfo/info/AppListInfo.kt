@@ -15,7 +15,7 @@ object AppListInfo {
      * @return
      */
     fun getAppListInfo(context: Context): List<ApplicationBean> {
-        val list: MutableList<ApplicationBean> = ArrayList()
+        val list = mutableListOf<ApplicationBean>()
         val packageManager = context.applicationContext.packageManager
         val installedPackages = packageManager.getInstalledPackages(0)
         for (info in installedPackages) {
@@ -25,11 +25,7 @@ object AppListInfo {
             bean.version = info.versionName
             bean.icon = info.applicationInfo.loadIcon(packageManager)
             bean.buildVersion = info.applicationInfo.targetSdkVersion
-            if ((ApplicationInfo.FLAG_SYSTEM and info.applicationInfo.flags) == 0) {
-                bean.isSystemApp = false
-            } else {
-                bean.isSystemApp = true
-            }
+            bean.isSystemApp = (ApplicationInfo.FLAG_SYSTEM and info.applicationInfo.flags) != 0
             list.add(bean)
         }
         return list

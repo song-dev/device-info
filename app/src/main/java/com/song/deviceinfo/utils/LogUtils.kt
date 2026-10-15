@@ -9,7 +9,6 @@ import android.util.Log
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -223,15 +222,13 @@ object LogUtils {
                 if (!dir.exists()) {
                     dir.mkdirs()
                 }
-                
-                var out: BufferedOutputStream? = null
+
                 try {
-                    out = BufferedOutputStream(FileOutputStream(File(dir, FILE_NAME), true))
-                    out.write(content.toByteArray(charset("utf-8")))
+                    BufferedOutputStream(FileOutputStream(File(dir, FILE_NAME), true)).use { out ->
+                        out.write(content.toByteArray(charset("utf-8")))
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
-                } finally {
-                    out?.close()
                 }
             }
         }

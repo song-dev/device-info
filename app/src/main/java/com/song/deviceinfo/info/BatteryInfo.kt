@@ -14,7 +14,7 @@ object BatteryInfo {
      * @return 电池JSON
      */
     fun getBatteryInfo(context: Context): List<Pair<String, String>> {
-        val list = ArrayList<Pair<String, String>>()
+        val list = mutableListOf<Pair<String, String>>()
         getBatteryInfo(context, list)
         return list
     }
