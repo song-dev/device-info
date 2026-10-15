@@ -23,16 +23,16 @@ class StoreAdapter(context: Context) : BaseAdapter<StorageBean, StoreHolder>(con
     override fun onBindViewHolder(holder: StoreHolder, position: Int) {
         val bean = items[position]
         holder.binding.tvStoreMemFree.text = context.getString(R.string.store_mem_free, bean.freeMemory)
-        holder.binding.tvStoreMemUsed.text = context.getString(R.string.store_mem_used, bean.usedMemory, bean.ratioMemory.toString() + "")
+        holder.binding.tvStoreMemUsed.text = context.getString(R.string.store_mem_used, bean.usedMemory, bean.ratioMemory.toString())
         holder.binding.tvStoreMemTotal.text = context.getString(R.string.store_mem_total, bean.totalMemory)
         holder.binding.progressBarStoreMem.progress = bean.ratioMemory
         holder.binding.tvStoreMemInfo.text = bean.memInfo
         
         holder.binding.tvStoreSdFree.text = context.getString(R.string.store_sd_free, bean.freeStore)
-        holder.binding.tvStoreSdUsed.text = context.getString(R.string.store_sd_used, bean.usedStore, bean.ratioStore.toString() + "")
+        holder.binding.tvStoreSdUsed.text = context.getString(R.string.store_sd_used, bean.usedStore, bean.ratioStore.toString())
         holder.binding.tvStoreSdTotal.text = context.getString(R.string.store_sd_total, bean.totalStore)
         holder.binding.progressBarStoreSd.progress = bean.ratioStore
-        holder.binding.tvStoreSdPath.text = bean.romSize + " " + bean.storePath
+        holder.binding.tvStoreSdPath.text = "${bean.romSize} ${bean.storePath}"
     }
     
     class StoreHolder(var binding: ItemStoreBinding) : RecyclerView.ViewHolder(binding.root)

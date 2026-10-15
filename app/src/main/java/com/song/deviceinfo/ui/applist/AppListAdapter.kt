@@ -33,7 +33,7 @@ class AppListAdapter(context: Context) : BaseAdapter<ApplicationBean, AppListHol
         holder.binding.ivApplistIcon.setImageDrawable(bean.icon)
         holder.binding.tvApplistName.text = bean.name
         holder.binding.tvApplistPackagename.text = bean.packageName
-        holder.binding.tvApplistVersion.text = bean.version + " sdk" + bean.buildVersion
+        holder.binding.tvApplistVersion.text = "${bean.version} sdk${bean.buildVersion}"
         holder.binding.root.setOnClickListener { view: View? ->
             val intent = Intent()
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

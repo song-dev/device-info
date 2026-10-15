@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.input
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.model.beans.InputBean
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
@@ -17,7 +17,7 @@ class InputFragment : BaseFragment<InputBean>() {
     }
     
     override fun createViewModel(): BaseViewModel<InputBean> {
-        return ViewModelProviders.of(this).get(InputViewModel::class.java)
+        return ViewModelProvider(this).get(InputViewModel::class.java)
     }
     
     override fun refreshData() {

@@ -1,7 +1,7 @@
 package com.song.deviceinfo.ui.others
 
 import androidx.core.util.Pair
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.ui.base.NormalAdapter
@@ -16,7 +16,7 @@ class OthersFragment : NormalFragment() {
     }
     
     override fun createViewModel(): BaseViewModel<Pair<String, String>> {
-        return ViewModelProviders.of(this).get(OthersViewModel::class.java)
+        return ViewModelProvider(this).get(OthersViewModel::class.java)
     }
     
     override val normalInfo: List<Pair<String, String>>

@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.oneline
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
 import com.song.deviceinfo.ui.base.BaseViewModel
@@ -16,7 +16,7 @@ open class OneLineFragment : BaseFragment<String>() {
     }
     
     override fun createViewModel(): BaseViewModel<String> {
-        return ViewModelProviders.of(this).get(OneLineViewModel::class.java)
+        return ViewModelProvider(this).get(OneLineViewModel::class.java)
     }
     
     override fun refreshData() {

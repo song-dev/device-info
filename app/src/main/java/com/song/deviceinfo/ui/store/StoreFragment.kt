@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.store
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.model.beans.StorageBean
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
@@ -17,7 +17,7 @@ class StoreFragment : BaseFragment<StorageBean>() {
     }
     
     override fun createViewModel(): BaseViewModel<StorageBean> {
-        return ViewModelProviders.of(this).get(StoreViewModel::class.java)
+        return ViewModelProvider(this).get(StoreViewModel::class.java)
     }
     
     override fun refreshData() {

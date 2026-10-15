@@ -1,7 +1,7 @@
 package com.song.deviceinfo.ui.codecs
 
 import androidx.core.util.Pair
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
 import com.song.deviceinfo.ui.base.BaseViewModel
@@ -18,7 +18,7 @@ class CodecFragment : BaseFragment<Pair<String, String>>() {
     }
     
     override fun createViewModel(): BaseViewModel<Pair<String, String>> {
-        return ViewModelProviders.of(this).get(CodecViewModel::class.java)
+        return ViewModelProvider(this).get(CodecViewModel::class.java)
     }
     
     override fun refreshData() {

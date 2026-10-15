@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.partitions
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.model.beans.PartitionsBean
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
@@ -17,7 +17,7 @@ class PartitionsFragment : BaseFragment<PartitionsBean>() {
     }
     
     override fun createViewModel(): BaseViewModel<PartitionsBean> {
-        return ViewModelProviders.of(this).get(PartitionsViewModel::class.java)
+        return ViewModelProvider(this).get(PartitionsViewModel::class.java)
     }
     
     override fun refreshData() {

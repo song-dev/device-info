@@ -1,7 +1,7 @@
 package com.song.deviceinfo.ui.system
 
 import androidx.core.util.Pair
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseViewModel
 import com.song.deviceinfo.ui.base.NormalAdapter
@@ -19,6 +19,6 @@ class SystemFragment : NormalFragment() {
     }
     
     override fun createViewModel(): BaseViewModel<Pair<String, String>> {
-        return ViewModelProviders.of(this).get(SystemViewModel::class.java)
+        return ViewModelProvider(this).get(SystemViewModel::class.java)
     }
 }

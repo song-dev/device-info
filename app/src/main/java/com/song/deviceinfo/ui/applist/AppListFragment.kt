@@ -1,6 +1,6 @@
 package com.song.deviceinfo.ui.applist
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.model.beans.ApplicationBean
 import com.song.deviceinfo.ui.base.BaseAdapter
 import com.song.deviceinfo.ui.base.BaseFragment
@@ -17,7 +17,7 @@ class AppListFragment : BaseFragment<ApplicationBean>() {
     }
     
     override fun createViewModel(): BaseViewModel<ApplicationBean> {
-        return ViewModelProviders.of(this).get(AppListViewModel::class.java)
+        return ViewModelProvider(this).get(AppListViewModel::class.java)
     }
     
     override fun refreshData() {

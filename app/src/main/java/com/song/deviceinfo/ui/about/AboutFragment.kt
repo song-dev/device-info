@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.song.deviceinfo.databinding.FragmentAboutBinding
 
 /**
@@ -26,7 +26,7 @@ class AboutFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         aboutViewModel =
-            ViewModelProviders.of(this).get(AboutViewModel::class.java)
+            ViewModelProvider(this).get(AboutViewModel::class.java)
         aboutViewModel!!.text.observe(viewLifecycleOwner) { s -> binding!!.tvAboutVersion.text = s }
         aboutViewModel!!.setData(requireContext())
     }
