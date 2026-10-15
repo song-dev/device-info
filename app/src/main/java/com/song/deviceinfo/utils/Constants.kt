@@ -4,7 +4,7 @@ package com.song.deviceinfo.utils
  * Created by chensongsong on 2020/5/25.
  */
 object Constants {
-    const val VERSION: String = "0.2.1"
+    const val VERSION: String = "0.2.2"
     const val UNKNOWN: String = "\$unknown"
     const val TAG: String = "Device_Info"
     
